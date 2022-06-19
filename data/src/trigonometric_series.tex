@@ -1,0 +1,403 @@
+\begin{definition}
+    $T_n(x):= \frac{a_0}{2} + \sum_{k = 1}^n(a_k \cos(kx) + b_k\sin(kx))$ ~--- тригонометрический
+    многочлен степени $\le n$.
+
+    А если $|a_n| + |b_n| \neq 0$, то степени $n$
+\end{definition}
+
+\begin{definition}
+    Тригонометрический ряд $\frac{a_0}{2} + \sum_{k = 1}^\infty(a_k \cos(kx) + b_k\sin(kx))$
+\end{definition}
+
+\begin{definition}
+    Комплексная форма тригонометрического многочлена. $\sum_{k= -n}^n c_ke^{ikx}$
+
+    $\cos(kx) = \frac{e^{ikx} + e^{-ikx}}{2}, \sin(kx) = \frac{e^{ikx} - e^{-ikx}}{2i},
+        c_k = \frac{a_k}{2} + \frac{b_k}{2i}, c_{-k} =  \frac{a_k}{2} - \frac{b_k}{2i}$
+
+    Комплексная форма тригонометрического ряда $\sum_{-\infty}^\infty c_n e^{inx}$.
+
+    Если мы хотим говорить про сходимость этого ряда, то это означает сходимость
+    таких штук: $\sum_{-n}^n c_n e^{inx}$
+\end{definition}
+
+\begin{lemma}
+    Если тригонометрический ряд сходится к $f$ в пространстве $L^1[-\pi, \pi]$, то
+
+    $a_k = \frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos(kx)dx, b_k = \frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin(kx)dx,
+        c_k = \frac{1}{2\pi}\int_{-\pi}^\pi f(x)e^{-ikx}dx$
+\end{lemma}
+
+\begin{proof}
+    $S_n(x):= \frac{a_0}{2} + \sum_{k = 1}^n(a_k \cos(kx) + b_k \sin(kx))$,
+    $\norm{S_n - f}_1\rightarrow 0$
+
+    $|\int_{-\pi}^\pi S_n(x)\cos(kx)dx - \int_{-\pi}^\pi f(x)\cos(kx)dx| = |\int_{-\pi}^\pi (S_n(x) - f(x))\cos(kx)dx|$
+
+    $\le \int_{-\pi}^\pi |(S_n(x) - f(x))\cos(kx)|dx = \norm{S_n - f}_1\rightarrow0$
+
+    $\int_{-\pi}^\pi S_n(x)\cos(kx)dx = a_k \int_{-\pi}^\pi \cos^2(kx)dx = \pi a_k$
+
+    $|\pi a_k - \int_{-\pi}^\pi f(x)\cos(kx)dx| \rightarrow 0$
+
+\end{proof}
+
+\begin{definition}
+    Пусть $f\in L^1[-\pi, \pi]$, тогда вот те $a_k(f), b_k(f), c_k(f)$ ~--- коэффициенты Фурье функции $f$
+
+    Ряд Фурье для функции $f$ имеет вид $\frac{a_0}{2} + \sum_{k = 1}^n(a_k \cos(kx) + b_k\sin(kx))$
+    или $\sum_{-\infty}^\infty c_n e^{inx}$.
+\end{definition}
+
+\begin{observation}
+    Если $f$ ~--- четна, то $b_k(f) = 0$, а если $f$ ~--- нечетна, то $a_k(f) = 0$
+
+    $|a_k(f)|, |b_k(f)|\le \frac{\norm{f}_1}{\pi}$, $|c_k(f)|\le \frac{\norm{f}_1}{2\pi}$
+
+    ($|a_k(f)| = |\frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos(kx)dx|\le  \frac{1}{\pi}\int_{-\pi}^\pi |f(x)|dx = \frac{\norm{f}_1}{\pi}$)
+\end{observation}
+
+\begin{designation}
+    $A_k(f, x) =\begin{cases}
+            \frac{a_0}{2}, \text{если $k = 0$} \\
+            a_k(f)\cos(kx) + b_k(f)\sin(kx)
+        \end{cases} $
+\end{designation}
+
+\begin{observation}
+    $A_k(f, x) =\begin{cases}
+            \frac{1}{2\pi}\int_{-\pi}^\pi f(x-t)dt, \text{если $k = 0$} \\
+            \frac{1}{\pi}\int_{-\pi}^\pi f(x-t)\cos(kt)dt
+        \end{cases} $
+\end{observation}
+
+\begin{proof}
+    $A_k(f, x) = \frac{1}{\pi}\int_{-\pi}^\pi f(t)\cos(kt)dt \cdot \cos(kx) + \frac{1}{\pi}\int_{-\pi}^\pi f(t)\sin(kt)dt\cdot \sin(kx) =$
+
+    $ \frac{1}{\pi}\int_{-\pi}^\pi f(t)(\cos(kt)\cdot \cos(kx) + \sin(kt)\cdot\sin(kx))dt = \frac{1}{\pi}\int_{-\pi}^\pi f(t)\cos(k(x - t))dt = /s = x - t/ =
+        \frac{1}{\pi}\int_{-\pi}^\pi f(x- s)\cos(ks)ds$
+\end{proof}
+
+Когда $f(x) = \frac{a_0}{2} + \sum_{n = 1}^\infty(a_n \cos(nx) + b_n\sin(nx))$?
+
+\begin{enumerate}
+    \item Дюбуа-Рейман $\exists f\in C_{2\pi}$ ряд расходится в некоторых точках
+    \item Лебег $\exists f\in C_{2\pi}$ ряд сходится во всех точках, но нет равномерной сходимости
+    \item Колмогоров $\exists f\in L^1[-\pi, \pi]$ ряд расходится во всех точках
+    \item Карлесон $\forall f\in L^2[-\pi, \pi]$ ряд сходится почти везде
+    \item Рисс $1 < p < +\infty$ $\forall f\in L^p[-\pi, \pi]$ ряд сходится к $f$ по норме из $L^p[-\pi, \pi]$
+
+          (Для $p = 2$ было доказано в прошлом параграфе)
+\end{enumerate}
+
+\begin{lemma}(Римана-Лебега)
+    \begin{enumerate}
+        \item $E\subset \mathbb{R}$ измеримо по Лебегу, $\lambda \in \mathbb{R}$, $f \in L^1(E, \lambda)$.
+
+              Тогда $\int_E f(t)e^{i\lambda t}dt \underset{\lambda\rightarrow\pm\infty}{\rightarrow} 0$,
+              $\int_E f(t)\cos(\lambda t)dt \underset{\lambda\rightarrow\pm\infty}{\rightarrow} 0$,
+              $\int_E f(t)\sin(\lambda t)dt \underset{\lambda\rightarrow\pm\infty}{\rightarrow} 0$
+        \item Если $f\in L^1[-\pi, \pi]$, то $a_k(f), b_k(f), c_k(f)\underset{k\rightarrow\pm\infty}{\rightarrow} 0$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}
+        \item Продолжим $f$ нулем вне $E$, $f\in L^1(\mathbb{R})$.
+
+              Пусть $f = \mathbbm{1}_{[\alpha, \beta)}$, тогда $\int_\mathbb{R} f(t)e^{i\lambda t}dt = \int_\alpha^\beta e^{i\lambda t}dt
+                  = \frac{e^{i\lambda t}}{i\lambda}\Big|_{t = \alpha}^{t = \beta} = \frac{e^{i\lambda\alpha} -
+                      e^{i\lambda \beta}}{i\lambda}$
+
+              $|\ldots| = |\frac{e^{i\lambda\alpha} -
+                      e^{i\lambda \beta}}{i\lambda}| \le \frac{2}{|\lambda|}  \underset{\lambda\rightarrow\pm\infty}{\rightarrow} 0$
+
+              Значит, теорема выполнена и для линейных комбинаций таких функций.
+
+              Приблизим произвольную $f$ ступенчатой $\varphi$, т.ч. $\norm{f - \varphi}_1 < \varepsilon$
+
+              $\int_{\mathbb{R}} e^{i\lambda t}dt \rightarrow 0 \Rightarrow $ при $\lambda > N$
+              $|\int_\mathbb{R}\varphi(t)e^{i\lambda t}dt| < \varepsilon$
+
+              $|\int_\mathbb{R}f(t)e^{i\lambda t}dt| \le  |\int_\mathbb{R}\varphi(t)e^{i\lambda t}dt| + |\int_\mathbb{R}(f(t) - \varphi(t))e^{i\lambda t}dt| < \varepsilon + \int_\mathbb{R}|e^{i\lambda t}dt| < 2\varepsilon$
+    \end{enumerate}
+
+
+\end{proof}
+\begin{example}
+    Дискретное преобразование Фурье.
+
+    $a_k = \sum \limits_{n = 0}^{N - 1} x_n e^{-\frac{2 \pi i}{N} n k}$~--- прямое дискретное преобразование Фурье.
+
+    $x_n = \frac1N \sum \limits_{k = 0}^{N - 1} a_k e^{\frac{2 \pi i}{N} k n}$~--- обратное дискретное преобразование Фурье.
+
+    Разобьем отрезок $[0, 2 \pi]$ на $N$ одинаковых по длине отрезков. Пусть на каждом отрезке функция постоянна (значения на концах отрезков неважны). Пусть значение на $i$-м отрезке (нумерация с нуля) равно $x_i$.
+    Назовем эту функцию $x(t)$. посчитаем ее коэффициенты Фурье:
+
+    $c_k(x) = \frac{1}{\pi} \int \limits_{0}^{2 \pi} x(t) e^{-ikt} dt =
+        \frac{1}{\pi} \sum \limits_{k = 0}^{N - 1} x_n \int \limits_{\frac{2 \pi}{N} n}^{\frac{2 \pi}{N} (n + 1)} e^{-ikt} dt =
+        \frac{1}{\pi} \sum \limits_{k = 0}^{N - 1} x_n \frac{e^{-ikt}}{-ik} \bigr|_{t = \frac{2 \pi}{N}n}^{t = \frac{2 \pi}{N} (n + 1)} =
+        \frac{1}{\pi} \cdot \frac{i}{k} \sum \limits_{k = 0}^{N - 1} x_n e^{-\frac{2 \pi}{N} i k n} (e^{-\frac{2 \pi}{N} k i} - 1) =
+        \frac{i}{\pi} \cdot \frac{e^{-\frac{2 \pi}{N} k i} - 1}{k} \sum \limits_{k = 0}^{N - 1} x_n e^{-\frac{2 \pi}{N} i k n}  =
+        \frac{i}{\pi} \cdot \frac{e^{-\frac{2 \pi}{N} k i} - 1}{k} \cdot a_k$, где $k = 0, 1, \ldots, N - 1$.
+    Мы можем обойтись $N$ штуками, потому что $e^{-ikt}$~--- ортогональные штуки, поэтому они линейно независимы. Так что первые $N$ элементов~--- ортогональный базис, потому что размерность пространства, натянутого на кусочно-постоянные фунции, равна $N$
+    (базис~--- $\mathbbm{1}_{\left[\frac{2 \pi k}{N}, \frac{2 \pi (k + 1)}{N}\right)})$.
+    Из-за того, что в знаменателе стоит $k$, $c_k \to 0$, а $a_k$ не стремятся.
+
+\end{example}
+
+\begin{reminder}
+    Модуль непрерывности: $\omega_f(\delta) := \sup \limits_{|x - y| \le \delta} |f(x) - f(y)|$.
+
+    Липшицевы функции с показателем $\alpha$ и константой $M$: $|f(x) - f(y)| \le M |x - y|^{\alpha}$. Это $\Lip_{\alpha} M$.
+    Тогда пусть $\Lip_{\alpha} = \bigcup \limits_{M > 0} \Lip_{\alpha} M$.
+
+    На самом деле осмысленны только $0 < \alpha \le 1$. Если $\alpha > 1$, то функция вырождается в константу.
+
+    Если $f \in \Lip_{\alpha} M$, то $\omega_f(h) \le M h^{\alpha}$.
+\end{reminder}
+
+\begin{theorem}
+    Пусть $f \in C_{2 \pi}$. Тогда $|a_k(f)|, |b_k(f)|, 2|c_k(f)| \le \omega_f(\frac{\pi}{k})$ при $k \neq 0$.
+\end{theorem}
+
+\begin{proof}
+    $a_k = \frac{1}{\pi} \int \limits_{-\pi}^{\pi} f(t) \cos kt dt = / (t = s + \frac{\pi}{k}) / =
+        \frac{1}{\pi} \int \limits_{-\pi - \frac{\pi}{k}}^{\pi - \frac{\pi}{k}} f(s + \frac{\pi}{k}) \cos(ks + \pi) ds = $
+    \graytext{/ функция $2\pi$-периодична, поэтому можно сдвинуть ингетрал, а также вычесть $\pi$ из $\cos$, домножив все на $-1$ /}
+    $= \frac{-1}{\pi} \int \limits_{-\pi}^{\pi} f(s + \frac{\pi}{k}) \cos(ks) ds$.
+
+    $|a_k| = |\frac{1}{2} (a_k + a_k)| =
+        |\frac{1}{2} \cdot \frac{1}{\pi} \int \limits_{-\pi}^{\pi} (f(t) - f(t + \frac{\pi}{k})) \cos kt dt| \le
+        \frac{1}{2} \cdot \frac{1}{\pi} \int \limits_{-\pi}^{\pi} |f(t) - f(t + \frac{\pi}{k})| \cdot |\cos kt| dt \le
+        \frac{1}{2} \cdot \frac{1}{\pi} \int \limits_{-\pi}^{\pi} |f(t) - f(t + \frac{\pi}{k})| dt \le
+        \frac{1}{2} \cdot \frac{1}{\pi} \int \limits_{-\pi}^{\pi} \omega_f(\frac{\pi}{k}) dt \le = \omega_f(\frac{\pi}{k})$.
+
+    Аналогичное неравенство можно получить для $b_k$. Для $c_k$ тоже почти аналогично. Разница в том, что когда мы считаем коэффициент для цэшки, мы пишем не $\frac{1}{\pi}$, а $\frac{1}{2 \pi}$, поэтому появляется двойка.
+\end{proof}
+
+\begin{lemma}
+    Если $f \in C_{2 \pi}^1$, то $a_k(f') = k b_k(f)$, $b_k(f') = -k a_k(f)$, $c_k(f') = i k c_k(f)$.
+\end{lemma}
+
+\begin{proof}
+    $a_k(f') = \frac{1}{\pi} \int \limits_{-\pi}^{\pi} f'(t) \cos kt dt = \frac{f(t) \cos kt}{ \pi k} \bigr|_{t = -\pi}^{t = \pi} +
+        \frac{1}{\pi} f(t) k \sin kt dt = k b_k(f)$ ($f(t)$ и $cos(kt)$ $2\pi$-периодичны, так что подстановка обращается в ноль).
+
+    Аналогично доказываются остальные формулы.
+\end{proof}
+
+\begin{consequence}
+    Если $f \in C_{2 \pi}^r$ и $f^{(r)} \in \Lip_{\alpha} M$ при $0 < \alpha \le 1$, то
+    $|a_k(f)|, |b_k(f)|, 2 |c_k(f)| \le \frac{M \pi^{\alpha}}{|k|^{r + \alpha}}$.
+\end{consequence}
+
+\begin{proof}
+    Докажем по индукции.
+
+    База: По предыдущая теореме $\ldots \le \omega_f(\frac{\pi}{k}) \le M (\frac{\pi}{k})^{\alpha}$
+
+    Переход $r \to r + 1$:
+    $|a_k(f)| = |\frac{1}{k} b_k(f')| \le \frac{1}{k} \cdot \frac{M \pi^{\alpha}}{k^{r + \alpha}}$.
+\end{proof}
+
+\begin{definition}
+    Ядро Дирихле~--- это $D_n(t) := \frac{1}{2} + \sum \limits_{k = 1}^{n} \cos kt$
+\end{definition}
+
+\begin{properties}
+    1. $D_n(t)$~--- четная, $2 \pi$-периодическая и $D_n(0) = n + \frac{1}{2}$.
+
+    2. $\frac{1}{\pi} \int \limits_{-\pi}^{\pi} D_n(t) dt = 1$, потому что интеграл каждого косинуса~--- это ноль, и  $\frac{1}{\pi} \int \limits_{0}^{\pi} D_n(t) dt = \frac{1}{2}$,
+    потому что функция четная.
+
+    3. При $t \neq 2 \pi m$ выполнено $D_n(t) = \frac{\sin(n + \frac{1}{2}) t}{2 \sin \frac{t}{2}}$.
+\end{properties}
+
+\begin{proof}
+    $2 \sin \frac{t}{2} D_n(t) = \sin \frac{t}{2} + \sum \limits_{k = 1}^{n} \cos kt \sin \frac{t}{2} =
+        \sin \frac{t}{2} + \sum \limits_{k = 1}^{n} \sin(k + \frac{1}{2}) t - \sin (k - \frac{1}{2}) t = \sin(n + \frac{1}{2}) t$.
+\end{proof}
+
+\begin{lemma}
+    $S_n(f, x) = \frac{1}{\pi} \int \limits_{-\pi}^{\pi} D_n(t) f(x \pm t) dt =
+        \frac{1}{\pi} \int \limits_{0}^{\pi} D_n(t) (f(x + t) + f(x - t)) dt$.
+\end{lemma}
+
+\begin{proof}
+    $A_k(f, x) = \begin{cases}
+            \frac{a_0(f)}{2}, \text{ при } k = 0 \\
+            a_k(f) \cos kx + b_k(f) \sin kx, \text{ иначе}
+        \end{cases} =
+        \begin{cases}
+            \frac{1}{\pi} \int \limits_{-\pi}^{\pi} \frac{f(x - t)}{2} dt, \text{ при } k = 0 \\
+            \frac{1}{\pi} \int \limits_{-\pi}^{\pi} f(x - t) cos(kt) dt , \text{ иначе}
+        \end{cases}$
+
+    $S_n(f, x) = \sum \limits_{k = 0}^{n} A_k(f, x) = \frac{1}{\pi} \int \limits_{-\pi}^{\pi} f(x - t) \left(
+        \sum \limits_{k = 1}^{n} \cos kt + \frac{1}{2} \right) dt = \frac{1}{\pi} \int \limits_{-\pi}^{\pi} D_n(t) f(x - t) dt$.
+
+    Заменой $t \to -t$ получим формулу $S_n(f, x) = \frac{1}{\pi} \int \limits_{-\pi}^{\pi} D_n(t) f(x + t) dt$.
+
+    Последняя формула~--- просто соединение интеграла от $-\pi$ до $0$ и интеграла от $0$ до $\pi$ в первой формуле.
+\end{proof}
+
+\begin{consequence}
+    $S_n(f, x) = \frac{1}{\pi} \int \limits_{0}^{\delta} D_n(t) (f(x + t) + f(x - t)) dt + o(1)$ при $0 < \delta < \pi$.
+\end{consequence}
+
+\begin{proof}
+    $\int \limits_{\delta}^{\pi} D_n(t) (f(x + t) + f(x - t)) dt =
+        \int \limits_{\delta}^{\pi} \frac{f(x + t) + f(x - t)}{2 \sin \frac{t}{2}} \cdot \sin (n + \frac{1}{2}) t dt$.
+    По лемме Римана-Лебега, если $\frac{f(x + t) + f(x - t)}{2 \sin \frac{t}{2}}$ суммируема, то интеграл стремится к нулю.
+    $\sin$ отделен от нуля, $f$ сама по себе суммируемая, так что и сдвинутые суммируемые (коэффициенты Фурье определены только для суммируемых).
+\end{proof}
+
+\begin{theorem} (принцип локализации):
+
+    $f, g \in L^1 [-\pi, \pi]$ и совпадают на $(x - \delta, x + \delta)$. Тогда ряды Фурье для функций $f$ и $g$ в точке $x$
+    ведут себя одинаково. В частности, если они сходятся, то их суммы одинаковы.
+
+    То есть, если мы поменяем функцию где-то далеко от интересующей нас точки, это никак не скажется на сумме ряда Фурье. Поведение ряда Фурье определяется маленькой окрестностью точки. Если там далеко функция очень плохая, разрывная, это никак не скажется на том, что произойдет в точке $x$.
+\end{theorem}
+
+\begin{proof}
+    $S_n(f, x) = \frac{1}{\pi} \int \limits_{0}^{\delta} D_n(t) (f(x + t) + f(x - t)) dt + o(1) =
+        \frac{1}{\pi} \int \limits_{0}^{\delta} D_n(t) (g(x + t) + g(x - t)) dt + o(1) = S_n(g, x) \Rightarrow$
+    $S_n(f, x) = S_n(g, x) + o(1)$.
+\end{proof}
+
+\begin{lemma}
+    $f \in L^1 [-\pi, \pi]$. Тогда $\int \limits_{0}^{\delta} \frac{|f(t)|}{t} dt$ и
+    $\int \limits_{0}^{\pi} \frac{|f(t)|}{2 \sin \frac{t}{2}} dt$ ведут себя одинаково, то есть сходятся или расходятся одновременно.
+\end{lemma}
+
+\begin{proof}
+    $2 \sin \frac{t}{2} \le t$ при $t \ge 0 \Rightarrow$
+    $\frac{|f(t)|}{t} \le \frac{|f(t)|}{2 \sin \frac{t}{2}}$, так что если второй интеграл сходится, то и первый тоже.
+
+    В обратную сторону:
+    $\int \limits_{0}^{\pi} \frac{|f(t)|}{2 \sin \frac{t}{2}} dt = \int \limits_{0}^{\delta} + \int \limits_{\delta}^{\pi}$.
+    $\int \limits_{\delta}^{\pi} \le \frac{1}{2 \sin \frac{\delta}{2}} \int \limits_{\delta}^{\pi} |f(t)| dt$~--- сходится.
+    А для $\int \limits_{0}^{\delta}$ выполнено $2 \sin \frac{t}{2} \sim t \Rightarrow$
+    На $[0, \delta]$ интегралы ведут себя одинаково.
+\end{proof}
+
+\begin{definition}
+    $x_0$~--- регулярная точка фунции $f$, если $f(x_0) = \frac{f(x_0 + 0) + f(x_0 - 0)}{2}$, где
+    $f(x_0 \pm 0)$~--- левый и правый предел.
+
+    В частности, левый и правый пределы должны существовать.
+
+    $f_+'(x) := \lim \limits_{h \to 0+} \frac{f(x + h) - f(x + 0)}{h}$,
+    $f_-'(x) := \lim \limits_{h \to 0+} \frac{f(x - h) - f(x - 0)}{-h}$.
+\end{definition}
+
+\begin{designation}
+    $f_x^*(t) := f(x + t) + f(x - t) - f(x + 0) - f(x - 0)$.
+
+    Если $x$~--- регулярная точка, то $f_x^*(t) = f(x + t) + f(x - t) - 2f(x)$.
+\end{designation}
+
+\begin{theorem} Признак Дини.
+
+    $f \in L^1[-\pi, \pi]$. $x$~--- точка непрерывности или разрыва первого рода (есть левый и правый предел).
+    $0 < \delta < \pi$. Если $\int \limits_{0}^{\delta} \frac{|f_x^*(t)|}{t} dt$ сходится (назовем это условие (*)), то ряд Фурье функции $f$ в точке $x$ сходится
+    к $\frac{f(x + 0) + f(x - 0)}{2}$
+\end{theorem}
+
+\begin{proof}
+    $S_n(f, x) - \frac{f(x + 0) + f(x - 0)}{2} = \frac{1}{\pi} \int \limits_{0}^{\pi} D_n(t) (f(x + t) + f(x - t)) dt -
+        \frac{1}{\pi} \int \limits_{0}^{\pi} D_n(t) (f(x + 0) + f(x - 0)) dt = \frac{1}{\pi} \int \limits_{0}^{\pi} D_n(t) f_x^*(t) dt =
+        \frac{1}{\pi} \int \limits_{0}^{\pi} \frac{f_x^*(t)}{2 \sin \frac{t}{2}} \sin (n + \frac{1}{2}) t dt$.
+    Если $\frac{f_x^*(t)}{2 \sin \frac{t}{2}}$ суммируема, то интеграл стремится к нулю по лемме Римана-Лебега.
+    По предыдущей лемме суммируемость такой штуки равносильна тому, что конечен интеграл
+    $\int \limits_{0}^{\delta} \frac{|f_x^*(t)|}{t} dt$.
+\end{proof}
+
+\begin{consequence}
+    1. Если (*) и $x$~--- регулярная точка, то ряд Фурье сходится к значению функции в точке. В частности $x$~--- точка непрерывности.
+
+    2. Если $f \in L^1 [-\pi, \pi]$ и $f'_{\pm}(x)$ существуют и конечны, то ряд Фурье сходится к $\frac{f(x + 0) + f(x - 0)}{2}$.
+
+    3. Если $f$ кусочно-дифференцируема на $[-\pi, \pi]$, то ряд Фурье сходится в каждой точке $x \in (-\pi, \pi)$ к $f(x)$ и сходится к $\frac{f(\pi) + f(-\pi)}{2}$ в точках $\pm \pi$.
+
+    4. Если $f \in C_{2 \pi}$ и кусочно-дифференцируемая, то ряд Фурье в точке $x$ сходится к $f(x)$.
+\end{consequence}
+
+\begin{proof}
+    1. Очевидно.
+
+    2. $\int \limits_{0}^{\delta} \frac{|f(x + t) + f(x - t) - f(x + 0) - f(x - 0)|}{t} dt \le
+        \int \limits_{0}^{\delta} \frac{|f(x + t) - f(x  +0)|}{t} dt + \int \limits_{0}^{\delta} \frac{f(x - t) - f(x - 0)}{t} dt$.
+    Первое подынтегральное выражение стремится к $f'_+(x)$, а второе к $f'_-(x)$ при $t \to 0$.
+    Числитель суммируем, проблема у знаменателя только в одной точке, но мы знаем, что в этой точке функция сходится, то есть ограниченность. Так что все интегралы сходятся.
+
+    3. По предыдущему следствию во внутренних точках отрезка все хорошо, а в концевых точках будет скачок, когда мы продолжаем по периоду. Но будет сходиться к полусумме левого и правого предела, что и есть то, что нам нужно.
+
+    4. Следует из предыдущих.
+\end{proof}
+
+\begin{example}
+    $f(x) = \frac{\pi - x}{2}$, где $0 \le x \le 2 \pi$ и продолжим ее до $2 \pi$-периодичной.
+    $f(x)$ нечетная, так что $a_n = 0$.
+    $b_n = \frac{1}{\pi} \int \limits_{0}^{2 \pi} \frac{\pi - x}{2} \sin (nx) dx = -\frac{1}{2 \pi} x \sin (nx) dx =
+        -\frac{1}{2 \pi} (-\frac{x \cos nx}{n} \bigr|_{x = 0}^{x = 2 \pi} + \int \limits_{0}^{2 \pi} \frac{\cos nx}{n} dx) = \frac{1}{2 \pi} \cdot \frac{2 \pi}{n} = \frac{1}{n} \Rightarrow$ ряд Фурье $\sum \limits_{n = 1}^{\infty} \frac{\sin nx}{n}$.
+
+    Наша функция кусочно-дифференцируема и проблема есть только в точках склейки, так что ряд Фурье сходится к значению функции:
+    $\frac{\pi - x}{2} = \sum \limits_{n = 1}^{\infty} \frac{\sin nx}{n}$ при $0 < x < 2 \pi$.
+
+    Подставим $x := 2x$ и поделим пополам:
+    $\frac{\pi - 2x}{4} = \sum \limits_{n = 1}^{\infty} \frac{\sin 2nx}{2n}$ при $0 < x < \pi$.
+
+    Если же вычесть из первой формулы вторую, то получится
+    $\frac{\pi}{4} = \sum \limits_{k = 1}^{\infty} \frac{\sin (2k + 1) x}{2k + 1}$ при $0 < x < \pi$.
+
+    Подставим $x = \frac{\pi}{2}$, получим
+    $\frac{\pi}{4} = \sum \limits_{k = 1}^{\infty}\frac{(-1)^k}{2k + 1}$.
+
+    Теперь из удвоенной последней формулы вычтем первую:
+    $\frac{x}{2} = \sum \limits_{n = 1}^{\infty}\frac{(-1)^n \sin nx}{n}$ при $0 < x < \pi$.
+    Она еще верна при $-\pi < x < 0$, потому что и слева, и справа нечетные функции. При этом в нуле она тоже верна, так что мы получили разложение на $-\pi < x < \pi$.
+
+    График такой функции похож на дробную часть, так что можно раскладывать дробную часть в ряд Фурье. Теперь можно ее интегрировать, к примеру, переставляя сумму с интегралом.
+
+    \href{https://youtu.be/ngQduNsEq3E?list=PLodheWE7A8z9ri1dXoa9rGn6TgpdWtGlt&t=6241}{Картинки}
+
+    Функции нечетные, поэтому раскладываются по синусам.
+
+    Раскладываем куб в ряд. Все классно приближается. Но на краях не очень. Хранить ряды Фурье функции может быть удобным способом хранить информацию о функции в компьютере.
+
+    Раскладываем функцию знак на $[-\pi, \pi)$, продолжая по периоду.
+    В точке, где происходит разрыв, график выскакивает вверх практически на фиксированную высоту. Это неслучайно. Высота этого всплеска всегда фиксирована.
+    Это называется эффектом Гиббса. Сейчас мы его изучим.
+
+
+    $f(x) = -1$ на $(-\pi, 0)$,
+    $f(x) = 1$ на $(0, \pi)$.
+
+    $a_n = 0$.
+
+    $b_n = \frac{1}{\pi} \int \limits_{-\pi}^{\pi} sign x \cdot \sin nx dx = \frac{2}{\pi}\int \limits_{0}^{\pi} \sin nx dx =
+        \frac{2}{\pi} \cdot \frac{\cos nx}{n} \bigr|_{x = 0}^{x = \pi}$.
+
+    Получается, что $b_{2n} = 0$, $b_{2n - 1} = \frac{4}{\pi(2n-1)}$.
+
+    Ряд Фурье: $\frac{4}{\pi} \sum \limits_{k = 1}^{\infty} \frac{\sin ((2k -1)x)}{2k - 1}$.
+
+    $S_n(x) = \frac{4}{\pi} \sum \limits_{k = 1}^{n} \frac{\sin ((2k -1)x)}{2k - 1}$.
+
+    $S_n'(x) = \frac{4}{\pi} \sum \limits_{k = 1}^{n} \cos((2k - 1)x) =$ \graytext{/ похожее считали чуть выше /}
+    $ = \frac{2}{\pi} \cdot \frac{\sin 2nx}{\sin x}$.
+    Ближайший к нулю корень $S_n'(x)$~--- это $\frac{\pi}{2n}$.
+
+    $S_n(\frac{\pi}{2n}) = \int \limits_{0}^{\frac{\pi}{2 n}} S_n'(x) dx = \frac{2}{\pi} \int \limits_{0}^{\frac{\pi}{2n}} \frac{\sin 2nx}{\sin x} dx = $
+    \graytext{/ $t = 2nx$ /} $ = \frac{2}{\pi} \int \limits_{0}^{\pi} \frac{\sin t}{\sin \frac{t}{2n}} \cdot \frac{dt}{2n}$
+    \graytext{/ $\sin \frac{t}{2 n} = \frac{t}{2 n} + o(\frac{t}{n})$ /}
+    $ = \frac{2}{\pi} \int \limits_{0}^{\pi}  \frac{\sin t}{t + o(t)} dt = \frac{2}{\pi} \int \limits_{0}^{\pi} \frac{\sin t}{t} (1 + o(1)) dt = \frac{2}{\pi} \int \limits_{0}^{\pi} \frac{\sin t}{t} dt + o(1)$.
+
+    При $n \to +\infty$ получается $S_n(\frac{\pi}{2 n}) \to \frac{2}{\pi} \int \limits_{0}^{\pi} \frac{\sin t}{t} dt \approx 1.17898$. Всплеск $\approx 17.8\%$.
+
+    \href{https://youtu.be/ngQduNsEq3E?list=PLodheWE7A8z9ri1dXoa9rGn6TgpdWtGlt&t=7371}{Опять картинки}
+
+    Нарисовали картинку в JPEG 32x32 пикселя, которую в 32 раза раздули. Каждая клеточка по 3 пикселя. Жмем ее в JPEG с разными коэффициентами сжатия. Постепенно видно, что то, что было светлым, становится еще светлее, а что было темным, становится еще темнее.
+\end{example}

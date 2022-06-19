@@ -1,0 +1,243 @@
+\begin{definition}
+    $f_1 \in H(\Om_1)$,
+    $f_2 \in H(\Om_2)$ и
+    $\Delta$~--- одна из компонент связности
+    пересечения $\Om_1$ и $\Om_2$.
+    Если на этой $\Delta$, $f_1 = f_2$,
+    то $f_2$~--- непосредственное аналитическое продолжение
+    $f_1$ через $\Delta$.
+\end{definition}
+
+\begin{observation}
+    При фиксированном $\Delta$ продолжение единственно.
+    (из теоремы единственности)
+\end{observation}
+
+\begin{definition}
+    $f \in H(\Om)$ и $\widetilde f \in H(\widetilde\Om)$.
+    Есть $\Om = \Om_0, \Om_1, \ldots, \Om_n = \widetilde\Om$.
+    Тогда $\widetilde{f}$~--- продолжение $f$
+    по цепочке областей $\Om_1, \ldots, \Om_{n-1}$,
+    если $f_k \in H(\Om_k)$ и
+    $f_k$~--- непосредственное аналитическое
+    продолжение $f_{k-1}$.
+\end{definition}
+
+\begin{observation}
+    От выбора компонент связности
+    между соседними $\Om$ результат зависит.
+\end{observation}
+
+\begin{observation}
+    Можно считать все промежуточные
+    $\Om$ кругами.
+    (из леммы Лебега можно протащить круг)
+\end{observation}
+
+\begin{observation}
+    $\widetilde f$~--- аналитическое продолжение
+    $f$ по некоторой цепочке~--- отношение эквивалентности
+    на множестве пар
+    $(f, \Om)$.
+\end{observation}
+
+\begin{definition}
+    Полная аналитическая функция~--- это такой
+    класс эквивалентности.
+
+    $M \coloneqq \bigcup\limits_{(f, \Omega) \in F} \Omega$~---
+    область определения (существования) $F$.
+    Это область.
+\end{definition}
+
+\begin{definition}
+    Значение полной аналитической функции
+    $F$. $z\in M$.
+    $F(z) = \left\{f(z) \mid (f, \Omega) \in F\right\}$
+\end{definition}
+
+\begin{theorem}
+    (Пуанкаре-Вольтерра)
+
+    $F(z)$~--- конечно или счётно.
+    (без доказательства)
+\end{theorem}
+
+\begin{example}
+    $f(z) = \sum\limits_{n=0}^{+\infty} z^n$.
+    Ряд сходится при $|z| < 1$.
+    Можно продолжить как $f(z) = \frac{1}{1-z}$
+    на $\C \setminus \left\{1\right\}$.
+\end{example}
+
+\begin{definition}
+    $f \in H(B_R(z_0))$,
+    $f(z) = \sum\limits_{n=0}^{+\infty} a_n(z-z_0)^n$
+    сходится в круге $|z-z_0| < R$.
+
+    Если $|z_1 -z_0| \le R$, то назовём
+    $z_1$ правильной, если существует
+    $B_r(z_1)$ и $g \in H(B_r(z_1))$, т.ч.
+    $f = g$ на $B_R(z_0) \cap B_r(z_1)$.
+
+    Остальные точки назовём особыми.
+\end{definition}
+
+\begin{theorem}
+    $\sum\limits_{n=0}^{+\infty} a_nz^n$
+    имеет круг сходимости $|z| < R$ ($R$~--- радиус
+    сходимости).
+    Тогда на границе круга сходимости есть
+    особая точка.
+\end{theorem}
+
+\begin{proof}
+    Пусть на границе $|z| = R$ нет особых точек.
+    Тогда для всех $|a| = R$ существует
+    шар $B_{r_a}(a)$, т.ч. в $|z-a|<r_a$
+    есть функция $g_a$, совпадающая с $f$
+    на $B_{r_a}(a) \cap B_R(0)$.
+
+    По лемме Лебега возьмём $\rho$,
+    что $B_\rho(a)$ целиком содержится
+    в некоторых $B_{r_b}(b)$, значит
+    можно раздуть наш круг сходимости на $\rho$.
+    Значит, есть голоморфная функция на большем шаре,
+    совпадающая с $f$. У неё то же самое разложение
+    в ряд, противоречие.
+\end{proof}
+
+\begin{example}
+    $\sum\limits_{n=1}^{+\infty} \frac{z^n}{n^2}$
+    сходится при $|z| \le 1$, но в $z = 1$ не продолжить.
+\end{example}
+
+\begin{example}
+    $\sum\limits_{n=0}^{+\infty} z^{2^n}$ сходится при $|z| < 1$.
+    Не продолжить дальше: в окрестности точки продолжения есть
+    точка $\exp\left(\frac{2\pi k}{2^m}i\right)r$.
+    Можно считать что аргумент $ = 0$.
+    Получаем, что $\sum\limits_{n=0}^{+\infty} x^{2^n} = f(x)$.
+    В пределе $f(1) = \infty$, значит не продолжить.
+\end{example}
+
+\begin{example}
+    $\sum\limits_{n=0}^{+\infty} z^{n!}$
+\end{example}
+
+\begin{theorem}
+    $\Om$~--- односвязная область, $f \in H(\Om)$,
+    $f \ne 0$ в $\Om$. Тогда существует $g \in H(\Om)$,
+    т.ч. $e^{g(z)} = f(z)$ для всех $z \in \Om$.
+    Функция $g(z)$ единственна с точностью до $2\pi ik$.
+\end{theorem}
+
+\begin{proof}
+    $\frac{f'}{f} \in H(\Om)$, значит существовует первообразная
+    $g \in H(\Om)$.
+    Возьмём $z_0 \in \Om$ и подберём константу,
+    такую что $e^{g(z_0)} = f(z_0)$.
+
+    Проверим, что $g$~--- подходящая функция.
+    Хотим $fe^{-g} \equiv 1$.
+    Знаем, что $(fe^{-g})' = f'e^{-g} - fg'e^{-g} = 0$.
+
+    Теперь единственность. $g_1, g_2 \in H(\Om)$.
+    $e^{g_1} = e^{g_2} = f \So e^{g_1 - g_2} = 1$,
+    из непрерывности $g_1 - g_2$ понятно, что $g_1 = g_2$.
+\end{proof}
+
+\begin{consequence}
+    $\Om \subset \C \setminus \{0\}$.
+    Тогда существует $g \in H(\Om)$, т.ч. $e^{g(z)} = z$
+    и $g(z)$ единственна с точностью до $2\pi i k$.
+\end{consequence}
+
+\begin{observation}
+    Если $e^w = z$, то $w = g(z) = \ln |z| + i \arg z$.
+    Аргумент должен быть непрерывным.
+\end{observation}
+
+\begin{definition}
+    $\Ln$~--- полная аналитическая функция
+    составленная из кусочков из следствия.
+
+    Конкретные представители~--- голоморфные ветви логарифма.
+\end{definition}
+
+\begin{property}
+    $\Ln z = \ln |z| + i\Arg z$.
+\end{property}
+
+\begin{property}
+    $\Ln z = \left\{w \in \C : e^w = z\right\}$
+    при $z \ne 0$.
+\end{property}
+
+\begin{property}
+    $\Ln(z_1z_2) = \Ln z_1 + \Ln z_2$.
+\end{property}
+
+\begin{observation}
+    Для голоморфной ветви последнего свойства нет.
+\end{observation}
+
+\begin{proof}
+    Рассмотрим $\C \setminus \left\{-it : t \ge 0\right\}$.
+    $g(1) = 0$, $g(-1) = \pi i$, $g(-1) \cdot g(-1) = 2\pi i \ne 0$.
+\end{proof}
+
+\begin{definition}
+    $z^p \coloneqq e^{p\Ln z}$, $z \ne 0$.
+\end{definition}
+
+\begin{observation}
+    $p \in \Z$. Тогда
+    $\Ln z = \ln |z| + i\Arg z$,
+    $z^p = e^{p\ln |z|}e^{ip \Arg z}$.
+    Получилось то же что и раньше.
+\end{observation}
+
+\begin{observation}
+    $p \in \Q$. $p = \frac{q}{r}$.
+    $z^p = e^{\frac{q}{r}\Ln z} = e^{\frac{q}{r}\ln |z|}
+        e^{\frac{q}{r} i \Arg z}$.
+    Получается полная аналитическая функция,
+    в каждой точке $r$ разных значений.
+\end{observation}
+
+\begin{observation}
+    $p \in \C \setminus \Q$.
+    У $z^p$ счётное число различных значений.
+\end{observation}
+
+Сейчас будем рассматривать двумерные многообразия
+(комплексная плоскость это плоскость где они живут).
+Когда один и тот же кусок задаётся двумя картами
+хотим, чтобы $\widetilde{\varphi} \circ \psi$ было голоморфной.
+
+\begin{definition}
+    $f \colon M \to \C$ голоморфная, если
+    для всех карт $\varphi$, $f \circ \varphi \colon
+        \Omega \to \C$ голоморфны.
+\end{definition}
+
+\begin{definition}
+    Риманова поверхность полной аналитической функции.
+
+    Пусть $f$~--- полная аналитическая функция,
+    её куски это $(f_\alpha, \Om_\alpha)$.
+
+    Это будут карты, пусть у нас $z$ на карте
+    $\Om_\al$ и $z$ на карте $\Om_\be$,
+    если в окрестности $z$ $f_\al = f_\be$, то
+    склеиваем в этой точке.
+\end{definition}
+
+\begin{example}
+    Риманова поверхность для $\Ln$.
+    Я рекомендую посмотреть лекцию
+    6 где-то с 1:05:00. Там нужно представить
+    набор листов, соседние склеены там где у нас
+    проблемы с непрерывностью (например по прямой).
+\end{example}

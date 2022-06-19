@@ -1,0 +1,70 @@
+\begin{definition}
+    Форма $\omega$~--- замкнутая, если $d \omega = 0$.
+
+    Форма $\omega$~--- точная, если $\omega = d \lambda$ для некоторого $\lambda$.
+
+    Форма $\omega$~--- локально точная, если у каждой точки найдется окрестность $U$, в которой есть такое $\lambda$, что
+    $\omega = d \lambda$ в этой окрестности.
+\end{definition}
+
+\begin{theorem}
+    Если коэффициенты $\omega$ из $C^1$, то из локальной точности следует замкнутость.
+\end{theorem}
+
+\begin{proof}
+    Возьмем точку $x$. У нее есть окрестность $U$, где живет $U$, т.ч. $d \lambda = \omega$ на $U$.
+    $d \omega$ в этой окрестности равно $d(d \lambda) = 0$.
+\end{proof}
+
+\begin{observation}
+    Точность $\Rightarrow$ локальная точность $\Rightarrow$ \graytext{/ если коэффициенты из $C^1$ /} $\Rightarrow$ замкнутость.
+\end{observation}
+
+\begin{example}
+    $\omega = \frac{x dy - y dx}{x^2 + y^2}$ на $\R^2 \setminus \{(0, 0)\}$. $\omega$~--- замкнутая.
+    $d \omega = d(\frac{x}{x^2 + y^2}) \wedge d y - d(\frac{y}{x^2 + y^2}) \wedge dx$.
+    $d(\frac{x}{x^2 + y^2}) = \frac{dx (x^2 + y^2) - (2 x dx + 2 y dy) x}{(x^2 + y^2)^2} = $
+    $\frac{y^2 dx - x^2 dx - 2xy dy}{(x^2 + y^2)^2}$. При этом $dy \wedge dy$ даст ноль.
+    Аналогично со вторым слагаемым, получим в итоге
+    $\frac{y^2 - x^2}{(x^2 + y^2)^2} dx \wedge dy - \frac{x^2 - y^2}{(x^2 + y^2)^2} dy \wedge dx = 0$.
+
+    $\omega$ не точная. Форма степени один, так что точность~--- это наличие первообразной.
+
+    $\int \limits_{\texttt{по единичной окружности}} \frac{x dy - y dx}{x^2 + y^2}$.
+    Пусть $x = \cos t$, $y = \sin t$. Тогда $dx = -\sin t dt$, $dy = \cos t dt$.
+    Получим $\int \limits_{0}^{2 \pi} \frac{\cos^2t + \sin^2 t}{\sin^2 t + \cos^2 t} dx = \int \limits_{0}^{2 \pi} 1 dt = 2 \pi \neq 0$
+    $\Rightarrow $ нет первообразной, и форма не точна.
+\end{example}
+
+\begin{theorem}
+    $\omega$~--- замкнутая форма в $\Omega \subset \R^n$. Тогда $\omega$~--- локально точная.
+\end{theorem}
+
+\begin{lemma} Пуанкаре:
+
+    Если $\Omega$~--- выпуклая область в $\R^n$, и $\omega$~--- замкнутая форма в $\Omega$, то $\omega$~--- точная форма.
+\end{lemma}
+
+\begin{proof}
+    Докажем только для $n = 2$.
+    Для $n = 2$ бывают только $1$-формы и $2$-формы.
+
+    Пусть $\omega$~--- $1$-форма. Надо доказать, что у нее есть первообразная. Как мы уже показывали,
+    достаточно показать, что $\int \omega$ по любой простой замкнутой кривой равен нулю.
+    $\omega = P dx + Q dy \Rightarrow \int \limits_{\gamma} \omega = $
+    $\int \limits_{\texttt{по внутренности}} (\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}) dx dy$ по формуле Грина.
+    По замкнутости $\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 0$.
+
+    Пусть $\omega$~--- $2$-форма. $\omega = f dx \wedge dy$.
+    $d(Q dy) = \frac{\partial Q}{\partial x} dx \wedge dy$, тогда достаточно взять в качестве $Q$ первообразную $f$ по $x$.
+\end{proof}
+
+\begin{observation}
+    Мы пользуемся выпуклостью для того, чтобы если есть замкнутая кривая, то ее внутренность лежит внутри $\Omega$.
+\end{observation}
+
+\begin{proof} теоремы:
+
+    Берем точку в $\Omega$, кружок, содержащий эту точку. Это выпуклое множество, можно применить лемму.
+    Так для каждой точки, получаем локальную точность.
+\end{proof}

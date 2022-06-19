@@ -1,0 +1,625 @@
+\begin{definition}
+    $f\colon\Om\to\C$~--- голоморфная(в точке $z_0$),
+    если существует
+    $\lim\limits_{z\to z_0} \frac{f(z) - f(z_0)}{z-z_0}$.
+\end{definition}
+\begin{designation}
+    $f'(z_0) = \lim\limits_{z\to z_0} \frac{f(z) - f(z_0)}{z-z_0}$
+\end{designation}
+
+\begin{properties}
+    \begin{enumerate}
+        \item сумма голоморфных ~--- голоморфна
+        \item произведение голоморфных ~--- голоморфно
+        \item линейная комбинация голоморфных ~--- голоморфна
+        \item $g(z_0) \neq 0$, то $\frac{f}{g}$ ~--- голоморфна в $z_0$
+    \end{enumerate}
+\end{properties}
+
+\begin{observation} $f$ ~--- голомофрна в $z_0 \EQ$
+    $f(z) = f(z_0) +k(z - z_0) + o(z-z_0)$
+\end{observation}
+
+\begin{observation}
+    Обозначим $f(x, y) = f(x + iy)$,
+    $z_0 = x_0 + iy_0$,
+    тогда
+
+    \[
+        \frac{\partial f}{\partial x}(z_0)
+        = \lim_{h \to 0} \frac{f(x_0+h, y_0) - f(x_0, y_0)}{h}
+        = f'(z_0)
+    \]
+
+    \[
+        \frac{\partial f}{\partial y}(z_0)
+        = \lim_{h \to 0} \frac{f(x_0, y_0+h) - f(x_0, y_0)}{h}
+        = if'(z_0)
+    \]
+\end{observation}
+
+\begin{observation}
+    Комплексная дифференцируемость:
+
+    \[ f(z) = f(z_0) + k(z - z_0) + o(z-z_0) \]
+
+    тогда в вещественной дифференцируемости
+
+    \[
+        f(x, y) = f(x_0, y_0) +
+        A \begin{pmatrix}
+            x - x_0 \\
+            y - y_0 \\
+        \end{pmatrix}
+        + o (x - x_0)
+    \]
+
+    матрица $A$ будет иметь вид:
+
+    \[
+        A = \begin{pmatrix}
+            \alpha & -\beta \\
+            \beta  & \alpha \\
+        \end{pmatrix}
+    \]
+
+    Почему? Приравняем $(a + bi)(z-z_0) = A\begin{pmatrix}x-x_0\\y-y_0\end{pmatrix}$.
+
+    $f$~--- голоморфная в точке $z_0$ $\EQ$
+    $f$~--- вещественно-дифференцируема и
+
+    \[
+        \begin{cases}
+            \frac{\partial \Re f}{\partial x}
+            = \frac{\partial \Im f}{\partial y} \\
+            \frac{\partial \Re f}{\partial y}
+            = -\frac{\partial \Im f}{\partial x}
+        \end{cases}
+    \]
+\end{observation}
+
+\begin{observation}
+    $f(z) = f(z_0) + k(z-z_0) + o(z - z_0)$,
+    где $k = |k|e^{i\theta}$, следовательно
+    такая штука примерно сохраняет окружности
+\end{observation}
+
+\begin{notation}
+    \[
+        \frac{\partial}{\partial z}
+        = \frac12 \left( \frac{\partial}{\partial x}
+        - i\frac{\partial}{\partial y} \right)
+    \]
+
+    \[
+        \frac{\partial}{\partial \overline{z}}
+        = \frac12 \left( \frac{\partial}{\partial x}
+        + i\frac{\partial}{\partial y} \right)
+    \]
+
+    Так хорошо писать, так как
+
+    \[
+        df = \frac{\partial f}{\partial x} dx +
+        \frac{\partial f}{\partial y} dy =
+        \frac{\partial f}{\partial z} dz
+        + \frac{\partial f}{\partial \overline{z}} d\overline{z}
+    \]
+\end{notation}
+
+\begin{theorem}[условия Коши-Римана]
+    $f\colon \Omega \to \C$, $ = u + iv$,
+    $f$~--- дифференцируема в точке $z_0$
+    как отображение $\R^2 \to \R^2$.
+    Тогда следующие условия равносильны:
+
+    \begin{enumerate}
+        \item $f$~--- голоморфна в точке $z_0$
+        \item $d_{z_0}f$~--- комплексно-линейный оператор, то есть та матрица
+              $A$ имеет тот вид, который мы описали.
+        \item $\frac{\partial f}{\partial \overline{z}}(z_0) = 0$
+        \item $\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}$
+              и $\frac{\partial v}{\partial x} = -\frac{\partial u}{\partial y}$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Уже знаем (1) $\EQ$ (2) и (2) $\EQ$ (4) (см. выше).
+    (3) $\EQ$ (4):
+
+    \[
+        \frac{\partial f}{\partial \overline{z}}
+        = \frac{1}{2}\left(\pder{f}{x} + i\pder{f}{y}\right)
+        = \frac{1}{2}\left(\pder u x + i\pder v x + i\pder u y - \pder v y\right)
+    \]
+\end{proof}
+
+\begin{consequence}
+    $f\colon\Omega \to \C$ голоморфная во всех точках
+    и $\Im f = \mathrm{const}$. Тогда $f = \mathrm{const}$.
+\end{consequence}
+
+\begin{proof}
+    $f = u + iv$, $v = \mathrm{const}$.
+    $\pder{u}{x} = \pder{v}{y} = 0$
+    и $\pder{u}{y} = -\pder{v}{x} = 0$.
+    Значит, $u = \mathrm{const}$.
+\end{proof}
+
+\begin{notation}
+    $f \in H(\Om)$ если $f$~--- голоморфная во всех точках $\Om$.
+\end{notation}
+
+\begin{theorem}[Коши]
+
+    $f \in H(\Om) \So f(z)dz$~--- локально точная
+\end{theorem}
+
+\begin{proof}
+    Пусть $\pder{f}{x}$ и $\pder{f}{y}$ непрерывны.
+    Локальная точность $\EQ$ в окрестности есть первообразная $\EQ$ интеграл по замкнутой кривой(можно считать что прямоугольничку) равен нулю. Возьмём прямоугольничек в этой окрестности и докажем, что
+    $\int f(z)dz = 0$.
+
+    Такой интеграл равен
+
+    \[\int_{\text{граница}} f(z)dx + if(z)dy
+        = \int_{\text{внутренность}} \left(
+        i\pder{f}{x} - \pder{f}{y}\right)
+        dx \land dy
+        = 2i \int_{\text{внутренность}}
+        \pder{f}{\ov z}dx\land dy = 0
+    \]
+
+    Мы пользуемся непрерывностью частных производных, когда применяем формулу Грина.
+
+    На самом деле производные всегда непрерывны,
+    но чтобы это доказать нужно воспользоваться
+    этой теоремой.
+
+    Теперь пусть производные не непрерывны.
+
+    Возьмём прямоугольничек $P$,
+    пусть $\al(P) = \int\limits_P f(z)dz \ne 0$.
+    Нарежем прямоугольник на четыре,
+    значит $\al(P) = \al(P_1) + \al(P_2) + \al(P_3) + \al(P_4)$.
+
+    Один из $|\al(P_k)| \ge \frac14|\al(P)|$, повторим
+    для него и так далее, получим вложенные компакты,
+    у них есть общая точка $z_0$.
+
+    $f$~--- голоморфная в $z_0$, значит
+    $f(z) = f(z_0) + k(z-z_0) + o(z-z_0)$.
+
+    \[
+        \al(P_k) = \int\limits_{P_k} f(z_0)dz
+        + \int\limits_{P_k} k(z-z_0) +
+        \int\limits_{P_k} o(z-z_0)
+        = \int\limits_{P_k} o(z-z_0)
+    \]
+
+    Оценим по ML-inequality:
+
+    \[
+        |\al(P_k)| = \left|\int\limits_{P_k} o(z-z_0)\right|
+        \le \text{периметр} P_k \cdot \max |o(z-z_0)| = \left(\frac{\text{периметр} P}{2^k}\right) ^ 2 \cdot o(1)
+    \]
+
+    \[
+        |\al(P_k)| \ge \frac{|\al(P)|}{4 ^ k} \So \frac{|\al(P)|}{4 ^ k} \le \left(\frac{\text{периметр} P}{2^k}\right) ^ 2 \cdot o(1)
+        \So |\al(P)| \le (\text{периметр} P) ^ 2 \cdot o(1) \So \al(P) = 0
+    \]
+\end{proof}
+
+\begin{consequence}
+    $f \in H(\Om)$, значит
+    у любой точки есть окрестность, в которой есть
+    такая голоморфная функция $F$, такая что
+    $F' = f$.
+\end{consequence}
+
+\begin{proof}
+    $fdz$~--- локально точная, значит есть локальная
+    первообразная. Пусть в окрестности $U$ такая первообразная~---
+    $F$, $dF = fdz$.
+
+    Но с другой стороны,
+    $dF = \pder{F}{z}dz + \pder{F}{\overline{z}} d\overline{z}$,
+    значит коэффициента у $d\overline {z}$ нет,
+    а значит функция голоморфна, значит
+    $\pder F z = F' = f$.
+\end{proof}
+
+\begin{consequence}
+    $f \in H(\Om)$ и $\gamma$~--- стягиваемая
+    кривая в $\Om$, то $\int\limits_\gamma fdz = 0$.
+\end{consequence}
+
+\begin{theorem}
+    $f \in C(\Om)$ и
+    $f \in H(\Om \setminus \Delta)$,
+    где $\Delta$~--- прямая, параллельная вещественной оси.
+
+    Тогда, $fdz$~--- локально точная в $\Om$.
+\end{theorem}
+
+\begin{proof}
+    У нас могут быть проблемы только с точками на $\Delta$.
+    Надо проверить у этих точек, что интеграл по любому прямоугольнику в их
+    окрестности равен нулю. Проблемы только с теми прямоугольниками, которые задевают
+    $\Delta$. Нарежем такой прямоугольник на два, которые не
+    пересекают прямую, объединим.
+
+    Рассмотрим прямоугольничек, касающий прямой.
+    Поднимем его на $\varepsilon$.
+
+    // Тут наверное легче кусок лекции посмотреть
+    (\href{https://youtu.be/0cq-BdGbfks}{тык}) где-то с 1:00:00
+\end{proof}
+
+\begin{consequence}
+    $f \in C(\Om)$,
+    $A$~--- множество без предельных точек,
+    $f \in H(\Om \setminus A)$, тогда $fdz$~--- локально точная.
+\end{consequence}
+
+\begin{proof}
+    Если мы берем точку не из $A$, то у нее есть окрестность, не пересекающаяся с $A$ (потому
+    что в $A$ нет предельных точек) и там
+    есть первообразная. Если точка из $A$, то также есть окрестность, не пересекающаяся с
+    другими точками из $A$ и там можно поделить этот кружочек линией, параллельной оси координат и применить теорему.
+\end{proof}
+
+\begin{definition}
+    Индекс точки относительно замкнутой кривой.
+    (пусть точка $0$).
+
+    $\gamma(t) = r(t)\cdot e^{i\varphi(t)}$,
+    $\gamma$ не проходит через $0$,
+    $r, \varphi \colon [a, b] \to \R$.
+
+    $\Ind(\gamma, 0) \coloneqq \frac{\varphi(b) - \varphi(a)}{2\pi}$.
+
+    Это типа количество оборотов вокруг точки.
+\end{definition}
+
+\begin{theorem}
+    Если $\gamma$ не проходит через $0$, то
+    $\int\limits_\gamma \frac{dz}{z} = 2\pi i \Ind(\gamma, 0)$.
+\end{theorem}
+
+\begin{proof}
+    Берём параметризацию.
+    $z(t) = r(t)e^{i\varphi(t)}$.
+
+    Тогда
+
+    \[
+        dz = \left(r'(t)e^{i\varphi(t)}
+        + r(t)\cdot i \varphi'(t) e^{i\varphi(t)}\right) dt
+    \]
+
+    \[\frac{dz}z = \left(
+        \frac{r'(t)}{r(t)} + i\varphi'(t)
+        \right) dt\].
+
+    Потом просто считаем интеграл по определению:
+
+    \[
+        \int\limits_\gamma =
+        \int\limits_a^b \left(\frac{r'(t)}{r(t)}
+        + i \varphi'(t)\right) dt =
+        \eval{\left(\log r(t) + i\varphi(t)\right)}_{t=a}^{t=b} =
+        i(\varphi(b) - \varphi(a))
+        = 2\pi i \Ind(\gamma, 0)
+    \]
+\end{proof}
+
+\begin{consequence}
+    $\Ind(\gamma, a) = \frac{1}{2 \pi i} \int\limits_\gamma \frac{dz}{z - a}$
+\end{consequence}
+
+\begin{theorem}[Интегральная формула Коши]
+    $f \in H(\Om)$, $a \in \Omega$,
+    $\gamma$~--- стягиваемый путь, не проходящий через $a$.
+
+    Тогда $\int\limits_\gamma \frac{f(z)}{z - a} =
+        2\pi i f(a) \Ind(\gamma, a)$
+\end{theorem}
+
+\begin{proof}
+    Заведём функцию
+
+    \[
+        g(z) \coloneqq
+        \begin{cases}
+            \frac{f(z) - f(a)}{z - a} & \text{если } z \ne a \\
+            f'(a)                     & \text{иначе }
+        \end{cases}
+    \]
+
+    $g \in C(\Omega)$, $g \in H(\Omega \setminus \{a\})$,
+    значит $gdz$~--- локально точная форма,
+    значит $\int\limits_\gamma gdz = 0$, распишем интеграл:
+
+    \[
+        \int\limits_\gamma \left(\frac{f(z)}{z-a} - \frac{f(a)}{z-a}\right) dz
+        = 0
+    \]
+
+    Приравняем:
+
+    \[
+        \int\limits_\gamma \frac{f(z)}{z-a}dz
+        = \int\limits_\gamma \frac{f(a)}{z-a}dz
+        = f(a) \int\limits_\gamma \frac{dz}{z-a}
+        = 2\pi i f(a) \Ind(\gamma, a)
+    \]
+\end{proof}
+
+\begin{example}
+    $f$~--- голоморфная в окрестности круга.
+    $\gamma$~--- граница круга.
+
+    Если $a$ вне круга, то
+
+    \[
+        \int\limits_\gamma \frac{f(z)}{z-a} dz = 0
+    \]
+
+    Иначе,
+
+    \[
+        \int\limits_\gamma \frac{f(z)}{z-a} dz = 2\pi i f(a)
+    \]
+\end{example}
+
+\begin{theorem}
+    Если $f \in H(r\D)$, то $f$~--- аналитична
+    (сумма своего ряда Тейлора),
+    в частности существуют производные сколь
+    угодно больших порядков.
+\end{theorem}
+
+\begin{proof}
+    Возьмём $r_1$, $r_2$: $0 < r_1 < r_2 < r$.
+
+    Возьмём точку $z$ внутри $r_1\D$, разложим функцию:
+
+    \[
+        f(z) = \frac{1}{2\pi i} \int\limits_{r_2\T}
+        \frac{f(\zeta)}{\zeta - z} d\zeta
+    \]
+
+    Сначала разложим $\frac{1}{\zeta - z}$,
+    расписываем как геометрическую прогрессию,
+    так как $\frac{|z|}{|\zeta|} < 1$:
+
+    \[
+        \frac{1}{\zeta - z} =
+        \frac{1}{\zeta} \cdot \frac{1}{1 - \frac{z}{\zeta}}
+        = \frac{1}{\zeta}
+        \sum\limits_{n=0}^{+\infty} \left(\frac{z}{\zeta}\right)^n
+        = \sum\limits_{n=0}^{+\infty} \frac{z^n}{\zeta^{n+1}}
+    \]
+
+    Продолжим расписывать интеграл:
+
+    \[
+        f(z) = \frac{1}{2\pi i} \int\limits_{r_2\T}
+        f(\zeta) \sum\limits_{n=0}^{+\infty} \frac{z^n}{\zeta^{n+1}} d\zeta
+    \]
+
+    Есть равномерная сходимость, так как $f$ глобально
+    ограничена, геометрическая прогрессия отделена от
+    единицы, значит можно поменять местами
+    сумму и интеграл
+
+    \[
+        f(z) =
+        \sum\limits_{n=0}^{+\infty} \frac{z^n}{2\pi i} \int\limits_{r_2\T}
+        \frac{f(\zeta) }{\zeta^{n+1}}d\zeta
+    \]
+
+    Разложили в ряд, коэффициенты:
+
+    \[
+        a_n = \frac{1}{2\pi i}
+        \int\limits_{r_2\T} \frac{f(\zeta)}{\zeta^{n+1}}d\zeta
+    \]
+\end{proof}
+
+\begin{consequence}
+    \[ f^{(n)}(0) = \frac{n!}{2\pi i}
+        \int\limits_{r_2\T} \frac{f(\zeta)}{\zeta^{n+1}}d\zeta
+    \]
+\end{consequence}
+
+\begin{observation}
+    Если $a + r\D \subset \Om$, то
+    $f$ расскладывается в ряд по степеням $(z-a)$
+    в $a + r\D$.
+\end{observation}
+
+\begin{consequences}
+    \begin{enumerate}
+        \item $f \in H(\Omega) \EQ f$~--- аналитична в
+              $\Om$.
+        \item $f\in H(\Om)$, то $f$~--- бесконечно дифференцируема в
+              $\Om$.
+        \item $f\in H(\Om)$, то $f' \in H(\Om)$
+    \end{enumerate}
+\end{consequences}
+
+\begin{definition}
+    $f$~--- гармоническая функция, если
+    $\ppder{f}{x} + \ppder{f}{y} = 0$.
+\end{definition}
+
+\begin{consequence}
+    $f\in H(\Om)$, то $\Re f$ и $\Im f$~---
+    гармонические функции.
+\end{consequence}
+
+\begin{proof}
+    \[
+        \ppder{\Re f}{x}
+        = \pder{}{x}\left(\pder{\Re f}{x}\right)
+        = \pder{}{x}\left(\pder{\Im f}{y}\right)
+    \]
+
+    \[
+        \ppder{\Re f}{y}
+        = \pder{}{y}\left(\pder{\Re f}{y}\right)
+        = -\pder{}{y}\left(\pder{\Im f}{x}\right)
+    \]
+
+    Из-за непрерывности производные совпадают.
+\end{proof}
+
+\begin{observation}
+    Если $P$~--- гармоническая функция в круге,
+    то существует единственная (с точностью до константы)
+    гармоническая $Q$,
+    такая что $P + iQ$~--- голоморфная.
+\end{observation}
+
+\begin{theorem}[Морера]
+    $f \in C(\Om)$ и $fdz$~--- локально точная.
+    Тогда, $f \in H(\Om)$.
+\end{theorem}
+
+\begin{proof}
+    $fdz$~--- локально точная, значит для
+    точки $z_0$ есть $U$, такая что $F\colon U \to \C$~---
+    первообразная. Значит, $F' = f$, а следовательно
+    $F \in H(\Om)$, значит $f = F' \in H(\Om)$.
+\end{proof}
+
+\begin{consequence}
+    $f \in C(\Om)$ и $f \in H(\Om \setminus \Delta)$.
+    Тогда, $f \in H(\Om)$.
+\end{consequence}
+
+\begin{proof}
+    $f \in C(\Om)$ и $f \in H(\Om \setminus \Delta)$,
+    тогда $fdz$~--- локально точная, значит
+    $f \in H(\Om)$.
+\end{proof}
+
+\begin{theorem}[интегральная формула Коши \textnumero 2]
+
+    $f\in H(\Om)$, $K \subset \Omega$~--- компакт
+    с кусочно гладкой границей и граница
+    состоит из конечного количества замкнутых кривых.
+
+    Тогда, $\int\limits_{\partial K} f(z)dz = 0$
+    и если $a \in \operatorname{Int} K$, то
+    $\int\limits_{\partial K} \frac{f(z)}{z-a}dz =
+        2\pi i f(a)$.
+\end{theorem}
+
+\begin{proof}
+    $\int\limits_{\partial K} f(z)dz = 0$ из формулы Грина.
+
+    Возьмём $\overline{B}_r(a) \subset \operatorname{Int} K$.
+    Рассмотрим новый компакт $\widetilde K = K \setminus B_r(a)$.
+
+    Функция голоморфна на $\widetilde K$, так как $\widetilde K \in \Om\setminus \overline{B}_
+        \frac{r}{2}(a)$,
+    значит
+
+    \[
+        \int\limits_{\partial \widetilde K} \frac{f(z)}{z-a}dz = 0
+    \]
+
+    Распишем интеграл по-другому:
+
+    \[
+        \int\limits_{\partial \widetilde K} \frac{f(z)}{z-a}dz =
+        \int\limits_{\partial K} \frac{f(z)}{z-a}dz -
+        \int\limits_{a + r\T} \frac{f(z)}{z-a}dz
+        = \int\limits_{\partial K} \frac{f(z)}{z-a}dz -
+        2\pi i f(a)
+    \]
+\end{proof}
+
+\begin{theorem}
+    $f\colon \Omega \to \C$, тогда следующие условия
+    равносильны:
+
+    \begin{enumerate}
+        \item $f \in H(\Om)$
+        \item $f$ аналитична в $\Omega$
+        \item $f$ локально имеет первообразную
+        \item $fdz$ локально точна
+        \item $fdz$ замкнутая и у $f$ непрерывны частные производные
+        \item $f$ вещественно дифференцируема
+              и уравнение Коши-Римана верно
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Ничего нового нет на самом деле.
+\end{proof}
+
+\begin{theorem}[неравенство Коши]
+
+    $f \in H(R\D)$, $0 < r < R$,
+    $M(r) \coloneqq \max_{|z| = r} |f(z)|$,
+    $f(z) = \sum_{n=0}^{+\infty} a_nz^n$,
+    тогда $|a_n| \le \frac{M(r)}{r^n}$.
+\end{theorem}
+
+\begin{proof}
+    \[ a_n = \frac{1}{2\pi i} \int\limits_{|\zeta| = r}
+        \frac{f(\zeta)}{\zeta^{n+1}} d\zeta \]
+
+    \[ |a_n| \le \frac{1}{2\pi} \cdot
+        \text{длина кривой} \cdot \max \text{функции} = \frac{1}{2\pi} \cdot
+        2\pi r \cdot \frac{M(r)}{r^{n+1}} \]
+\end{proof}
+
+\begin{definition}
+    Целая функция~--- функция, голоморфная на $\C$.
+\end{definition}
+
+\begin{theorem}[Лиувилль]
+
+    Целая ограниченная функция~--- константа.
+\end{theorem}
+
+\begin{proof}
+    $f(z)$ расскладывается в ряд, который сходится везде,
+    значит $|a_n| \le \frac{M(r)}{r^n} \le \frac{M}{r^n}$
+    для любого $r$. Значит $a_n = 0$ для всех $n > 0$.
+\end{proof}
+
+\begin{consequence}
+    $\sin$ и $\cos$~--- неограниченные функции.
+\end{consequence}
+
+\begin{theorem}[Основная теорема алгебры]
+
+    $P$~--- многочлен, не константый,
+    тогда у него есть корень.
+\end{theorem}
+
+\begin{proof}
+    От противного.
+    Пусть $\forall z P(z) \ne 0$.
+    Рассмотрим $f(z) = \frac{1}{P(z)}$,
+    она голоморфная.
+    Докажем, что она ограниченная.
+
+    Пусть $P(z) = z^n + a_{n-1}z^{n-1} +
+        \cdots + a_1z + a_0$.
+    Возьмём $R \coloneqq 1 + |a_{n-1}| + \cdots
+        + |a_0|$.
+    Посмотрим на $P(z)$ для $|z| \ge R$.
+    $|P(z)| \ge |z|^n - |a_{n-1}||z|^{n-1}
+        - \cdots - |a_1||z| - |a_0|
+        \ge |z|^{n-1}R - |a_{n-1}||z|^{n-1} -
+        \cdots - |a_0||z|^{n-1} = |z|^{n-1} \ge 1$.
+
+    Значит, $f$~--- ограничена, значит константа.
+\end{proof}

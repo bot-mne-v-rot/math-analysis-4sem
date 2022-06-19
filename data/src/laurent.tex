@@ -1,0 +1,516 @@
+\begin{definition}
+    Ряд Лорана это такая штука:
+    $\sum\limits_{n=-\infty}^{+\infty} c_n(z-z_0)^n$.
+\end{definition}
+
+\begin{definition}
+    $\sum\limits_{n=-\infty}^{-1} c_n(z-z_0)^n$~--- главная часть.
+\end{definition}
+
+\begin{definition}
+    $\sum\limits_{n=0}^{+\infty} c_n(z-z_0)^n$~--- правильная часть.
+\end{definition}
+
+Считаем, что ряд сходится если сходится и главная и правильная часть.
+
+\begin{property}
+    Существуют $r$ и $R$, такие что ряд сходится
+    при $r < |z| < R$ и расходится вне этого кольца.
+\end{property}
+
+\begin{proof}
+    $R$~--- радиус сходимости правильной части,
+    $1/r$~--- радиус сходимости главной части если сделать
+    замену $1/z$.
+\end{proof}
+
+\begin{property}
+    Если $r < r_1 < R_1 < R$,
+    то сходимость равномерная при $r_1 < |z| < R_1$.
+\end{property}
+
+\begin{property}
+    В кольце сходимости можно почленно дифференцировать
+    и почленно интегрировать.
+\end{property}
+
+\begin{theorem}
+    Пусть $f$~--- голоморфная функция в кольце $r < |z| < R$
+    и расскладывается в ряд Лорана: $f = \sum\limits_n a_nz^n$.
+    Тогда $a_n = \frac{1}{2\pi i}
+        \int\limits_{\rho\T}\frac{f(\zeta)}{\zeta^{n+1}} d\zeta$.
+    при $r < \rho < R$.
+\end{theorem}
+
+\begin{proof}
+    $f(\zeta) = \sum\limits_n a_nz^n$, значит
+
+    \[\int\limits_{\rho\T} \frac{f(\zeta)}{\zeta^{n+1}} d\zeta =
+        \sum\limits_k a_k \int\limits_{\rho\T} \frac{\zeta^k}{\zeta^{n+1}} d\zeta\]
+
+    Считаем интеграл
+
+    \[
+        \int\limits_{\rho\T} \zeta^m d\zeta = \int\limits_0^{2\pi}
+        \rho^m e^{i\varphi m}\rho e^{i\varphi} i d\varphi
+        = \rho^{m+1} i \int\limits_0^{2\pi } e^{i(m+1)\varphi} d\varphi
+    \]
+
+    При $m \ne -1$ получается $0$, иначе получается $2\pi i$.
+\end{proof}
+
+\begin{consequence}[неравенство Коши]
+
+    $|a_n| \le \frac{M_\rho}{\rho^n}$
+    где $M_\rho \coloneqq \max \left\{|f(z)| : |z| = \rho\right\}$.
+    Верно и для отрицательных степеней,
+    $r < \rho < R$.
+\end{consequence}
+
+\begin{theorem}[Лоран]
+
+    $f$ голоморфна в кольце $r < |z| < R$,
+    тогда $f$ в этом кольце расскладывается в ряд Лорана.
+\end{theorem}
+
+\begin{proof}
+    Берём $r_2, R_2$, так что $r < r_1 < r_2 < R_2 < R_1 < R$.
+    По интегральной формуле Коши,
+
+    \[
+        f(z) = \frac{1}{2\pi i} \int\limits_{R_1\T} \frac{f(\zeta)}
+        {\zeta - z} d\zeta - \frac{1}{2\pi i}
+        \int\limits_{r_1\T} \frac{f(\zeta)}{\zeta - z}d\zeta
+    \]
+
+    При $|\zeta| = R_1$ и $|z| < R_2$:
+
+    \[
+        \frac{1}{\zeta - z} =
+        \frac{1}{\zeta}\cdot \frac{1}{1-\frac{z}{\zeta}}
+        = \sum\limits_{n=0}^{+\infty} \frac{z^n}{\zeta^{n+1}}
+    \]
+
+    Такой ряд равномерно сходится, значит можно сделать так:
+
+    \[
+        \int\limits_{R_1\T} \frac{f(\zeta)}{\zeta - z}d\zeta =
+        \int\limits_{R_1\T} f(\zeta) \sum\limits_{n=0}^{+\infty}
+        \frac{z^n}{\zeta^{n+1}}d\zeta =
+        \sum\limits_{n=0}^{+\infty} z^n
+        \int\limits_{R_1\T} f(\zeta) \frac{d\zeta}{\zeta^{n+1}}
+        = \sum\limits_{n=0}^{+\infty} a_nz^n
+    \]
+
+    При $|\zeta| = r_1$ и $|z| > r_2$:
+
+    \[
+        \frac{1}{\zeta - z} =
+        -\frac{1}{\zeta}\cdot \frac{1}{1-\frac{\zeta}{z}}
+        = -\sum\limits_{n=0}^{+\infty} \frac{\zeta^n}{z^{n+1}}
+    \]
+
+    Подставим второй интеграл:
+
+    \[
+        \int\limits_{r_1\T} \frac{f(\zeta)}{\zeta-z}d\zeta
+        = -\int\limits_{r_1\T} f(\zeta) \sum\limits_{n=0}^{+\infty}
+        \frac{\zeta^n}{z^{n+1}} d\zeta
+        = -\sum\limits_{n=0}^{+\infty} \frac{1}{z^{n+1}}
+        \int\limits_{r_1\T} f(\zeta)\zeta^n d\zeta
+        = \sum\limits_{n=-1}^{-\infty} a_nz^n
+    \]
+\end{proof}
+
+\begin{theorem}
+    $f$ голоморфна в кольце $r < |z| < R$,
+    тогда $\exists f_1 \in H(R\D)$,
+    $\exists f_2 \in H(\C \setminus r\overline{\D})$,
+    такие что $f = f_1 + f_2$.
+    Если $\lim\limits_{z\to \infty} f_2(z) = 0$,
+    то разложение единственно.
+\end{theorem}
+
+\begin{proof}
+    $f_1(z) \coloneqq \sum\limits_{n=0}^{+\infty} a_nz^n$,
+    $f_2(z) \coloneqq \sum\limits_{n=-1}^{-\infty} a_nz^n$.
+
+    Единственность:
+    пусть $f = f_1 + f_2 = g_1 + g_2$.
+
+    Возьмём функцию $g$:
+
+    \[
+        g = \begin{cases}
+            g_1 - f_1 & \text{ в } R\D                         \\
+            f_2 - g_2 & \text{ в } \C \setminus r\overline{\D} \\
+        \end{cases}
+    \]
+
+    $g \in H(\C)$ (аналитическое продолжение с $R\D$).
+    $\lim\limits_{z\to\infty} g(z) =
+        \lim f_2(z) - \lim g_2(z) = 0$, значит $g$
+    ограниченна, значит $g \equiv \mathrm{const} = 0$.
+\end{proof}
+
+\begin{definition}
+    $z_0$~--- изолированная особая точка,
+    если $f$ голоморфна в кольце $0 < |z-z_0| < R$
+    для некоторого $R$.
+\end{definition}
+
+\begin{definition}
+    $z_0$~--- устранимая особая точка, если
+    $\lim\limits_{z\to z_0} f(z)$ существует и конечен.
+\end{definition}
+
+\begin{example}
+    $z_0 = 0$ для функций $\frac{\sin z}{z}$ и
+    $\frac{1-e^z}{z}$.
+\end{example}
+
+\begin{definition}
+    $z_0$~--- полюс, если
+    $\lim\limits_{z\to z_0} f(z) = \infty$.
+\end{definition}
+
+\begin{example}
+    $z_0 = \pi k$ для функции $\frac{1}{\sin z}$.
+\end{example}
+
+\begin{definition}
+    $z_0$~--- существенная особая точка, если
+    $\lim\limits_{z\to z_0} f(z)$ не существует.
+\end{definition}
+
+\begin{example}
+    $z_0 = 0$ для функции $e^{1/z}$.
+\end{example}
+
+\begin{theorem}[характеристика устранимых особых точек]
+
+    $f$ голоморфна при $0 < |z-z_0| < R$. Тогда
+    следующие условия равносильны:
+
+    \begin{enumerate}
+        \item $z_0$~--- устранимая особая точка
+        \item $f$ ограничена в окрестности $z_0$
+        \item существует $g \in H(|z-z_0|<R)$ и совпадающая с
+              $f$ в $0 < |z-z_0| < R$
+        \item В главной части ряда Лорана нет ненулевых коэффициентов
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    $4 \So 3$.
+    $g(z) \coloneqq \sum\limits_{n=0}^{+\infty} a_n(z-z_0)^n$ (правильная
+    часть ряда Лорана).
+
+    $3 \So 1$. У $g$ есть предел, значит и у $f$ есть.
+
+    $1 \So 2$. Если у функции есть предел, то она ограничена локально
+
+    $2 \So 4$.
+    $f(z) = \sum\limits_{n=-\infty}^{+\infty} a_nz^n$.
+    $|a_n| \le \frac{M_r}{r^n} \le M \cdot r^{-n}$.
+    Устремим $r \to 0$, оценка стремится к нулю.
+\end{proof}
+
+\begin{theorem}[характеристика полюсов]
+
+    $f$ голоморфна при $0 < |z-z_0| < R$. Тогда
+    следующие условия равносильны:
+
+    \begin{enumerate}
+        \item $z_0$~--- полюс
+        \item существует $m \in \N$, $g \in H(|z-z_0|<R)$
+              и $g(z_0) \ne 0$, т.ч. $f(z) = \frac{g(z)}{(z-z_0)^m}$.
+        \item В главной части ряда Лорана конечное число
+              ненулевых коэффициентов
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    $2 \So 3$. Разложим $g$ в ряд, максимум $m$ ненулевых
+    коэффициентов у $f$.
+
+    $3 \So 1$.
+    $f(z) = \sum\limits_{n=-m}^{+\infty} a_n(z-z_0)^n$,
+    $a_{-m} \ne 0$. Тогда
+    $\lim\limits_{z \to z_0} f(z) = \lim\limits_{z \to z_0} \sum\limits_{n=-m}^{0} a_n(z-z_0)^n
+        = \infty$.
+
+    $1 \So 2$. $\lim\limits_{z \to z_0} f(z) = \infty$.
+    Возьмём такое $r$, что при $|z-z_0| < r$, $|f(z)| > 1$.
+    Функция $h(z) = 1/f(z)$ голоморфна при $0 < |z-z_0| < r$.
+    $\lim\limits_{z\to z_0} h(z) = 0$. Значит $z_0$~--- устранимая
+    особая точка для $h$. Положим $h(z_0) = 0$, тогда
+    $h \in H(|z-z_0| < r)$ и $z_0$~--- ноль функции $h$.
+
+    Тогда существует $m \in \N$, т.ч. $h(z) = g(z)(z-z_0)^m$,
+    где $g(z_0) \ne 0$, значит $g(z) \ne 0$ во всех точках.
+    $1/f(z) = h(z) = (z-z_0)^m g(z)$,
+    тогда $f(z) = \frac{1/g(z)}{(z-z_0)^m}$, получили разложение
+    в кольце $0 < |z-z_0| < r$.
+\end{proof}
+
+\begin{definition}
+    Вот это $m$~--- это порядок полюса.
+\end{definition}
+
+\begin{observation}
+    Следующие утверждение равносильны:
+
+    \begin{enumerate}
+        \item $z_0$~--- полюс порядка $m$ для функции $f$
+        \item $z_0$~--- ноль кратности $m$ для функции $1/f$
+        \item $f(z) = \sum\limits_{n=-m}^{+\infty} a_n(z-z_0)^n$ при $a_{-m} \ne 0$.
+    \end{enumerate}
+\end{observation}
+
+\begin{definition}
+    $f$~--- мероморфная в $\Om$ если
+    существуют точки $a_1, \ldots, a_n \in \Om$,
+    т.ч. $f \in H(\Om \setminus \left\{a_1, \ldots, a_n\right\})$
+    и $a_1, \ldots, a_n$~--- полюсы $f$.
+\end{definition}
+
+\begin{properties}
+    Пусть $f$ и $g$ мероморфные в $\Om$.
+    Тогда $f \pm g$, $fg$, $f/g$ (при $g \not\equiv 0$)
+    и $f'$~--- мероморфные.
+\end{properties}
+
+\begin{proof}
+    Для суммы можно написать ряд Лорана, в главной части ненулевых конечное число.
+
+    Для $fg$ и $f/g$ можно записать так:
+    $f = \frac{\varphi}{(z-a)^m}$, $g = \frac{\psi}{(z-a)^l}$.
+    $\frac{f}{g} = \frac{\varphi}{\psi} (z-a)^{l-m}$.
+
+    Для $f'$ понятно: производная не портит голоморфность.
+\end{proof}
+
+\begin{theorem}[характеристика существенной особой точки]
+
+    $f$ голоморфна при $0 < |z-z_0| < R$. Тогда
+    следующие утверждения равносильны:
+
+    \begin{enumerate}
+        \item $z_0$~--- существенная особая точка
+        \item в главной части ряда Лорана бесконечное число ненулевых коэффициентов
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Очевидно из предыдущих характеристик.
+\end{proof}
+
+\begin{consequence}
+    $e^{1/z} = \sum\limits_{n=0}^{+\infty} \frac{1}{z^n} \frac{1}{n!}$.
+\end{consequence}
+
+\begin{theorem}[Пикар]
+
+    $a$~--- существенная особая точка $f$.
+    $\forall \ve > 0$, множество $f(0 < |z-a| < \ve)
+        = \C$ или $\C$ без одной точки (без доказательства).
+\end{theorem}
+
+\begin{theorem}[Сохоцкий]
+
+    $a$~--- существенная особая точка $f$,
+    то $\Cl f(0 < |z-a| < \ve) = \C$ при всех $\ve > 0$.
+
+    Более того, $\forall w \in \C$ или $w = \infty$
+    найдётся $z_n \to a$, т.ч. $f(z_n) \to w$.
+\end{theorem}
+
+\begin{proof}
+    Случай $w = \infty$.
+    От противного, пусть такой последовательности нет.
+    Тогда $f$ ограничена в окрестности $a$,
+    получается устранимая особая точка.
+
+    Случай $w \in \C$.
+    Если нет последовательности $z_n \to a$,
+    т.ч. $f(z_n) = w$, то в некоторой окрестности
+    точки $a$, $f(z) \ne w$. Тогда функция
+    $g(z) = \frac{1}{f(z) - w}$ голоморфная в
+    этой окрестности.
+    Докажем, что точка $a$ должна быть существенной
+    особой точкой для функции $g$.
+
+    Если $a$~--- полюс, то $f(z) = w + \frac{1}{g(z)}
+        \to w$, тогда $a$~--- устранимая особая точка $f$.
+
+    Если $a$~--- устранимая особая точка, то
+    $f(z) = w + \frac{1}{g(z)} \to w + \frac{1}{\lim g(z)}$.
+    Если предел не ноль, то устранимая особая точка для $f$,
+    иначе~--- полюс для $f$.
+
+    Таким образом, $a$~--- существенная особая точка $g$,
+    значит $\exists z_n$, т.ч. $g(z_n) \to \infty$,
+    значит $f = w + 1/g \to w$.
+\end{proof}
+
+\begin{definition}
+    $\lim\limits_{z\to\infty} f(z) = A$
+    если $\forall z_n \to \infty$, $f(z_n) \to A$.
+\end{definition}
+
+\begin{definition}
+    Непрерывность функции в $\infty$.
+    Функция в бесконечности совпадает со своим пределом.
+\end{definition}
+
+\begin{notation}
+    $\CC = \C \cup \left\{\infty\right\}$.
+\end{notation}
+
+\begin{definition}
+    Пусть $f$ голоморфная в окрестности $\infty$, тогда
+
+    $\infty$~--- устранимая особая точка, если
+    $\lim\limits_{z\to\infty} f(z) \in \C$.
+
+    $\infty$~--- полюс, если
+    $\lim\limits_{z\to\infty} f(z) = \infty$.
+
+    $\infty$~--- существенная особая точка, если
+    $\lim\limits_{z\to\infty} f(z)$ не существует.
+\end{definition}
+
+\begin{observation}
+    $g(z) = f(1/z)$. Тогда $0$~--- полюс $g$
+    $\EQ$ $\infty$~--- полюс $f$ и т.п.
+\end{observation}
+
+\begin{observation}
+    Пусть $f$ голоморфная в окрестности $\infty$, тогда
+    следующие утверждения равносильны:
+
+    \begin{enumerate}
+        \item $\infty$~--- устранимая особая точка $f$
+        \item $f$ ограничена в окрестности $\infty$
+        \item В правильной части ряда Лорана
+              коэффициенты при положительных степенях нулевые
+    \end{enumerate}
+\end{observation}
+
+\begin{observation}
+    Пусть $f$ голоморфная в окрестности $\infty$, тогда
+    следующие утверждения равносильны:
+
+    \begin{enumerate}
+        \item $\infty$~--- полюс $f$
+        \item В правильной части ряда Лорана
+              конечное число ненулевых коэффициентов при положительных степенях.
+    \end{enumerate}
+\end{observation}
+
+\begin{observation}
+    Пусть $f$ голоморфная в окрестности $\infty$, тогда
+    следующие утверждения равносильны:
+
+    \begin{enumerate}
+        \item $\infty$~--- существенная особая точка $f$
+        \item В правильной части ряда Лорана
+              бесконечное число ненулевых коэффициентов
+    \end{enumerate}
+\end{observation}
+
+\begin{definition}
+    $f$ голоморфная в $\infty$ если там устранимая
+    особая точка, то есть $f$ можно доопределить
+    в $\infty$ до непрерывной функции.
+\end{definition}
+
+\begin{observation}
+    $g(z) = f(1/z)$ доопределяется до голоморфной в нуле.
+\end{observation}
+
+\begin{theorem}[Лиувилль]
+
+    $f \in H(\CC)$, то $f \equiv \mathrm{const}$.
+\end{theorem}
+
+\begin{proof}
+    $f$ ограничена в $|z| > R$ (окрестность $\infty$),
+    $f$ ограничена в $|z| \le R$, так как непрерывна.
+    Значит $f \equiv \mathrm{const}$.
+\end{proof}
+
+\begin{definition}
+    Сфера Римана.
+    Проецируем сферу радиуса $\frac12$ с центром в $(\frac12, 0, 0)$
+    на плоскость: из северного полюса $(1, 0, 0)$
+    проводим прямую, точку пересечения со сферой переводим
+    в точку пересечения с плоскостью $x = 0$. Северный полюс
+    переводим в бесконечность.
+    Получается стереографическая проекция.
+\end{definition}
+
+\begin{theorem}
+    При стереографической проекции точке $z = x + iy$
+    соответствует точка
+
+    \[
+        \begin{aligned}[t]
+            u = \frac{x}{1+|z|^2} & \ \ % forgive me
+            v = \frac{y}{1+|z|^2} &
+            w = \frac{|z|^2}{1+|z|^2}
+        \end{aligned}
+    \]
+
+    Обратное соотвествие:
+
+    \[
+        \begin{aligned}[t]
+            x = \frac{u}{1-w} & \ \ % forgive me once more
+            y = \frac{v}{1-w}
+        \end{aligned}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Задаём прямую параметрически: $u = tx$, $v = ty$, $w = 1 - t$.
+    Уравнение сферы: $u^2+v^2+w^2 = w$.
+    Подставляем, всё получается.
+\end{proof}
+
+\begin{consequence}
+    Расстояние между образами точек $z$ и $\widetilde z$
+    на сфере:
+
+    \[
+        \frac{|z-\widetilde z|}{\sqrt{1+|z|^2}\sqrt{1+|\widetilde z|^2}}
+    \]
+
+    Расстояние между образами точек $z$ и $\infty$:
+
+    \[
+        \frac{1}{\sqrt{1+|z|^2}}
+    \]
+\end{consequence}
+
+\begin{proof}
+    Ну надо противные формулы написать.
+\end{proof}
+
+\begin{consequence}
+    Сходимости в $\CC$ и на сфере Римана эквивалентны.
+\end{consequence}
+
+\begin{proof}
+    Посмотрим на формулы для расстояния.
+    Они ведут себя так как надо.
+\end{proof}
+
+\begin{consequence}
+    $\CC$~--- компакт.
+\end{consequence}
+
+\begin{proof}
+    С точки зрения сходимости это сфера.
+\end{proof}

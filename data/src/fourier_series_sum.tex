@@ -1,0 +1,458 @@
+апро\begin{definition}
+    $\sum a_n$, $A_n := \sum\limits_{k = 0}^{n}$,
+    $\alpha_n := \frac{A_0 + A_1 + \ldots + A_n}{n + 1}$.
+
+    Если существует конечный  $\lim\limits_{n \to \infty}\alpha_n$,
+    то это число~--- сумма ряда $\sum a_n$ по Чезаро.
+\end{definition}
+
+\begin{designation}
+    $(c) \sum\limits_{n = 0}^\infty a_n$
+\end{designation}
+
+\begin{example}
+    $1 - 1 + 1 - 1 + \ldots$
+    
+    $\begin{cases}
+            A_n = 1,\quad n \text{ четное}   
+            
+            A_n = 0,\quad n \text{ нечетное} 
+            
+        \end{cases}$ $\alpha_{2k -1} = \frac{1}{2},\ \alpha_{2k} = \frac{k + 1}{2k + 1} \to \frac{1}{2} \Rightarrow
+        \lim\limits_{n \to \infty}\al_n = \frac{1}{2} \Rightarrow (c)\sum\limits_{n = 0}^\infty (-1)^n = \frac{1}{2}$,
+\end{example}
+
+\begin{theorem}
+    \leavevmode
+    \begin{enumerate}
+        \item Если ряд сходится, то он сходится по Чезаро к той же сумме
+        \item Суммирование по Чезаро линейно
+        \item Если ряд сходится по Чезаро, то $a_n = o(n)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \leavevmode
+    \begin{enumerate}
+        \item Теорема Штольца (если последовательность имеет предел, то средние арифметические имеют тот же предел)
+        \item Все шаги линейны
+        \item $\al_{n-1} \to A,\ \frac{n+1}{n}\al_n \to A \Rightarrow \frac{(n+1)\al_{n} - n\al_{n-1}}{n} = \frac{A_n}{n} \to 0$
+        
+              $\frac{a_n}{n} = \frac{A_n}{n} - \frac{n - 1}{n} \cdot \frac{A_{n-1}}{n -1} \to 0$
+    \end{enumerate}
+\end{proof}
+
+\begin{observation}
+    \leavevmode
+    \begin{enumerate}
+        \item Если добавлить нули, группировать слагаемые, переставлять слагаемые, сумма меняется
+        \item $\al_n = \sum\limits_{k=0}^n(1 - \frac{k}{n+1})a_k$ (проверяется вычислением)
+        \item Теорема Харди
+        
+              Если ряд сходится по Чезаро и $a_n = O(\frac{1}{n})$, то ряд сходится в обычном смысле (можно ослабить условие: $a_n \geq -\frac{c}{n}$)
+              
+              Без доказательства.
+    \end{enumerate}
+\end{observation}
+
+\begin{definition}
+    Если ряд $f(r) = \sum\limits_{n = 0}^\infty a_nr^n$ сходится при $r \in [0, 1)$, то $\lim\limits_{r \to 1-}$ назывется суммой ряда по Абелю-Пуассону
+\end{definition}
+
+\begin{designation}
+    $(A)\sum a_n$
+\end{designation}
+
+\begin{example}
+    $1 - 1 + 1 - \ldots $
+    
+    $f(r) = \sum\limits_{n =0}^\infty (-1)^rr^n = \sum\limits_{n = 0}^\infty (-r)^n = \frac{1}{1 + r} \xrightarrow[r \to 1-]{} \frac{1}{2}$
+\end{example}
+
+\begin{observation}
+    Если ряд сходится по Чезаро, то он сходится и по Абелю-Пуассону к той же сумме
+\end{observation}
+
+\begin{theorem}
+    \leavevmode
+    \begin{enumerate}
+        \item Если ряд сходится, то он сходится по Абелю-Пуассону к той же сумме
+        \item Суммирование по Абелю-Пуассону линейно
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \leavevmode
+    \begin{enumerate}
+        \item Теорема Абеля. Если $\sum a_n$ сходится, то $\lim\limits_{r \to 1-} \sum a_nr^n = \sum a_n$
+        \item Все линейно
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem} Таубера
+
+    Если ряд $\sum a_n$ сходится по Абелю-Пуассону и $a_n = o(\frac{1}{n})$, то ряд сходится в обычном смысле к той же сумме
+\end{theorem}
+
+\begin{proof}
+    Без доказательства
+\end{proof}
+
+\begin{example}
+    $\frac{1}{2} + \sum\limits_{n = 1}^\infty \cos nt$
+
+    Его частичные суммы $D_n(t) = \frac{\sin(n + \frac{1}{2})t}{2\sin\frac{t}{2}}$
+
+    $\upphi_n(t) := \frac{D_0(t) + D_1(t) + \ldots + D_n(t)}{n  + 1}$~--- ядро Фейера.
+
+    \begin{properties}
+        \leavevmode
+        \begin{enumerate}
+            \item $\upphi_n$~--- четная, непрерывная, $2\pi$-периодичная функция
+                  \begin{proof}
+                      Каждое слагаемое такое
+                  \end{proof}
+            \item $\upphi_n(0) = \frac{n + 1}{2}$
+                  \begin{proof}
+                      $D_n(0) = n + \frac{1}{2}$
+                  \end{proof}
+            \item $\frac{1}{\pi}\int\limits_{-\pi}^\pi \upphi_n(t)dt = \frac{2}{\pi}\int\limits_0^{\pi}\upphi_n(t)dt = 1$
+                  \begin{proof}
+                      $\int\limits_{-\pi}^{\pi}D_i(t)dt = \pi$ (считали раньше)
+                  \end{proof}
+            \item При $t \neq 2\pi k$ $\upphi_n(t) = \frac{\sin^2(\frac{n +1}{2}) t}{2(n+1)\sin^2\frac{t}{2}}$
+                  \begin{proof}
+                      $2\sin(n + \frac{1}{2})t \sin\frac{t}{2} = \cos nt - \cos (n+1)t$
+                      
+                      $\sum\limits_{k = 0}^n2\sin(n + \frac{1}{2})t\sin \frac{t}{2} = 1 - \cos(n+1)t = 2\sin^2\frac{n +1}{2}t$
+                      
+                      $\sum\limits_{k = 0}^n2\sin(n + \frac{1}{2})t\sin \frac{t}{2} = 4\sin^2\frac{t}{2} \sum\limits_{k = 0}^nD_k(t)$
+                  \end{proof}
+            \item $\upphi_n(t) \geq 0$
+            \item $\lim\limits_{n \to \infty} \max\limits_{\delta \leq |t| \leq \pi} \upphi_n(t) = 0$
+                  \begin{proof}
+                      Если $\delta \leq |t| \leq \pi$, то $0 \leq \upphi_n(t) \leq \frac{1}{2(n + 1)\sin^2\frac{\delta}{2}} \xrightarrow[n \to \infty]{} 0$
+                  \end{proof}
+            \item $\upphi_n(0) \to +\infty$, $\upphi_n(t) \to 0$, при $t \neq 0$.
+        \end{enumerate}
+    \end{properties}
+\end{example}
+
+\leavevmode
+
+
+$S_n(x) = \frac{1}{\pi}\int\limits_{-\pi}^{\pi}D_n(t)f(x - t)dt$~--- $n$-я частичная сумма ряда Фурье для $f$.
+
+$\sigma_n(x) := \frac{S_0(x) + S_1(x) + \ldots + S_n(x)}{n} = \frac{1}{\pi}\int\limits_{-\pi}^{\pi} \frac{D_0(t) + \ldots + D_n(t)}{n + 1}f(x - t) dt = \frac{1}{\pi} \int\limits_{-\pi}^{\pi}\upphi_n(t)f(x - t)dt$
+
+
+\begin{example}
+    $\frac{1}{2} + \sum\limits_{n = 1}^\infty \cos nt$, просуммируем по Абелю-Пуассону.
+    
+    $P_r(t) := \frac{1}{2} + \sum\limits_{n = 1}^\infty r^n \cos nt = \frac{1}{2} \frac{1 - r^2}{1 - 2r\cos t + r^2}$~--- ядро Пуассона
+    
+    $z := re^{it}$, тогда $\Re z^n = \Re(r^ne^{int}) = r^n \cos nt$
+    
+    $P_r(t) = \Re(\frac{1}{2} + \sum\limits_{n =1}^\infty z^n) = \Re(-\frac{1}{2} + \sum\limits_{n = 0}^\infty z^n) = \Re(\frac{1}{1 - z} - \frac{1}{z}) = \Re(\frac{1}{1 - re^{it}} - \frac{1}{2}) = \Re(\frac{1 - re^{-it}}{(1 - re^{it})(1 - re^{-it})} - \frac{1}{2}) = \frac{1 -r \cos t}{1 + r^2-r(e^{it} + e^{-it})} - \frac{1}{2} = \frac{1 -r\cos t}{1 - 2 \cos t r + r^2} - \frac{1}{2}$
+\end{example}
+
+\begin{properties}
+    $P_r(t) = \frac{1 - r^2}{1 -2r\cos t  + r^2} \cdot \frac{1}{2},\ r \in [0, 1)$
+    \begin{enumerate}
+        \item $P_r(t)$~--- непрерывная, четная, $2\pi$-периодическая
+        \item $P_r(t) \geq 0$
+        \item $\frac{1}{\pi} \int\limits_{-\pi}^\pi P_r(t) dt = \frac{2}{\pi}\int\limits_0^\pi P_r(t)dt = 1$
+              \begin{proof}
+                  $\int\limits_{-\pi}^\pi P_r(t)dt = \int\limits_{-\pi}^{\pi}(\frac{1}{2} + \sum\limits_{n = 1}^\infty r^n\cos nt) dt \overset{*}{=} \int\limits_{-\pi}^\pi \frac{1}{2} dt + \sum\limits_{n = 1}^\infty r^n\int\limits_{-\pi}^\pi\cos nt dt = \pi$
+                  
+                  $*$, т.к. при фиксированном $r$ ряд равномерно сходится, (мажорируется геометрической прогрессией)
+              \end{proof}
+        \item $\Pi_r(f, x) := \frac{a_0}{2} + \sum\limits_{n = 1}^\infty r^n(a_n\cos nx + b_n\sin nx) = \sum\limits_{n = 0}r^nA_n(f, x) = \frac{1}{\pi}\int\limits_{-\pi}^\pi P_r(t)f(x - t)dt$
+              \begin{proof}
+                  $A_n(f, x) = \frac{1}{\pi}\int\limits_{-\pi}^\pi f(x - t) \cos nt dt$, $A_0(f, x) = \frac{1}{2\pi} \int\limits_{-\pi}^\pi f(x - t)dt$
+                  
+                  $\sum\limits_{n =0}^\infty r^nA_n(f, x) \overset{*}{=} \frac{1}{\pi}\int\limits_{-\pi}^{\pi}f(x-t)(\sum\limits_{n = 1}^\infty r^n \cos nt + \frac{1}{2})dt = \frac{1}{\pi} \int\limits_{-\pi}^\pi P_r(t)f(x - t) dt$
+                  
+                  $*$~--- т.к. ряд сходится, т.к. $r < 1 \Rightarrow$ ряд мажорируется
+              \end{proof}
+              `	\end{enumerate}
+\end{properties}
+
+\begin{definition}
+    $f, g \in L^1[-\pi, \pi]$ и $2\pi$-периодические (будем обозначать такие функции $L^1_{2\pi}$)
+    
+    $h(x) := \int\limits_{-\pi}^\pi f(x - t)g(t)dt$~--- свертка функций $f$ и $g$. Обозначается $h = f \ast g$.
+\end{definition}
+
+\begin{properties}
+    \leavevmode
+    \begin{enumerate}
+        \item $f \ast g \in L^1_{2\pi}$
+        \item $f \ast g = g \ast f$
+        \item $c_k(f\ast g) = 2\pi c_k(f) c_k(g)$ ($c_k$~--- коэффициент Фурье)
+        \item $1 \leq p \leq +\infty$ и $\frac{1}{p} + \frac{1}{q} = 1$, $f \in L^p_{2\pi}, g \in L^q_{2\pi} \Rightarrow f \ast g \in C_{2\pi}$ и $\|f \ast g\|_\infty \leq \|f\|_p\|g\|_q$
+        \item $1 \leq p \leq +\infty$, $f \in L^p_{2\pi}, g \in L^1_{2\pi}$, тогда $\|f \ast g\|_p \leq \|f\|_p \|g\|_1$
+    \end{enumerate}
+\end{properties}
+
+\begin{proof}
+    \leavevmode
+    \begin{enumerate}
+        \item $F(x, t) := f(x - t)g(t)$~--- измерима, как функция двух переменных, т.к. произведение измеримых измеримо. $g$ измерима как функция двух переменных, т.к. измерима по одной переменной, а по другой константа. $f(x - t) < c,\ x - t \in f^{-1}(c)$~--- это какая-то полуплоскость, так что $f$ тоже измерима.
+        
+              $\int\limits_{-\pi}^{\pi}|h(x)|dx  = \int\limits_{-\pi}^\pi \left| \int\limits_{-\pi}^{\pi}f(x - t)g(t) dt\right| dx \leq \int\limits_{-\pi}^\pi\int\limits_{-\pi}^\pi |f(x - t)\|g(t)|dtdx = \int\limits_{-\pi}^\pi |g(t)| \int\limits_{-\pi}^\pi |f(x - t)|dx dt = \text{\textcolor{gray}{подинтегральаня функция периодична}} = \int\limits_{-\pi}^\pi |g(t)| \int\limits_{-\pi}^\pi |f(x)| dx dt = \|f\|_1 \int\limits_{-\pi}^\pi |g(t)| dt = \|f\|_1 \|g\|_1$
+        \item $f \ast g = \int\limits_{-\pi}^\pi f(x - t)g(t) dt = (x - t = s) = -\int\limits_{x + \pi}^{x - \pi} f(s)g(x - s) ds = \int\limits_{x - \pi}^{x + \pi} g(x - s)f(s) ds = \text{\textcolor{gray}{все периодично}} = \int\limits_{-\pi}^\pi g(x - s)f(s) ds = g \ast f$
+        \item $2\pi c_k(f \ast g) = \int\limits_{-\pi}^\pi f\ast g(x) e^{-ikx} dx = \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi f(x - t)g(t) e^{-ikx} dt dx \overset{*}{=} \int\limits_{-\pi}^\pi g(t) e^{-ikt} \int\limits_{-\pi}^\pi f(x - t)e^{-ik(x - t)} dx dt = (x - t = s) = \int\limits_{-\pi}^\pi g(t)e^{-ikt} \int\limits_{x-\pi}^{x + \pi} f(s)e^{-iks}ds dt = \int\limits_{-\pi}^\pi g(t)e^{-ikt} \int\limits_{-\pi}^{\pi} f(s)e^{-iks}ds dt = \int\limits_{-\pi}^\pi g(t)e^{-ikt} 2\pi c_k(f) dt = 2\pi c_k(f) \int\limits_{-\pi}^\pi g(t)e^{-ikt} dt = 2\pi c_k(f) \cdot 2\pi c_k(g)$
+        
+              $*$~--- по теореме Фубини, т.к. поняли что интеграл от модуля выражения конечен
+        \item $|f \ast g(x)| = |\int\limits_{-\pi}^\pi f(x - t)g(t) dt| \leq \int\limits_{-\pi}^\pi|f(x - t)| |g(t)| dt \overset{\text{Гёльдер}}{\leq} \left(\int\limits_{-\pi}^\pi|f(x-t)|^pdt \right)^\frac{1}{p} \left( \int\limits_{-\pi}^\pi |g(t)|^q dt \right)^\frac{1}{q} = \left(\int\limits_{-\pi}^\pi|f(x-t)|^pdt \right)^\frac{1}{p} \|g\|_q = (x - t = s) = \left(-\int\limits_{x + \pi}^{x - \pi}|f(s)|^p ds\right)^{\frac{1}{p}}\|g\|_q = \left(\int\limits_{-\pi}^\pi |f(s)|^p ds\right)^{\frac{1}{p}}\|g\|_q = \|f\|_p\|g\|_q$
+        
+              
+        
+              Непрерывность:
+              
+              $|h(x+y) - h(x)| = |\int\limits_{-\pi}^\pi (f(x+y - t) - f(x - t))g(t)dt| \leq \|g\|_q \left(\int\limits_{-\pi}^\pi|f(x + y - t) - f(x - t)|^pdt\right)^{\frac{1}{p}} = (x - t = s) = \|g\|_q \left(\int\limits_{-\pi}^\pi|f(y + s) - f(s)|^pds\right)^{\frac{1}{p}} = \|g\|_q\|f_y - f\|_p \xrightarrow[y \to 0]{\text{теорема о непрерывности сдвига}} 0$
+              
+              $f_y$~--- сдивг функции на $y$
+        \item $\|f \ast g\|_p^p = \int\limits_{-\pi}^{\pi} \left|\int\limits_{-\pi}^{\pi} f(x - t)g(t)dt\right|^p dx$
+        
+              $\left|\int\limits_{-\pi}^{\pi}f(x - t)g(t)\right| \leq \int\limits_{-\pi}^{\pi} |f(x - t)\|g(t)|^\frac{1}{p} |g(t)|^\frac{1}{q}dt\ (\text{где } \frac{1}{p} + \frac{1}{q} = 1)\ \overset{\text{Гёльдер}}{\leq} \left(\int\limits_{-\pi}^{\pi} |f(x - t)|^p|g(t)| dt\right)^{\frac{1}{p}} \cdot
+               \cdot \left(\int\limits_{-\pi}^{\pi} |g(t)| dt\right)^{\frac{1}{q}}$
+              
+              $\left| \int\limits_{-\pi}^{\pi} f(x - t)g(t) dt \right|^p \leq \int\limits_{-\pi}^{\pi} |f(x - t)|^p|g(t)| dt \|g\|_1^{\frac{p}{q}}$
+              
+              $\|f \ast g\|^p_p = \int\limits_{-\pi}^{\pi} |\ldots|^p dx \leq \|g\|^{\frac{p}{q}}_1 \int\limits_{-\pi}^{\pi}\int\limits_{-\pi}^{\pi}|f(x - t)|^p|g(t)| dt dx = \|g\|^{\frac{p}{q}}_1 \int\limits_{-\pi}^{\pi}|g(t)| \int\limits_{-\pi}^{\pi}|f(x - t)|^p dx dt = \text{\textcolor{gray}{неважно по какому периоду}} = \|g\|^{\frac{p}{q}}_1 \int\limits_{-\pi}^{\pi}|g(t)| \int\limits_{-\pi}^{\pi}|f(x)|^p dx dt = \|g\|^{\frac{p}{q}}_1 \int\limits_{-\pi}^{\pi}|g(t)| \|f\|_p^p dt = \|g\|_1^{\frac{p}{q} + 1} \|f\|_p^p = (\frac{p}{q} + 1 = (\frac{1}{p} + \frac{1}{q})p = p) = \|g\|^p_1\|f\|^p_p$
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    $D$~--- множество парамтетров, $h_0$~--- его предельная точка.
+    
+    $K_h$~--- апроксимативная единица, если
+    \begin{enumerate}
+        \item $K_h \in L_{2\pi}^1$ и $\int\limits_{-\pi}^{\pi}K_h = 1$
+        \item $\|K_h\|_1 \leq M\ \forall h \in D$
+        \item $\int\limits_{[-\pi, \pi] \setminus [-\delta, \delta]} |K_h| \xrightarrow[h \to h_0]{} 0$
+    \end{enumerate}
+    Если третье свойство заменить на
+    
+    $3'.\ \underset{\delta \leq |t| \leq \pi}{\mathrm{esssup}} |K_h(t)| \xrightarrow[h \to h_0]{} 0$
+    
+    То будет \textit{усиленная} апроксимативная единица
+\end{definition}
+
+\begin{examples}
+    \leavevmode
+    \begin{enumerate}
+        \item $\frac{1}{\pi}\upphi_n$~--- усиленная апроксимативная единица. Множество параметров~--- натуральные числа, предельная точка~--- бесконечность
+        \item $\frac{1}{\pi}P_r$~--- усиленная апроксимативная единица. Первые два свойства были, свойство номер 3:
+        
+              $P_r(t) = \frac{1}{2} \frac{1 - r^2}{1 - 2r\cos t + r^2} \leq (\delta \leq |t| \leq \pi) \leq \frac{1}{2} \frac{1 - r^2}{1 - 2r\cos\sigma + r^2} \xrightarrow[r \to 1-]{} 0 $
+    \end{enumerate}
+\end{examples}
+
+\begin{theorem}
+    об апроксимативной единице.
+    
+    Пусть $K_h$~--- апроксимативная единица. Тогда
+    \begin{enumerate}
+        \item Если $f \in C_{2\pi}$, то $f \ast K_h \rightrightarrows f$
+        \item Если $1 \leq p < +\infty$, $f \in L_{2\pi}^p$, то $\|f\ast K_p - f\|_p \xrightarrow[h \to h_0]{} 0$
+        \item Если $K_h$~--- усиленная и $f \in L_{2\pi}^1$ и $f$ непрерывна в точке $x$, тогда $(f \ast K_h)(x) \xrightarrow[h \to h_0]{} f(x)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \leavevmode
+    $f \ast K_h(x) - f(x) = \int\limits_{-\pi}^{\pi}f(x - t)K_h(t) dt - \int\limits_{-\pi}^{\pi}f(x)K_h(t)dt \text{ \textcolor{gray}{ интеграл от апрокс. единицы}} \\
+     \text{\textcolor{gray}{ по периоду = 1}} = \int\limits_{-\pi}^{\pi} (f(x - t) - f(x))K_h(t)dt$
+    \begin{enumerate}
+        \item Возьмем $\varepsilon > 0$, $f$~--- равномерно непрерывна $\Rightarrow \exists \delta(\varepsilon)$ из равномерной непрерывности. 
+        
+              $|f \ast K_h(x) - f(x)| \leq \int\limits_{-\pi}^{\pi}|f(x - t) - f(x)| |K_h(t)|dt = \int\limits_{-\delta}^\delta + \int\limits_{\delta \leq |t| \leq \pi} =: I_1 + I_2$
+              
+              $I_1 = \int\limits_{-\delta}^\delta \underbrace{|f(x -t) - f(x)|}_{<\varepsilon} |K_h(t)|dt \leq \varepsilon \int\limits_{-\delta}^\delta|K_h(t)|dt \leq \varepsilon \|K_h\|_1 \leq \varepsilon M$
+              
+              $I_2 = \int\limits_{\delta \leq |t| \leq \pi} \leq 2C\int\limits_{\delta \leq |t| \leq \pi} |(K_h(t)|dt \xrightarrow[h\to h_0]{} 0 < \varepsilon$ при $h$ близких к $h_0$
+        \item $\|f\ast K_h - f\|_p^p = \int\limits_{-\pi}^{\pi} \left| \int\limits_{-\pi}^{\pi} (f(x - t) - f(x))K_h(t) dt\right|^p dx \leq \int\limits_{-\pi}^{\pi}\left(\int\limits_{-\pi}^{\pi}|f(x - t) - f(x)\|K_h(t)|dt\right)^p dx = \int\limits_{-\pi}^{\pi}\left(\int\limits_{-\pi}^{\pi}|f(x - t) - f(x)| |K_h(t)|^{\frac{1}{p}}|K_h(t)|^{\frac{1}{q}}dt\right)^p dx \overset{\text{Гёльдер}}{\leq}\\
+        \int\limits_{-\pi}^{\pi}\int\limits_{-\pi}^{\pi}|f(x - t) - f(x)|^p|K_h(t)|dt \cdot \left(\int\limits_{-\pi}^{\pi} |K_h(t)|dt\right)^{\frac{p}{q}}dx =\\
+        \|K_h\|^{\frac{p}{q}}_1 \int\limits_{-\pi}^{\pi}\underbrace{\int\limits_{-\pi}^{\pi}|f(x - t) - f(x)|^pdx}_{g(-t)}|K_h(t)|dt = \|K_h\|^p_1 \int\limits_{-\pi}^{\pi}g(-t) \frac{|K_h(t)|}{\|K_h\|_1}dt$\\
+         $g(0) = 0$, таким образом достаточно показать, что $\int\limits_{-\pi}^{\pi}g(-t) \frac{|K_h(t)|}{\|K_h\|_1}dt \xrightarrow[h \to 0]{} g(0)$\\
+         $g \in C_{2\pi}$ по теореме о непрерывности сдвига\\
+         Таким образом нас интересует $g \ast \frac{|K_h|}{\|K_h\|_1}(0) \xrightarrow[]{?} g(0)$. Чтобы сослаться на пункт 1, надо понять, что $\frac{|K_h|}{\|K_h\|_1}$ - апрокс. единица, а это понятно
+         \begin{itemize}
+         	\item Она суммируема, т.к. интеграл от числителя равен знаменателю
+         	\item $\int\limits_{[-\pi, \pi] \setminus [-\delta, \delta]} \frac{|K_h|}{\|K_h\|_1} \to 0$
+         \end{itemize}
+        \item $\delta$ из определения непрерывности в точке $x$, тогда $I_1 \leq \varepsilon M$, $I_2 = \int\limits_{\delta \leq |t| \leq \pi} |f(x - t) - f(x)| |K_h(t)|dt \leq \underset{\delta \leq |t| \leq \pi}{\esssup} |K_h(t)| \int |f(x - t)| + |f(x)| dt = \esssup |K_h| \cdot (2\pi|f(x)| + \|f\|_1) \to 0$
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	Фейера
+	\begin{enumerate}
+	\item Если $f \in C_{2\pi}$, то $\sigma_n(f) \rightrightarrows f$
+	
+	\item Если $1 \leqslant p < +\infty, \, f \in L_{2\pi}^p$, то $||\sigma_n(f) - f||_p \rightarrow 0$ 
+	
+	\item Если $f \in L_{2\pi}^1$ и $f$~--- непрерывна в $x$, то $\sigma_n(f, x) \rightarrow f(x)$
+	\end{enumerate}
+	Все это при $n \rightarrow \infty$
+\end{theorem}
+
+\begin{proof}
+	$\Phi_n$~--- усиленна аппр. единица. Подставим в предыдущую теорему.
+\end{proof}
+
+\begin{theorem}
+	\begin{enumerate}
+		\item Если $f \in C_{2\pi}$, то $\Pi_r \rightrightarrows f$
+	
+	\item Если $1 \leqslant p < +\infty, \, f \in L_{2\pi}^p$, то $||\Pi_r(f) - f||_p \rightarrow 0$ 
+	
+	\item Если $f \in L_{2\pi}^1$ и $f$~--- непрерывна в $x$, то $\Pi_r(f, x) \rightarrow f(x)$
+	\end{enumerate}
+	Все это при $r \rightarrow 1-$
+	
+\end{theorem}
+
+\begin{proof}
+	$P_r$~--- усиленна аппр. единица.
+\end{proof}
+
+\begin{observation}
+	$f \ast g = \int\limits_{-\pi}^{\pi} f(t) g(x-t) dt$ 
+\end{observation}
+
+\begin{consequences}
+	теоремы Фейера
+	
+	\begin{enumerate}
+		\item $f \in L_{2\pi}^1$ и $f$ непрерывна в $x$. Если ряд Фурье для $f$ в точке $x$ сходится, то он сходится к $f(x)$
+		\begin{proof}
+			$S_n(f, x) \rightarrow a \Rightarrow \sigma_n(f, x) \rightarrow a \Rightarrow a = f(x)$
+		\end{proof}
+		\item Если $f \in C_{2\pi}$ и ряд Фурье сходится равномерно, то он сходится к $f(x)$
+		\begin{proof}
+			$S_n(f) \rightrightarrows g	\Rightarrow \sigma_n(f) \rightrightarrows g \Rightarrow f = g$
+		\end{proof}
+		\item (Теорема единственности) $f, g \in L_{2\pi}^1$, такие что $c_k(f) = c_k(g)$, тогда $f = g$ почти везде
+		\begin{proof}
+			$h := f - g$, $c_k(h) = c_k(f) - c_k(g)	= 0 \Rightarrow S_n(h) = 0 \rightrightarrows 0 \rightarrow h \equiv 0$ 
+		\end{proof}
+		\item Ряд Фурье для $f \in L_{2\pi}^2$ сходится к $f$ по норме (т.е. тригономертическая система~--- базис).
+		\begin{proof}
+			$S_n(f) \rightarrow g$ в $L_{2\pi}^2 \Rightarrow \sigma_n \rightarrow g$ в $L_{2\pi}^2 \Rightarrow ||f - g||_2 = 0 \Rightarrow f = g$ почти везде.
+		\end{proof}
+		\item (Тождество Парсиваля) $f, g \in L_{2\pi}^2$. Тогда $\int\limits_{-\pi}^{\pi} f \overline{g} = 2\pi\sum\limits_{k \in \mathbb{Z}} c_k(f)\overline{c_k(g)}$
+		\begin{proof}
+			Следствие из того, что базис
+		\end{proof}
+	\end{enumerate} 
+\end{consequences}
+
+\begin{theorem}
+	Вейерштрасса
+	\begin{enumerate}
+		\item $f \in C_{2\pi}$ и $\varepsilon > 0$. Тогда $\exists$ тригономертический многочлен $T$, что $|f(x) - T(x)| < \varepsilon \,\, \forall x$
+		\item $1 \leqslant p < +\infty$, $f \in L_{2\pi}^p$. Тогда $\exists$ тригономертический многочлен $T$, что $||f - T||_p < \varepsilon$   
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	$\sigma_n(f)$~--- тригонометрический многочлен.
+\end{proof}
+
+\begin{theorem}
+	Вейерштрасса
+	
+	$f \in C[a, b]$, $\varepsilon > 0$. Тогда существует многочлен $P$, такой что $|f(x) - P(x)| < \varepsilon$ $\forall x \in [a, b]$
+\end{theorem}
+
+\begin{proof}
+	$[0, \pi] \rightarrow [a, b]$, $x = a + \frac{b - a}{\pi} t$, $g(t) := f(a + \frac{b - a}{\pi}t)$~--- непрерывна на $[0, \pi]$. Продолжим $g$ на $[-\pi, 0]$ по четности. Тогда $g \in C_{2\pi}$. Тогда по предыдущей теореме найдется тригонометрический многочлен $T$, такой что $|g(t) - T(t)| < \varepsilon$ $\forall t \in [-\pi, \pi]$
+	
+	$T(t) = \frac{a_0}{2} + \sum\limits_{k = 1}^{n} (a_k \cos kt + b_k \sin kt)$
+	
+	$\cos kt = \sum\limits_{j = 0}^{\infty} \frac{(-1)^j}{(2j)!}(kt)^{2j}$~--- равномерно сходится на $[-\pi, \pi]$
+	
+	Обрежем  так, чтобы была маленькая погрешность.	 
+\end{proof}
+
+\begin{consequence}
+	$f \in C[a, b]$. Тогда $\exists$ последовательность многочленов $P_n$, такая, что $P_n \rightrightarrows f$ на $[a, b]$
+\end{consequence}
+
+\begin{definition}
+	$f: [0, 1] \rightarrow \mathbb{R}(\mathbb{C})$ 
+	
+	Тогда многочлен Бернштейна это:
+	
+	$B_n(x) := \sum\limits_{k = 0}^n f(\frac{k}{n}) C_n^k x^k (1 - x)^{n-k}$
+\end{definition}
+
+\begin{observation}
+	Рассмотрим схему Бернулли с вероятностью успеха $x \in [0, 1]$. 
+	
+	Тогда $B_n(x) = Ef(\frac{S_n}{n}) = \sum\limits_{k = 0}^n f(\frac{k}{n}) \cdot P(S_n = k) = \sum\limits_{k = 0}^n f(\frac{k}{n}) C_n^k x^k (1 - x)^{n-k}$
+	
+	$\frac{S_n}{n} \rightarrow x$ по усиленному ЗБЧ $\Rightarrow \frac{S_n}{n} \rightarrow x$ по распределению $\Rightarrow Ef(\frac{S_n}{n}) \rightarrow Ef(x) = f(x)$
+\end{observation}
+
+\begin{theorem}
+	Бернштейна
+	
+	Если $f \in C[0, 1]$, то $B_n \rightrightarrows f$
+\end{theorem}
+
+\begin{proof}
+	$\xi_n := \frac{S_n}{n}$
+	
+	$|Ef(\xi_n) - f(x)| = |E(f(\xi_n) - f(x))| \leqslant E|f(\xi_n)-f(x)| = E(|f(\xi_n) - f(x)|\mathds{1}_{\{\xi_n-x < \delta\}}) + E(|f(\xi_n) - f(x)|\mathds{1}_{\{\xi_n-x \geqslant \delta\}}) \leqslant \sup\limits_{|x - y| < \delta} |f(x) - f(y)| + E(2M\mathds{1}_{\{\xi_n-x \geqslant \delta\}}) = \sup\limits_{|x - y| < \delta} |f(x) - f(y)| + 2M P(|\xi_n - x| \geqslant \delta) \leqslant \sup\limits_{|x - y| < \delta} |f(x) - f(y)| + 2M\frac{D\frac{S_n}{n}}{\delta^2} = \sup\limits_{|x - y| < \delta} |f(x) - f(y)| + \frac{x(1-x)n}{n^2\delta^2} \leqslant \sup\limits_{|x - y| < \delta} |f(x) - f(y)| + \frac{M}{2n\delta^2} < 2\varepsilon$
+	
+	$\sup < \varepsilon$ если выбрать $\delta$ из равномерной непрерывности. $\frac{M}{2n\delta^2} < \varepsilon$ при $n \geqslant \frac{M}{2\varepsilon\delta^2}$
+\end{proof}
+
+\begin{exercise}
+	Если $f$ непрерывна в $x$, то $B_n(x) \rightarrow f(x)$
+\end{exercise}
+
+\begin{properties}
+	многочлена Бернштейна
+	
+	\begin{enumerate}
+		\item $B_n(0) = f(0)$
+		
+		$B_n(1) = f(1)$
+		
+		\item $B_n'(x) = \sum\limits_{k = 0}^n f(\frac{k}{n})C_n^k (k-nx)x^{k-1} (1-x)^{n-k-1}$
+		
+		\item $B_n'(0) = n(f(\frac{1}{n}) - f(0))$
+		
+		$B_n'(1) = n(f(1) - f(\frac{n-1}{n}))$
+		
+		\item $B_n^{(f+g)} = B_n^{(f)} + B_n^{(g)}$
+	\end{enumerate}
+\end{properties}
+
+\begin{definition}
+	Кривая Безье степени $n$~--- это $\sum\limits_{k = 0}^n a_k C_n^k t^k (1-t)^{n-k}$, $a_k \in \mathbb{C}$, $t \in [0, 1]$
+	
+	$n = 1$ 
+	
+	отрезок $a(1-t) + bt$, соединяет точки $a$ и $b$
+	
+	$n = 2$  
+	
+	$a(1-t)^2 + 2bt(1-t) + ct^2$, начинается в $a$, заканчивается в $c$
+	
+	$g'(0) = 2(b-a)$, $g'(1) = 2(c-b)$
+	
+	$n = 3$
+	
+	$g(t) = a(1-t)^3 + 3bt(1-t)^2 + 3ct^2(1-t) + dt^3$, начало в $a$, конец в $d$
+	
+	$g'(0) = 3(b-a)$, $g'(1) = 3(d-c)$
+	
+	Вот \href{https://www.jasondavies.com/animated-bezier/}{тут} можно посмотреть рисунки этих штук.
+\end{definition}
+

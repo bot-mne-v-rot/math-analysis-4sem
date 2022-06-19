@@ -1,0 +1,110 @@
+{\bf Мотивировка}
+
+
+$f$ $2\pi l$-переодична $\Rightarrow$ $g(x) = f(lx)$ $2\pi$-периодична
+
+$c_k(g) = \frac{1}{2\pi}\int\limits_{-\pi}^{\pi} f(lx)e^{-ikx}dx = \frac{1}{2\pi l} \int\limits_{-\pi l}^{\pi l} f(t) e^{-i\frac{k}{l}t}dt$
+
+$\lambda := \frac{k}{l}$, тогда $c_\lambda(f) = \frac{1}{2\pi} \int\limits_{-\pi l}^{\pi l} f(t) e^{-i\lambda t}dt$
+
+$f\sim \sum\limits_{n \in \mathbb{Z}} \frac{1}{2\pi l} \int\limits_{-\pi l}^{\pi l} f(t) e^{-i\lambda t}dt e^{i\lambda y} \approx \int\limits_{-\infty}^{\infty} \frac{1}{2\pi} \int\limits_{-\infty}^{\infty} f(t) e^{-i\lambda tdt} e^{i\lambda y} d\lambda$
+
+\begin{definition}
+    $f \in L^1(\mathbb{R})$. Преобразование Фурье $\hat f(y) = \frac{1}{\sqrt{2 \pi}} \int\limits_{-\infty}^{\infty} f(t) e^{-ity} dt$
+
+    Обратное преобразование Фурье $\check f(x) = \frac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^{\infty}f(t)e^{itx}dt$
+\end{definition}
+
+\begin{observation}
+    $\hat f(x) = \check f(-x)$
+
+    Если $\mu$~--- вероятностная мера, то $\varphi_{\mu}(x)=\int\limits_{-\infty}^{\infty} e^{itx}d\mu(t)$
+
+    Если $f$~--- плотность $\mu$, то $\check f = \frac{1}{\sqrt{2\pi}}\varphi_\mu$, $\hat f(x) = \frac{1}{\sqrt{2\pi}} \varphi_{\mu}(-x)$
+\end{observation}
+
+\begin{properties}
+    \begin{enumerate}
+        \item $\hat f \in C(\mathbb{R})$ и $|\hat f| \leqslant \frac{1}{\sqrt{2\pi}}||f||_1$
+
+              \begin{proof}
+                  $|\hat f| \leqslant \frac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^{\infty} |f(t)| |e^{-ity}| dt = \frac{||f||_1}{\sqrt{2\pi}}$
+
+                  $|f|$~--- суммируемая мажоранта, значит можем переходить к пределу по $y$ под знаком интеграла, значит есть непрерывность.
+              \end{proof}
+
+        \item $\hat f(y) \rightarrow 0$ при $|y| \rightarrow \infty$
+
+              \begin{proof}
+                  Лемма Римана-Лебега
+              \end{proof}
+
+        \item Если $x^kf(x)$~--- суммируемая, то $\hat f^{(k)}(y) = \frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} (-it)^k f(t) e^{-ity} dt$
+
+              \begin{proof}
+                  $\hat f(y)' = \frac{1}{\sqrt{2}{\pi}} (\int\limits_{\mathbb{R}} f(t) e^{-ity} dt)'_y = \frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} f(t) (-it) e^{-ity}dt$
+
+                  $|t||f(t)|$~--- суммируемая мажоранта, значит можно дифференцировать под знаком интеграла. Продифференцируем, получим то, что надо.
+              \end{proof}
+
+        \item Если $f \in C^r(\mathbb{R})$ и $f^{(k)} \in L^1(\mathbb{R})$ при $k = 0,1, \dots r$, то $\widehat{f^{(k)}} (y) = (iy)^{k}\hat f(y)$
+
+              \begin{proof}
+                  $f(x) = f(0) + \int\limits_0^x f'(t)dt \Rightarrow \exists$ конечный $\lim\limits_{x \rightarrow \infty} f(x) \Rightarrow \lim\limits_{x \rightarrow \infty} = 0$
+
+                  $\widehat{f'}(y) = \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty} f'(t) e^{-ity}dt =
+                      \frac{1}{\sqrt{2\pi}} f(t)e^{-ity}|_{t = -\infty}^{t = +\infty} - \frac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^{\infty} f(t)(-iy)e^{-ity}dt =
+                      \frac{iy}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty}f(t)e^{-ity}dt = (iy)\hat f(y)$
+              \end{proof}
+        \item $f(x+h)^\wedge = e^{ihy}\hat f(y)$
+
+              $f(ax)^\wedge = \frac{1}{a}\hat f(\frac{y}{a})$
+
+              \begin{proof}
+                  Проверяли для хар. функций на теорвере.
+              \end{proof}
+        \item $\widehat{f \ast g} = \sqrt{2\pi} \hat f(y) \hat g (y)$
+
+              \begin{proof}
+                  Тоже теорвер. Хар функция~--- крышка, свертка~--- переход от плотности к плотности независимых случайных величин.
+              \end{proof}
+        \item Единственность. $f, g \in L^1(\mathbb{R})$. Если $\hat f = \hat g$, то $f = g$ почти везде.
+
+              \begin{proof}
+                  Теорвер. Если у двух величин сопадают хар. функци, то у них одинаковое распределение.
+              \end{proof}
+    \end{enumerate}
+\end{properties}
+
+\begin{theorem}
+    Формула обращения.
+
+    $f \in L^1(\mathbb{R})$ и $f \in C(\mathbb{R})$. Если $\hat f \in L^1(\mathbb{R})$, то $f = \check{\hat f}$, т.е. $f(y) = \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty} e^{ity} \hat f(t)dt$
+\end{theorem}
+
+\begin{proof}
+    $\xi$~--- случайная величина. $P(a \leqslant \xi \leqslant b) = \lim\limits_{A \rightarrow \infty} \frac{1}{2\pi}\int\limits_{-A}^{A}\frac{e^{-iat} - e^{-ibt}}{it}\varphi_{\xi}(t)dt$
+
+    C плотностью $f$:
+
+    $\int\limits_{a}^{b}f(x)dx = \lim\limits_{A \rightarrow \infty} \frac{1}{\sqrt{2\pi}}\int\limits_{-A}^{A}\frac{e^{-iat} - e^{-ibt}}{it}\hat f(-t)dt = \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty}\frac{e^{-iat} - e^{-ibt}}{it}\hat f(-t)dt = -\frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty}\frac{e^{iat} - e^{ibt}}{it}\hat f(t)dt$
+
+    Диффернцируем равенство по $b$.
+
+    $f(b) = \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty}\hat f(t)e^{ibt}dt$. Дифференцировать под интегралом можно, потому что $|\hat f|$~--- суммируемая мажоранта.
+\end{proof}
+
+\begin{example}
+    Как удалять шум и распознать ноты. Звук (нота)~--- синусоида или косинусоида.
+
+    $f(t) = \sum\limits_{n = 0}^{\infty}a_ne^{i\lambda_nt}$ на $[-A, A]$, $\lambda_1 \leqslant \lambda_2 \leqslant \dots$
+
+    $\hat f(y) = \frac{1}{2\pi}\int\limits_{-\infty}^{\infty} \sum\limits_{n = 0}^{\infty}a_ne^{i\lambda_nt}\mathds{1}_{[-A, A]}(t)e^{-ity}dt = \frac{1}{\sqrt{2\pi}}\sum\limits_{n = 0}^{\infty}a_n\int\limits_{-A}^{A}e^{i\lambda_nt}e^{-ity}dt = \frac{1}{\sqrt{2\pi}} \sum\limits_{n = 0}^{\infty}a_n \frac{e^{i(\lambda_n - y)t}}{i(\lambda_n - y)}|_{t = -A}^{t = A} =\\ = \begin{cases}
+            2A$, если $y = \lambda_k \\
+            \frac{2\sin(\lambda_n - y)A}{\lambda_n - y}$, иначе
+            $\end{cases}$
+
+    $\hat f(y) = \frac{1}{\sqrt{2\pi}} \sum\limits_{n = 0}^{\infty}a_n\frac{2\sin(\lambda_n - y)A}{\lambda_n - y}$
+
+    Если $y$ далек от $\lambda$, то коэффициенты маленькие. А иначе они большие. То есть надо найти точки, где у преобразования Фурье будут резкие подскоки. И так можно распознать, какие были ноты. Если хотим узнать шум. Шум возникает, когда $\lambda$ отличные от частот. Рисуем Фурье, видим всплеск для больших $y$. Сглаживаем этот всплеск и делаем обратное преобразование Фурье.
+\end{example}

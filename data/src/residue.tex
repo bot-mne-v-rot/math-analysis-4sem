@@ -1,0 +1,904 @@
+\begin{definition}
+    $a \in \C$~--- изолированная особая точка функции $f$,
+    $f(z) = \sum\limits_{n=-\infty}^{+\infty} c_n (z-a)^n$.
+
+    Вычет: $\res\limits_{z=a} f(z) \coloneqq c_{-1}$.
+\end{definition}
+
+\begin{definition}
+    Вычет в бесконечности:
+    $\res\limits_{z=\infty} f(z) = -c_{-1}$.
+    Почему минус? Обход бесконечности получается в другую сторону.
+\end{definition}
+
+\begin{property}
+    $f$ голоморфна в $0 < |z-a| < R$ и $0 < r < R$.
+    Тогда
+
+    \[
+        \int\limits_{|z-a|=r} f(z)dz = 2\pi i \cdot \res\limits_{z = a} f
+    \]
+\end{property}
+
+\begin{proof}
+    Пусть $a = 0$. $f(z) = \sum\limits_{n=-\infty}^{+\infty} c_nz^n$.
+    Равномерно сходися на $|z| = r$, тогда
+
+    \[
+        \int\limits_{|z|=r} f(z)dz = \sum\limits_{n=-\infty}^{+\infty}
+        \int\limits_{|z|=r} c_nz^ndz
+        = \sum\limits_{n=-\infty}^{+\infty} c_n
+        \int\limits_{0}^{2\pi} r^ne^{in\varphi} re^{i\varphi} id\varphi
+    \]
+
+    При $n = -1$, интеграл равен $2\pi i$, иначе равен $0$.
+\end{proof}
+
+\begin{property}
+    $\res\limits_{z=a} f = \frac{1}{(n-1)!} \lim_{z\to a}
+        \frac{d^{n-1}}{dz^{n-1}} \left((z-a)^n f(z)\right)$
+    где $a$~--- полюс порядка $n$.
+\end{property}
+
+\begin{proof}
+    Пусть $a = 0$.
+
+    $f(z) = \sum\limits_{k=-n}^{+\infty}$,
+    а
+    $z^nf(z) = \sum\limits_{k=0}^{+\infty} c_{k-n}z^k$.
+    Ну и всё получается.
+\end{proof}
+
+\begin{property}
+    $a$~--- полюс первого порядка, тогда
+    $\res\limits_{z = a} f = \lim_{z\to a} (z-a)f(z)$.
+\end{property}
+
+\begin{property}
+    Пусть $f = \frac{g}{h}$.
+    Где $g$ и $h$ голоморфны в окрестности $a$, причём
+    $g(a) \ne 0$, $h(a) = 0$, $h'(a) \ne 0$.
+
+    Тогда $\res\limits_{z = a} f = \frac{g(a)}{h'(a)}$.
+\end{property}
+
+\begin{proof}
+    У нас полюс первого порядка.
+    $\res f = \lim_{z\to a} (z-a) f(z)
+        = \lim_{z\to a} g(z) \cdot \frac{z-a}{h(z)}
+        = \frac{g(a)}{h'(a)}$.
+\end{proof}
+
+\begin{property}
+    Если $\lim_{z\to\infty} f(z) = A \in \C$,
+    то $\res\limits_{z=\infty} f = \lim_{z\to\infty} z(A-f(z))$.
+\end{property}
+
+\begin{proof}
+    $f(z) = \sum\limits_{n=0}^{+\infty} c_{-n}z^{-n}$,
+    а $c_0 = A$. Тогда,
+    $c_{-1} = \lim_{z\to\infty} (f(z) - A)z$
+\end{proof}
+
+\begin{property}
+    $\res\limits_{z=\infty} f = - \res\limits_{z=0} \frac{1}{z^2} f(\frac{1}{z})$.
+\end{property}
+
+\begin{proof}
+    $f(z) = \sum c_nz^n \So f(1/z) = \sum c_nz^{-n}$.
+
+    $\frac{1}{z^2}f(1/z) = \sum c_nz^{-n-2}$.
+
+    $\res\limits_{z=0} \frac{1}{z^2} f(1/z) = c_{-1}$.
+\end{proof}
+
+\begin{theorem}[Коши о вычетах]
+
+    $f$ голоморфна в $\Om$ за исключением точек
+    $a_1, \ldots, a_n$.
+    $K \subset \Om$~--- компакт,
+    $a_1, \ldots, a_n \in \Int K$.
+
+    Тогда $\int\limits_{\partial K} fdz =
+        2\pi i \sum\limits_{k=1}^n \res\limits_{z = a_k} f$.
+\end{theorem}
+
+\begin{proof}
+    У каждой точки можно взять окрестность,
+    которая всё ещё лежит в $\Int K$. Выкинем их:
+
+    $\widetilde{K} = K \setminus B_r(a_1) \cup \cdots \cup B_r(a_n)$.
+    Это компакт и в окрестности $\widetilde{K}$ $f$ голоморфна.
+    Тогда $\int\limits_{\partial \widetilde K} fdz = 0$.
+
+    Но $\int\limits_{\partial \widetilde K} = \int\limits_{\partial K}
+        - \int\limits_{|z-a_1|=r} - \cdots - \int\limits_{|z-a_n|=r}$,
+    а значения этих интегралов известны~--- $2\pi i \cdot \res$.
+\end{proof}
+
+\begin{consequence}
+    Пусть $f$ голоморфна в $\C$ за исключением точек
+    $a_1, \ldots, a_n$.
+
+    Тогда
+    $\sum\limits_{k=1}^{n} \res\limits_{z=a_k} f + \res\limits_{z=\infty} f = 0$.
+\end{consequence}
+
+\begin{proof}
+    Возьмём кривую, огибающую все $a_k$.
+    Тогда интеграл по ней это $2\pi i \cdot \sum \res$,
+    а интеграл в обратную сторону это $2\pi i \res\limits_{z=\infty} f$.
+\end{proof}
+
+\begin{example}
+    $\int\limits_{|z|=4} \frac{z^4}{e^z+1}dz$.
+
+    Особые точки~--- нули знаменателя, то есть
+    $z = \Ln(-1) = (\pi + 2\pi k)i$.
+    Из них в круг попали $z = \pm \pi i$,
+    это полюса первого порядка,
+    значит интеграл равен:
+
+    \[
+        \int\limits_{|z|=4} \frac{z^4}{e^z+1}dz
+        = 2\pi i \left(\res\limits_{z=\pi i} f + \res\limits_{z=-\pi i} f\right)
+        = 2\pi i \cdot (-2\pi^4) = -4\pi^5i
+    \]
+\end{example}
+
+\begin{example}
+    $\int\limits_{-\infty}^{+\infty} \frac{dx}{1+x^{2n}}$.
+
+    Вводим контур для некоторого $R > 0$.
+
+    \begin{tikzpicture}
+        \draw[thick,gray,->] (-4, 0) -- (4, 0) node[anchor=west] {Re};
+        \draw[thick,gray,->] (0, -1) -- (0, 4) node[anchor=west] {Im};
+        \draw[thick, decoration={
+                    markings,
+                    mark=at position 0.25 with {\arrow{>}},
+                    mark=at position 0.75 with {\arrow{>}},
+                    mark=at position 0.15 with {\node[inner sep=0] {$C_R$};}
+                }, postaction={decorate}] (3, 0) arc (0:180:3);
+        \draw[thick, decoration={
+                    markings,
+                    mark=at position 0.25 with {\arrow{>}},
+                    mark=at position 0.75 with {\arrow{>}}
+                }, postaction={decorate}] (-3, 0) node[anchor=north] {$-R$} --
+        (3, 0) node[anchor=north] {$R$};
+    \end{tikzpicture}
+
+    Особые точки: $z = e^{i(2k-1)\pi / (2n)}$ для $k = 1, \ldots, n$.
+
+    Интеграл по кривой будет равен:
+
+    $\int\limits_{\Gamma_R} \frac{dz}{1+z^{2n}} = 2\pi i \sum \res
+        = \int\limits_{-R}^R + \int\limits_{C_R} \to \int\limits_{-\infty}^{+\infty}$.
+
+    Интеграл по $C_R$ пропадает если его оценить
+    как длину дуги на максимум модуля функции:
+    $\int\limits_{C_R} \le \pi R \cdot \frac{1}{R^{2n}-1} \to 0$.
+
+    Мне так лень писать это всё... Ну вы же были на практике, да?
+    Можете посмотреть вторую половину девятой лекции если хотите.
+    Тут ещё есть упрощённый способ посчитать интеграл если что.
+\end{example}
+
+\begin{lemma}(Жордан)
+
+    $C_{R_n} = \left\{z \in \C : |z| = R_n \Im z > 0\right\}$,
+    $R_n \to +\infty$. $M_n \coloneqq \sup_{z\in C_{R_n}} |g(z)| \to 0$.
+
+    Тогда для любого $\lambda > 0$, $\lim_{n\to +\infty}
+        \int\limits_{C_{R_n}} g(z)e^{i\lambda z} dz \to 0$.
+\end{lemma}
+
+\begin{proof}
+    Обозначим $I_n \coloneqq \int\limits_{C_{R_n}} g(z)e^{i\lambda z} dz$.
+
+    $z = R_ne^{i\varphi}$, $\varphi \in \left[0, \pi\right]$.
+
+    \[|g(z) e^{i\lambda z}| = |g(z)| |e^{i\lambda R_n e^{i\varphi} } |
+        \le M_n e^{-\lambda R_n \sin \varphi}\]
+
+    \[I_n = \int\limits_0^{\pi} g(z) e^{i\lambda z} R_n e^{i\varphi}
+        i d\varphi\]
+
+    Добавим модули.
+
+    \[
+        \begin{aligned}[t]
+             & |I_n| = \left| \int\limits_0^{\pi} g(z) e^{i\lambda z} R_n e^{i\varphi}
+            i d\varphi \right|
+            \le \int\limits_0^\pi |g(z)| |e^{i\lambda z}| R_n d\varphi \le M_nR_n
+            \int\limits_0^\pi e^{-\lambda R_n \sin\varphi} d\varphi =                  \\
+             & = 2M_nR_n
+            \int\limits_0^{\pi/2} e^{-\lambda R_n \sin\varphi} d\varphi
+            \le 2M_nR_n\int\limits_0^{\pi/2} e^{-\lambda R_n\frac{2\varphi}{\pi}} d\varphi
+            = \eval{2M_nR_n \frac{e^{-\lambda R_n \frac{2\varphi}{\pi}}}{-\lambda R_n \frac{2}{\pi}}
+            }_0^{\pi/2} \le \frac{M_n \pi}{\lambda} \to 0
+        \end{aligned}
+    \]
+\end{proof}
+
+\begin{example}
+    $\int\limits_{-\infty}^{+\infty} \frac{e^{i\lambda x}}{1+x^2} dx$.
+    Считаем что $\lambda > 0$.
+
+    Контур тот же:
+
+    \begin{tikzpicture}
+        \draw[thick,gray,->] (-4, 0) -- (4, 0) node[anchor=west] {Re};
+        \draw[thick,gray,->] (0, -1) -- (0, 4) node[anchor=west] {Im};
+        \draw[thick, decoration={
+                    markings,
+                    mark=at position 0.25 with {\arrow{>}},
+                    mark=at position 0.75 with {\arrow{>}},
+                    mark=at position 0.15 with {\node[inner sep=0] {$C_R$};}
+                }, postaction={decorate}] (3, 0) arc (0:180:3);
+        \draw[thick, decoration={
+                    markings,
+                    mark=at position 0.25 with {\arrow{>}},
+                    mark=at position 0.75 with {\arrow{>}}
+                }, postaction={decorate}] (-3, 0) node[anchor=north] {$-R$} --
+        (3, 0) node[anchor=north] {$R$};
+    \end{tikzpicture}
+
+    Введём $f(z) = \frac{e^{i\lambda z}}{1+z^2}$.
+
+    Внутри контура только полюс первого порядка в $z = i$.
+
+    \[
+        \int\limits_{\Gamma_R} f(z) dz =
+        2\pi i \sum \res = 2\pi i \res\limits_{z=i} f
+        = \eval{2\pi i \frac{e^{i\lambda z}}{(1+z^2)'}}_{z=i}
+        = 2\pi i \frac{e^{-\lambda}}{2i} = \frac{\pi}{e^\lambda}
+    \]
+
+    С другой стороны,
+
+    \[
+        \int\limits_{\Gamma_R} f(z) dz =
+        \int\limits_{C_R} f(z) dz + \int\limits_{-R}^R f(x)dx
+    \]
+
+    Проверим условия леммы Жордана, $g(z) = \frac{1}{1+z^2}$,
+
+    \[
+        \max_{|z| = R} |g(z)| \le \frac{1}{R^2-1} \to 0
+    \]
+
+    Интеграл по $C_R$ стремится к нулю, значит
+
+    \[
+        I = \int\limits_{-\infty}^{+\infty} \frac{e^{i\lambda x}}{1+x^2} dx =
+        \lim \int\limits_{-R}^R f(x)dx = \lim \int\limits_{\Gamma_R} f(z) dz = \frac{\pi}{e^\lambda}
+    \]
+
+    Посмотрим что будет если взять вещественную часть:
+
+    \[
+        \frac{\pi}{e^{\lambda}} = \Re I
+        = \int\limits_{-\infty}^{+\infty} \Re \frac{e^{i\lambda x}}{1+x^2} dx
+        = \int\limits_{-\infty}^{+\infty} \frac{\cos(\lambda x)}{1+x^2} dx
+        = 2\int\limits_{0}^{+\infty} \frac{\cos(\lambda x)}{1+x^2} dx
+    \]
+\end{example}
+
+\begin{lemma}(о полувычете)
+
+    Пусть $a$~--- полюс первого порядка $f$.
+    Обозначим $C_{\ve} = \left\{
+        z \in \C :
+        |z-a| = \ve,
+        \alpha \le \arg(z-a) \le \beta
+        \right\}$.
+
+    Тогда $\lim_{\ve \to 0} \int\limits_{C_\ve} f(z)dz
+        = i(\be - \al)\res\limits_{z=a} f$.
+\end{lemma}
+
+\begin{proof}
+    $f(z) = \frac{c}{z-a} + g(z)$,
+    где $g(z)$~--- голоморфная в окрестности $a$.
+
+    \[
+        \int\limits_{C_\ve} f = \int\limits_{C_\ve} \frac{c}{z-a}dz + \int\limits_{C_\ve}
+        g(z)dz
+    \]
+
+    Второй интеграл стремится к нулю, так как голоморфная функция
+    ограничена в окрестности. Посчитаем первый интеграл.
+
+    \[
+        \int\limits_{C_\ve} \frac{c}{z-a}dz
+        = c \int\limits_\al^\be \ve e^{i\varphi} i \frac{1}{\ve e^{i\varphi}}
+        d\varphi = ci \int\limits_\al^\be d\varphi = ci (\be - \al)
+    \]
+\end{proof}
+
+\begin{definition}
+    $x_0 \in (a, b)$~--- особая точка $f$.
+    Главное значение интеграла это вот что:
+
+    \[
+        \pvint_a^b f(x)dx = \lim_{\ve\to0}
+        \left(
+        \int\limits_a^{x_0 - \ve} f(x)dx
+        + \int\limits_{x_0 + \ve}^b f(x)dx
+        \right)
+    \]
+\end{definition}
+
+\begin{example}
+    \[
+        \pvint_{-1}^1 \frac{dx}{x} = 0
+    \]
+
+    Функция нечётная, под пределом всегда будет $0$.
+\end{example}
+
+\begin{observation}
+    Если интеграл сходится в обычном смысле,
+    то результат совпадает с главным значением.
+\end{observation}
+
+\begin{observation}
+    Если у $f$ будет много особых точек, то выкидываем неравномерно
+    вокруг каждой $\ve$-окрестности.
+\end{observation}
+
+\begin{example}
+    $I \coloneqq \int\limits_0^{+\infty} \frac{\sin \lambda x}{x}dx$,
+    $\lambda > 0$.
+
+    Заведём немного другую функцию чтобы было удобно:
+
+    $f(z) = \frac{e^{i\lambda z}}z$
+
+    Интегрируем по такому контуру:
+
+    \begin{tikzpicture}
+        \draw[thick,gray,->] (-4, 0) -- (4, 0) node[anchor=west] {Re};
+        \draw[thick,gray,->] (0, -1) -- (0, 4) node[anchor=west] {Im};
+        \draw[thick, decoration={
+                    markings,
+                    mark=at position 0.25 with {\arrow{>}},
+                    mark=at position 0.75 with {\arrow{>}},
+                    mark=at position 0.15 with {\node[inner sep=0] {$C_R$};}
+                }, postaction={decorate}] (3, 0) arc (0:180:3);
+        \draw[thick, decoration={
+                    markings,
+                    mark=at position 0.25 with {\arrow{>}},
+                    mark=at position 0.75 with {\arrow{>}}
+                }, postaction={decorate}] (-3, 0) node[anchor=north] {$-R$} --
+        (-0.5, 0) node[anchor=north] {$-\ve$} arc (180:0:0.5)
+        node[anchor=north] {$\ve$} --
+        (3, 0) node[anchor=north] {$R$};
+    \end{tikzpicture}
+
+    Внутрь контура особые точки не попали.
+
+    \[
+        \int\limits_{\Gamma_{R,\ve}} f(z)dz = 2\pi i \sum\res = 0
+    \]
+
+    С другой стороны,
+
+    \[
+        \int\limits_{\Gamma_{R,\ve}}
+        = \int\limits_{C_R} + \int\limits_{C_\ve}
+        + \int\limits_{-R}^{-\ve} + \int\limits_{\ve}^{R}
+    \]
+
+    Интеграл по $C_R$ стремится к нулю по лемме Жордана,
+    интеграл по $C_\ve$ по лемме о полувычете стремится к
+    $\pi i \res\limits_{z=0} f = \pi i$. Получилось:
+
+    \[
+        \pvint_{-\infty}^{+\infty}
+        \frac{e^{i\lambda z}}{z}dz = \pi i
+    \]
+
+    Приравняем мнимые части:
+
+    \[
+        \Im \pvint_{-\infty}^{+\infty}
+        \frac{e^{i\lambda z}}{z}dz
+        = \pvint_{-\infty}^{+\infty} \Im
+        \frac{e^{i\lambda z}}{z}dz
+        = \pvint_{-\infty}^{+\infty}
+        \frac{\sin \lambda x}{x}dx
+        = 2I
+    \]
+
+    Получилось, что $I = \pi / 2$ и $I$ не зависит от $\lambda$.
+\end{example}
+
+\begin{example}
+    $I \coloneqq \int\limits_{0}^{+\infty} \frac{x^{p-1}}{1+x} dx
+        = \frac{\pi}{\sin \pi p}$ где $p \in (0, 1)$.
+
+    \[
+        f(z) = \frac{e^{(p-1) \Ln z}}{1+z}
+    \]
+
+    Полюс первого порядка в $z = -1$.
+
+    \begin{tikzpicture}
+        \draw[thick,gray,->] (-4, 0) -- (4, 0) node[anchor=west] {Re};
+        \draw[thick,gray,->] (0, -4) -- (0, 4) node[anchor=west] {Im};
+        \draw[thick, decoration={
+                    markings,
+                    mark=at position 0.05 with {\arrow{>}},
+                    %mark=at position 0.07 with {\node [anchor=north] {$\gamma_2$};},
+                    mark=at position 0.15 with {\node [anchor=south] {$C_\ve$};},
+                    mark=at position 0.25 with {\arrow{>}},
+                    %mark=at position 0.23 with {\node [anchor=south] {$\gamma_1$};},
+                    mark=at position 0.4 with {\arrow{>}},
+                    mark=at position 0.5 with {\node [above left] {$C_R$};},
+                    mark=at position 0.6 with {\arrow{>}},
+                    mark=at position 0.75 with {\arrow{>}},
+                    mark=at position 0.9 with {\arrow{>}}
+                }, postaction={decorate}] (3, -0.25) -- (0.25, -0.25)
+        arc (315:45:0.3535) -- (3, 0.25) arc (5:355:3);
+        \draw [fill=black] (-1, 0) circle (0.1) node[below] {$-1$};
+    \end{tikzpicture}
+
+    \[
+        \int\limits_{\Gamma_{R,\ve}} f(z)dz
+        = 2\pi i \sum\res = 2\pi i \res\limits_{z=-1} f
+        = \eval{2\pi i e^{(p-1) \Ln z}}_{z=-1}
+        = 2\pi i e^{(p-1) \Ln (-1)} = (*)
+    \]
+
+    У логарифма много ветвей, давайте зафиксируем
+    и скажем что $\Ln 1 = 0$.
+
+    \[
+        (*) = 2\pi i e^{(p-1)\pi i}
+    \]
+
+    С другой стороны,
+
+    \[
+        \int\limits_{\Gamma_{R,\ve}}
+        = \int\limits_{C_R} + \int\limits_{C_\ve}
+        + \int\limits_{\ve}^{R} + \int\limits_{Re^{2\pi i}}^{\ve e^{2\pi i}}
+    \]
+
+    Оценим интеграл по большой дуге:
+
+    \[
+        \abs{\int\limits_{C_R}}
+        \le \pi R \max \abs{f(z)}
+        \le \pi R \frac{R^{p-1}}{R-1} \to 0
+    \]
+
+    И по малой:
+
+    \[
+        \abs{\int\limits_{C_\ve}} \le \pi \ve
+        \max \abs{f(z)} \le \pi \ve \frac{\ve^{p-1}}{1-\ve} \to 0
+    \]
+
+    А теперь:
+
+    \[
+        \int\limits_{Re^{2\pi i}}^{\ve e^{2\pi i}} f(z)dz
+        = \int\limits_R^\ve \frac{e^{(p-1)(x+2\pi i)}}{1+x}dx
+        = -e^{(p-1)2\pi i}
+        \int\limits_\ve^R \frac{e^{(p-1)x}}{1+x}dx
+        \to e^{2\pi i(p-1)}I
+    \]
+
+    Получается такое выражение:
+
+    \[
+        2\pi i e^{(p-1)\pi i} = I - Ie^{(p-1)2\pi i}
+    \]
+
+    В итоге интеграл равен:
+
+    \[
+        I = 2\pi i \frac{e^{(p-1)\pi i}}{1-e^{(p-1)2\pi i}}
+        = 2\pi i \frac{1}{e^{-(p-1)\pi i}-e^{(p-1)\pi i}}
+        = \frac{\pi}{-\sin (p-1)\pi } = \frac{\pi}{\sin \pi p}
+    \]
+
+\end{example}
+
+\begin{theorem}
+    $f$~--- мероморфная функция в $\C$ с полюсами
+    $a_1, \ldots, a_n$, а в бесконечности~--- устранимая
+    особая точка или полюс.
+
+    Тогда $f(z) = C + G(z) + \sum\limits_{k=1}^n G_k(z)$,
+    где $C$~--- константа, $G_k(z)$~--- главная
+    часть ряда Лорана в точке $a_k$, $G(z)$~--- правильная
+    часть ряда Лорана в $\infty$.
+
+    В частности, $f$~--- дробно-рациональное
+\end{theorem}
+
+\begin{proof}
+    $g(z) \coloneqq f(z) - G(z) - \sum\limits_{k=1}^n G_k(z)$.
+
+    $g(z)$ задана и голоморфна в
+    $\C \setminus \left\{a_1, \ldots, a_n\right\}$.
+
+    $a_k$~--- устранимая особая точка,
+    так как $f(z) - G_k(z)$~--- это правильная часть ряда Лорана для
+    $f$, а в остальных слагаемых особенностей в $a_k$ точно нет.
+    Доопределим $g$ до целой функции.
+    Также заметим что у $g$ в бесконечности
+    имеет устранимую особую точку, то есть $g$~--- константа.
+\end{proof}
+
+\begin{theorem}
+    $f$~--- голоморфна в $\C$ за исключением полюсов
+    $a_1, a_2, \ldots$ и при этом $\lim a_n = \infty$.
+
+    Если существует последовательность $R_n \to \infty$,
+    т.ч. $M_{R_n} \coloneqq \max_{\abs{z} = R_n} \abs{f(z)} \to 0$,
+    то $f(z) = \lim_{n\to\infty} \sum\limits_{\abs{a_k} < R_n} G_k(z)$
+\end{theorem}
+
+\begin{proof}
+    Обозначим (если $z < R_n$):
+
+    \[
+        I_n(z) \coloneqq \frac{1}{2\pi i}
+        \int\limits_{\abs{\zeta} = R_n} \frac{f(\zeta)}{\zeta - z}d\zeta
+    \]
+
+    Значение этого интеграла это
+
+    \[
+        I_n(z) = \sum\res =
+        \res\limits_{\zeta=z} \frac{f(\zeta)}{\zeta-z}
+        + \sum\limits_{\abs{a_k}<R_n} \res\limits_{\zeta=a_k} \frac{f(\zeta)}{\zeta - z}
+        = f(z) +\sum\limits_{\abs{a_k}<R_n} \res\limits_{\zeta=a_k} \frac{G_k(\zeta)}{\zeta - z}
+    \]
+
+    Хотим посчитать тот вычет.
+
+    \[
+        \frac{1}{2\pi i} \int\limits_{\abs{\zeta} = R}
+        \frac{G_k(\zeta)}{\zeta - z} d\zeta
+        = \res\limits_{\zeta = a_k} + \res\limits_{\zeta = z}
+    \]
+
+    Где $R$~--- такой радиус, что и $z$ и $a_k$ в него попали.
+    Подинтегральная функция это $O(1/R^2)$ (в числителе самая большая
+    степень $\zeta$~--- это $-1$, в знаменателе~--- $1$).
+    При $R\to\infty$, интеграл стремится к нулю, значит сумма
+    вычетов равна нулю:
+
+    \[
+        \res\limits_{\zeta=a_k} \frac{G_k(\zeta)}{\zeta - z}
+        = -\res\limits_{\zeta=z} \frac{G_k(\zeta)}{\zeta - z}
+        = -G_k(z)
+    \]
+
+    Подставляем,
+
+    \[
+        I_n(z) = f(z) - \sum\limits_{\abs{a_k} < R_n} G_k(z)
+    \]
+
+    Оценим его как длина на максимум:
+
+    \[
+        \abs{I_n(z)} \le 2\pi R_n \max_{\abs\zeta = R_n}
+        \abs{\frac{f(\zeta)}{\zeta - z}} \le
+        2\pi R_n \cdot \frac{M_{R_n}}{R_n-\abs{z}} \to 0
+    \]
+\end{proof}
+
+
+\begin{lemma} (нужна для примера дальше)
+
+    $\ctg z$ ограничена на окружностях $\abs{z} = \pi(n + \frac{1}{2})$
+
+    (послушайте Храброва с 1:40:00 в десятой лекции, тут
+    без поллитра и богатого воображения не разберёшься)
+\end{lemma}
+
+\begin{proof}
+    \[
+        \abs{\ctg z} = \frac{\abs{e^{iz} + e^{-iz}}}{\abs{e^{iz}-e^{-iz}}}
+        = \frac{\abs{1+e^{2iz}}}{\abs{1-e^{2iz}}}
+        \le \frac{1+\abs{e^{2iz}}}{\abs{1-e^{2iz}}}
+        \le \frac{1+e^{-2y}}{1-e^{-2y}}
+    \]
+
+    Если $y > 1$ то это выражение ограничено.
+    Остальное вам расскажет Храбров, сорри.
+\end{proof}
+
+\begin{example}
+    Хотим показать, что
+
+    \[
+        f(z) = \frac{\ctg z}{z} = \frac{1}{z^2} +
+        \sum\limits_{k=1}^{+\infty} \frac{2}{z^2-\pi^2k^2}
+    \]
+
+    $R_n = \pi\left(n + \frac12\right)$,
+    $M_{R_n} \le \frac{M}{R_n} \to 0$.
+
+    Особые точки $z = 0$, $z = \pi k$.
+
+    Точки вида $z = \pi k$ это полюсы первого порядка,
+    $f(z) = \frac{\cos z}{z} \cdot \frac{1}{\sin z}$.
+
+    \[
+        G_k(z) = \frac{\res}{z-\pi k} = \frac{1}{\pi k}
+        \cdot \frac{1}{z-\pi k}, \res\limits_{z=\pi k} \frac{\cos z}{z}
+        \cdot \eval{\frac{1}{(\sin z)'}}_{z=\pi k} = \frac{1}{\pi k}
+    \]
+
+    Точка $z = 0$ это полюс второго порядка.
+    $f$~--- это чётная функция.
+
+    \[
+        G_0(z) = \frac{c}{z^2} = \frac{1}{z^2}
+    \]
+
+    Посчитаем предел:
+
+    \[
+        \lim_{z\to0} z^2f(z) = \lim_{z\to0} \frac{\cos z}{\sin z}\cdot z = 1
+    \]
+
+    Теперь:
+
+    \[
+        \frac{\ctg z}{z}
+        = \frac{1}{z^2}+\lim_{n\to\infty}
+        \sum\limits_{\abs{\pi k} < \pi\left(n + \frac12\right)}
+        \frac{1}{\pi k} \cdot \frac{1}{z-\pi k}
+        = \frac{1}{z^2}
+        + \lim\limits_{n \to +\infty} \sum\limits_{k=1}^n
+        \left(\frac{1}{\pi k } \cdot \frac{1}{z - \pi k} + \frac{1}{-\pi k } \cdot \frac{1}{z + \pi k} \right)  =
+    \]
+
+    \[
+        \frac{1}{z^2}
+        + \lim\limits_{n \to +\infty} \sum\limits_{k=1}^n \frac{1}{\pi k} \cdot \frac{2 \pi k}{z ^ 2 - \pi ^ 2 k ^ 2}=
+        \frac{1}{z^2} + \sum\limits_{k=1}^{+\infty} \frac{2}{z^2-\pi^2k^2}
+    \]
+\end{example}
+
+\begin{example}
+    $\ctg z = \frac{1}{z} + \sum_{k=1}^{+\infty} \frac{2z}{z^2-\pi^2k^2}$
+\end{example}
+
+\begin{example}
+    $(\ln \sin z)' = \ctg z$.
+
+    Напишем например такую формулу:
+
+    \[
+        \ln \frac{\sin z}{z}
+        = \ln \sin z - \ln z
+        = \int\limits_0^{z}
+        \left(\ctg w - \frac{1}w\right)dw
+        = \int\limits_0^z \sum\limits_{k=1}^{+\infty}
+        \frac{2w}{w^2-\pi^2k^2}dw = (*)
+    \]
+
+    Ряд равномерно сходится, поменяем местами сумму и интеграл:
+
+    \[
+        (*) =
+        \sum\limits_{k=1}^{+\infty}
+        \int\limits_0^z \left(\frac{1}{w-\pi k} + \frac{1}{w+\pi k}\right)
+        dw = \sum\limits_{k=1}^{+\infty}
+        \eval{\ln (w^2-\pi^2k^2)}_{w = 0}^{w = z}
+    \]
+
+    Пишем экспоненту от левой и правой частей:
+
+    \[
+        \frac{\sin z}{z} = \prod_{k=1}^{+\infty}
+        \frac{z^2-\pi^2k^2}{-\pi^2k^2}
+        = \prod_{k=1}^{+\infty} \left(1 - \frac{z^2}{\pi^2 k^2}\right)
+    \]
+
+    Разложили синус в бесконечное произведение.
+\end{example}
+
+\begin{example}
+    (Суммирование рядов с помощью вычетов)
+
+    Хотим посчитать ряд $\sum\limits_{n\in\Z} f(n)$.
+
+    Посчитаем вычеты:
+
+    \[
+        \res\limits_{z=n} \frac{f(z)}{\sin (\pi z)} =
+        \eval{\frac{f(z)}{(\sin(\pi z))'}}_{z=n} =
+        \frac{f(n)}{\pi \cos(\pi n)} =
+        \frac{(-1)^nf(n)}{\pi}
+    \]
+
+    Нужно домножить $f(n)$ на что-то что в целых
+    точках~--- это $(-1)^n$.
+
+    \[
+        \res\limits_{z=n} \frac{f(z)\cos(\pi z)}{\sin (\pi z)} =
+        \frac{f(n)}{\pi}
+    \]
+
+    Например, если мы хотим посчитать $\sum\limits_{n=1}^{+\infty}
+        \frac{1}{n^2}$, то возьмём $f(z) = \frac{\ctg(\pi z)}{z^2}$.
+
+    Считаем интеграл по окружности радиуса $n + \frac12$.
+
+    \[
+        \int\limits_{\abs{z}=n+\frac{1}{2}} f(z)dz =
+        2\pi i\sum\res
+        = 2\pi i\res\limits_{n=0} + 2\pi i
+        \left(\frac{2}{\pi} \sum\limits_{k=1}^n \frac{1}{k^2}\right)
+    \]
+
+    Перейдём к пределу $n \to +\infty$.
+    Интегралы стремятся к нулю:
+
+    \[
+        \abs{\int f(z)dz} \le 2\pi \left(n + \frac12\right)
+        \frac{\max \abs{\ctg}}{\left(n+\frac12\right)^2}
+        \le \frac{\mathrm{const}}{n} \to 0
+    \]
+
+    Переходим к пределу, получаем
+
+    \[
+        0 = 2\pi i \res\limits_{z=0}
+        + 4i\sum\limits_{k=1}^{+\infty} \frac{1}{k^2}
+    \]
+
+    Осталось посчитать вычет в нуле.
+    Это полюс третьего порядка (квадрат в знаменателе и котангенс).
+
+    Разложим $\ctg(\pi z)$ в ряд:
+
+    \[
+        \ctg \pi z = \frac{\cos \pi z}{\sin \pi z}
+        = \frac{1-\frac{\pi^2z^2}{2} + \cdots}{\pi z
+            - \frac{\pi^2z^3}{6} + \cdots} =
+        \frac{1}{\pi z}\left(1 - \frac{\pi^2z^2}{2} + \cdots\right)
+        \left(1-\frac{\pi^2z^2}{6} + \cdots\right)^{-1}
+    \]
+
+    Вычет получается:
+
+    \[
+        \res\limits_{z=0} f = \coef_{\text{при } z^1} \ctg(\pi z)
+        = -\frac{\pi}{3}
+    \]
+
+    Итого сумма ряда:
+
+    \[
+        \sum\limits_{k=1}^{+\infty} \frac{1}{k^2} =
+        -\frac{2\pi i}{4i} \cdot \frac{\pi}{3}
+        = \frac{\pi^2}{6}
+    \]
+\end{example}
+
+\begin{observation}
+    Можно провести похожие рассуждения для
+    ограниченности $\frac{1}{\sin \pi z}$ и научится
+    считать ряды вида $\sum\limits_{n\in\Z} (-1)^nf(n)$.
+\end{observation}
+
+\begin{theorem}
+    $f$~--- мероморфная в $\Om$ и $C$~---
+    это простой контур, не проходящий через нули и
+    полюсы $f$.
+
+    Тогда
+    $\frac{1}{2\pi i}\int\limits_C \frac{f'(z)}{f(z)}dz
+        = N_f - P_f$, где $N_f$ ($P_f$)~---
+    количество нулей (полюсов) функции внутри контура
+    с учётом кратности (порядка).
+\end{theorem}
+
+\begin{proof}
+    Возьмём $a$~--- ноль или полюс $f$.
+    Тогда $f(z) = (z-a)^m g(z)$,
+    где $g(a) \ne 0$, $g$ голоморфная в окрестности.
+    Если $a$~--- полюс, то $m < 0$, если ноль, то $m > 0$.
+
+    \[
+        \frac{f'(z)}{f(z)}
+        = \frac{m(z-a)^{m-1} g(z) + (z-a)^mg'(z)}{(z-a)^mg(z)}
+        = \frac{m}{z-a} + \frac{g'(z)}{g(z)}
+    \]
+
+    Знаем, что $g'/g$~--- голоморфная в точке $a$.
+    Получается, что $f'/f$ имеет полюс первого порядка
+    в точке $a$ и вычет там равен $m$.
+
+    По теореме о вычетах,
+
+    \[
+        \frac{1}{2\pi i}\int\limits_C \frac{f'(z)}{f(z)}dz
+        = \sum\res = \sum m = N_f - P_f
+    \]
+\end{proof}
+
+\begin{consequence}
+    Если $f\in H(\Om)$, то
+
+    \[N_f = \frac{1}{2\pi i}\int\limits_C
+        \frac{f'(z)}{f(z)}dz\]
+\end{consequence}
+
+\begin{consequence}(принцип аргумента)
+
+    \[
+        N_f = \frac{1}{2\pi}\Delta_C\arg f
+    \]
+
+    $\Delta_C \arg f$~--- это изменение аргумента
+    функции при проходе по контуру.
+\end{consequence}
+
+\begin{proof}
+    Заметим, что
+
+    \[
+        \frac{f'}{f} = \left(\Ln f\right)'
+        = \left(\ln \abs{f} + i\Arg f\right)'
+    \]
+
+    Получается, что $\ln \abs{f} + i\Arg f$~---
+    первообразная вдоль пути, а это разность на концах.
+\end{proof}
+
+\begin{theorem}[Руше]
+
+    Пусть $f, g \in H(\Om)$,
+    $C$~--- простой контур в $\Om$.
+    На этом контуре верно, что $\abs{g(z)} < \abs{f(z)}$.
+
+    Тогда, $f$ и $f+g$ имеют внутри контура одинаковое количество
+    нулей с учётом кратности.
+\end{theorem}
+
+\begin{proof}
+
+    \[
+        2\pi N_{f+g} = \Delta_C \arg(f+g)
+        = \Delta_C \arg\left(f \cdot \left(1 + \frac{g}{f}\right)\right)
+        = \Delta_C \arg f + \Delta_C \arg \left(1 + \frac{g}{f}\right)
+    \]
+
+    Надо доказать, что $\Delta_C \arg \left(1 + \frac gf\right) = 0$.
+    Мы знаем, что $\abs{\frac gf} < 1$ на $C$.
+    Значит кривая $C$ не обходит вокруг нуля функции $1 + \frac gf$.
+\end{proof}
+
+\begin{example}
+    $z + e^{-z} = \lambda > 1$ имеет один корень в
+    полуплоскости $\Re > 0$.
+
+    Возьмём $f(z) = z - \lambda$, $g(z) = e^{-z}$.
+    Берём контур: полуокружность в $\Re \ge 0$
+    радиуса $R$ с центром в нуле. Нужно проверить что
+    на контуре $\abs{f(z)} > \abs{g(z)}$.
+
+    На отрезке от $-iR$ до $iR$, $\abs{g(z)} = 1$,
+    а $\abs{f(z)} = \abs{iy - \lambda} = \sqrt{\lambda^2 + y^2} > 1$.
+
+    На дуге, $\abs{f(z)} \ge R - \lambda$,
+    $\abs{g(z)} = \abs{\exp \left(-R\cos \varphi -iR\sin \varphi\right) }
+        = \exp\left(-R\cos\varphi\right) \le 1$.
+
+    Значит по теореме Руше, количество нулей при $\Re > 0$
+    у $f$ и $f+g$ одинаковое.
+\end{example}

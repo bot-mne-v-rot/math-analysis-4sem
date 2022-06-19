@@ -1,0 +1,313 @@
+\begin{definition}
+    $\Om$ и $\wtd\Om$~--- области,
+    скажем что $f \colon \Om \to \wtd\Om$~--- конформное
+    отображение если $f \in H(\Om)$ и $f$~--- биекция.
+\end{definition}
+
+\begin{theorem}
+    $f\in H(\Om)$, $a \in \Om$, $f^\prime(a) \ne 0$,
+    тогда $f$ сохраняет углы между кривыми в точке $a$
+    (угол между кривыми это угол между касательными в точке).
+\end{theorem}
+
+\begin{proof}
+    $\gamma\colon [0, 1] \to \Om$, $\gamma(0) = a$,
+    вектор касательной~--- это $\gamma^\prime(0) \ne 0$.
+    $(f \circ \gamma )(0) = f(a)$.
+    $(f\circ\gamma)^\prime(0) = f^\prime(\gamma(0))\gamma^\prime(0)
+        = f^\prime(a)\gamma^\prime(0)$.
+    Углы не меняеются, потому что умножение на $f^\prime(a)$
+    поворачивает обе касательных на один и тот же угол.
+\end{proof}
+
+\begin{definition}
+    $f\colon \Om \to \C$~--- однолистная если
+    $f$~--- голоморфна и инъективна.
+\end{definition}
+
+\begin{observation}
+    Если $f$~--- однолистная,
+    то $f$~--- конформное отображение между
+    $\Om$ и $f(\Om)$.
+    Это следствие вот этой теоремы:
+\end{observation}
+
+\begin{theorem}
+    Пусть $f \in H(\Om)$ и $f \not\equiv \mathrm{const}$.
+    Тогда $f(\Om)$~--- область.
+\end{theorem}
+
+\begin{proof}
+    Надо доказать, что $f(\Om)$~--- открыто.
+    Возьмём $b \in f(\Om) \So b = f(a)$.
+    Заметим, что $\abs{f(z) - b} \ne 0$ в проколотой окрестности
+    точки $a$. Действительно, иначе можно было найти
+    последовательность сходящуюся к точке $a$
+    где $f(z) = b$, по теореме единственности $f(z) = b$
+    везде, противоречит условию $f(z) \not\equiv \mathrm{const}$.
+
+    Выберем $\ve > 0$, такой что $\abs{f(z) - b} \ne 0$
+    при $\abs{z-a}=\ve$. Пусть $r \coloneqq \min\limits_{\abs{z-a}=\ve}
+        \abs{f(z) - b} > 0$. Пусть $w \in B_{r/2} (b)$.
+    Проверим, что $w \in f(\Om)$, то есть что
+    $f(z) - w$ имеет корень. Представим
+    $f(z) - w = f(z) - b + b - w$.
+    Выполняется условие теоремы Руше ($\abs{f(z) - b} \ge
+        r > \frac{r}{2} \ge \abs{b-w}$).
+    Значит один корень, так как у $f(z) - b$ один корень.
+\end{proof}
+
+\begin{theorem}
+    $f\colon \Om \to \C$~--- однолистная,
+    тогда $f^\prime(z) \ne 0$ при $z \in \Om$.
+\end{theorem}
+
+\begin{proof}
+    От противного, пусть $f^\prime(a) = 0$.
+    Возьмём точку $b \coloneqq f(a)$.
+    $\abs{f(z) - b} \ne 0$ в проколотой окрестности точки $a$.
+    Берём $\ve > 0$, такой что $\abs{f(z) - b} \ne 0$
+    при $\abs{z-a} = \ve$. Определим
+    $r \coloneqq \min\limits_{\abs{z-a} = \ve} \abs{f(z) - b}
+        > 0$.
+
+    Возьмём $w \in B_{r/2}(b)$.
+    Рассмотрим уравнение $f(z) - w = 0$.
+    Опять же, $f(z) - w = f(z) - b + b - w$,
+    по теореме Руше в круге $\abs{z-a} < \ve$,
+    $f(z)-w$ имеет столько же корней сколько и
+    $f(z)-b$, с учётом кратности это два корня
+    (потому что производная зануляется).
+
+    Получается что $f(z) = w$ в двух точках,
+    но функция однолистная, следовательно корень кратный.
+    Это означает, что $f^\prime(z) = 0$ в проколотой окрестности.
+    Таким образом мы можем уменьшая $\ve$ построить
+    последовательность $z_n \to a$, по теореме единственности
+    $f \equiv \mathrm{const}$. Противоречие.
+\end{proof}
+
+\begin{observation}
+    Обратное неверно: $(e^z)^\prime = e^z \ne 0$,
+    но $e^z$ не является однолистной.
+\end{observation}
+
+\begin{consequence}
+    Конформное отображение сохраняет углы.
+\end{consequence}
+
+\begin{proof}
+    Конформное отображение, следовательно однолистна,
+    следовательно $f^\prime(z) \ne 0$ во всех точках,
+    следовательно сохраняет углы.
+\end{proof}
+
+\begin{consequence}
+    Пусть $f(z)$ разложилась в ряд Лорана
+    в окрестности бесконечности: $f(z) = c_0 + \frac{c_1}{z}
+        + \frac{c_2}{z^2} + \cdots$ и $f(z)$~--- однолистная.
+    Тогда $c_1 \ne 0$.
+\end{consequence}
+
+\begin{proof}
+    $f(1/z) = c_0 + c_1z + c_2z^2 + \cdots$.
+    Однолистна в проколотой окрестности $0$,
+    значит в какой-то меньшей непроколотой окрестности
+    есть однолистность, тогда $f^\prime(z) \ne 0$,
+    но $c_1 = f^\prime(0)$.
+\end{proof}
+
+\begin{consequence}
+    Если $f(z)$ имеет полюс в точке $a$ и однолистна
+    в проколотой окрестности $a$, тогда это полюс первого порядка.
+\end{consequence}
+
+\begin{proof}
+    $g(z) = 1/f(z)$~--- однолистна в окрестности
+    $a$, значит $g^\prime(a) \ne 0$, то есть $a$~--- ноль первого порядка
+    для $g$.
+\end{proof}
+
+\begin{definition}
+    Области $\Om$ и $\wtd\Om$ конформно эквивалентны,
+    если существует $f\colon\Om \to \wtd\Om$ конформное отображение.
+\end{definition}
+
+\begin{observation}
+    Это отношение эквивалентности.
+\end{observation}
+
+\begin{theorem}
+    $\C$ и $\D$ не конформно эквивалентны.
+\end{theorem}
+
+\begin{proof}
+    Если $f\colon \C \to \D$ конформное, то $f \in H(\C)$ и $\abs f < 1$,
+    тогда $f$~--- ограниченная целая функция, по теореме Лиувилля
+    $f = \mathrm{const}$, противоречие.
+\end{proof}
+
+\begin{lemma}[Шварц]
+    $f\colon \D \to \D$ голоморфна и $f(0) = 0$.
+    Тогда:
+
+    \begin{enumerate}
+        \item $\abs{f(z)} \le \abs z$ для всех $z \in \D$
+        \item Если $\abs{f(a)} = \abs a$ при некотором $a \in \D$, то
+              $f(z) = \lambda z$ при $\abs \lambda = 1$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}\text{}
+
+    \begin{enumerate}
+        \item $g(z) \coloneqq \frac{f(z)}{z} \in H(\D)$,
+              по принципу максимума $\abs{g(z)} \le \max\limits_{\abs w = r} \abs{g(z)}$
+              при $\abs z \le r$, а $\max \abs{g(z)} \le \frac{1}{r}$.
+              Получается, что $\frac{\abs{f(z}}{\abs z} \le \frac{1}{r} \le 1$
+              (устремили $r \to 1$).
+
+        \item Пусть $\frac{\abs{f(a)}}{\abs a} = 1 \So \abs{g(z)} \le \abs{g(a)}$
+              для любого $z \in \D$, получается $a$~--- точка максимума для $g$,
+              по принципу максимума $g = \mathrm{const}$ и $\lambda \coloneqq g(z)$.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Римана о конформных отображениях]
+    $\Om$ и $\wtd\Om$~--- односвязные области в $\overline\C$, границы
+    которых состоят больше чем из одной точки.
+    $z_0 \in \Om$, $\wtd{z_0} \in \wtd\Om$, $\al_0 \in \R$.
+    Тогда существует единственное конформное отображение
+    $f \colon \Om \to \wtd\Om$, такое что $f(z_0) = \wtd{z_0}$
+    и $\arg f^\prime(z_0) = \al_0$.
+\end{theorem}
+
+\begin{proof}
+    Существование без доказательства. Докажем единственность.
+
+    \textbf{Шаг 1}. $\Om = \wtd\Om = \D$, $z_0 = \wtd{z_0} = \al_0 = 0$.
+    Докажем, что кроме тождественного отображения ничего не подходит.
+    Рассмотрим конформное отображение $f\colon\D \to \D$, $f(0) = 0$.
+    По лемме Шварца, $\abs{f(z)} \le \abs{z}$ и
+    $\abs{f^{-1}(w)} \le \abs w$, получили
+    $\abs{z} = \abs{f^{-1}(f(z))} \le \abs {f(z)}$, есть неравенства
+    в обе стороны, получается $\abs z = \abs{f(z)}$.
+
+    По лемме Шварца, $f(z) = \lambda z$ и $\abs\lambda = 1$, а также
+    $\arg f^\prime(0) = 0$. Получаем $\lambda = 1$ и $f(z) = z$.
+
+    \textbf{Шаг 2}. Общий случай.
+    $f_1, f_2 \colon \Om \to \wtd\Om$.
+    $f_1(z_0) = f_2(z_0) = \wtd{z_0}$ и $\arg f_1^\prime(z_0) = \arg f_2^\prime(z_0) = \al_0$.
+
+    Рассмотрим конформное отображение $\varphi\colon \D \to \Om$, такое что
+    $\varphi(0) = z_0$ и $\varphi^\prime(0) > 0$ (мы пользуемся существованием здесь).
+    Аналогично, существует конформное отображение $\psi \colon \wtd\Om \to \D$,
+    такое что $\psi(\wtd{z_0}) = 0$ и $\arg \psi^\prime(\wtd{z_0}) = -\al_0$.
+
+    Посмотрим на отображения $g_j = \psi \circ f_j \circ \varphi \colon \D \to \D$.
+    Заметим, что $\varphi(0) = z_0$, $f_j(z_0) = \wtd{z_0}$, $\psi(\wtd{z_0}) = 0$,
+    то есть $g_j(0) = 0$. Также заметим, что $\arg g_j^\prime(0) = \arg(\psi^\prime(f_j(\varphi(0)))
+        f_j^\prime(\varphi(0))\varphi^\prime(0))$. Распишем аргумент как сумму:
+    $\arg g_j^\prime(0) = \arg(\psi^\prime(\wtd{z_0})) + \arg f_j^\prime(z_0) + \arg \varphi^\prime(0) =
+        -\al_0 + \al_0 + 0 = 0$.
+    По шагу 1, $g_1 \equiv g_2$, а значит и $f_1 \equiv f_2$, так как везде биекции.
+\end{proof}
+
+\begin{consequence}
+    $f \in H(\C)$ не принимает значений на некоторой кривой $\ga$.
+    Тогда $f \equiv \mathrm{const}$.
+\end{consequence}
+
+\begin{proof}
+    $\varphi\colon \C\setminus\ga\to\D$~--- конформное отображение.
+    Тогда $\varphi \circ f\colon \C \to \D$ голоморфна.
+    По теореме Лиувилля, $\varphi \circ f \equiv \mathrm{const}$.
+    Тогда $f = \varphi^{-1}(\mathrm{const}) \equiv \mathrm{const}$.
+\end{proof}
+
+\begin{observation}
+    На самом деле есть более сильное утверждение.
+    Если $f \in H(\C)$, то $f$ принимает все значения, кроме
+    может быть одного.
+\end{observation}
+
+\begin{definition}
+    Дробно-линейное отображение~--- отображение такого вида:
+
+    \[
+        f(z) = \frac{az + b}{cz + d}
+    \]
+
+    С условием, что $ad - bc \ne 0$.
+\end{definition}
+
+\begin{exercise}
+    Доказать, что дробно-линейное отображение~--- это конформное
+    отображение из $\CC$ в $\CC$.
+\end{exercise}
+
+\begin{theorem}
+    Если $f \in H(\CC \setminus \{ z_0 \})$ и однолистна,
+    то это дробно-линейное отображение.
+\end{theorem}
+
+\begin{proof}\text{}
+
+    \textbf{Случай 1}. Пусть $z_0$~--- существенная особая точка.
+    Тогда $\Cl\left\{ f(z) \mid \abs{z-z_0} < r \right\} = \C$
+    (по теореме Сохоцкого). Возьмём $b = f(a)$ и рассмотрим окрестность
+    точки $a$: $\left\{ \abs{z-a} < \ve \right\}$.
+    Это открытое множество и оно содержит точку $a$.
+    Тогда, $\left\{ f(z) \mid \abs{z-a} < \ve \right\}$~--- область,
+    содержащая точку $b$.
+
+    Так как у нас однолистная функция, то
+    множества $\left\{ f(z) \mid \abs{z-z_0} < r \right\}$ и
+    $\left\{ f(z) \mid \abs{z-a} < \ve \right\}$ не пересекаются.
+
+    Так как второе множество~--- открытое,
+    то $\Cl\left\{ f(z) \mid \abs{z-z_0} < r \right\}$ и
+    с $\left\{ f(z) \mid \abs{z-a} < \ve \right\}$ не пересекаются.
+    Но второе множество не пусто, а первое $ = \C$. Противоречие.
+
+    \textbf{Случай 2}. Пусть $z_0$~--- устранимая особая точка.
+    Устраним особую точку, получим $f \in H(\CC)$, по теореме Лиувилля,
+    $f \equiv \mathrm{const}$.
+
+    \textbf{Случай 3}. Остаётся $z_0$~--- полюс.
+    Так как $f$ однолистна, то полюс первого порядка.
+
+    Если $z_0 \ne \infty$, тогда рассмотрим следующую функцию:
+
+    \[
+        \varphi(z) = f(z) - \frac{c}{z-z_0}
+    \]
+
+    То есть вычли главную часть ряда Лорана.
+    $\varphi(z) \in H(\CC)$, то есть $\varphi(z) \equiv \mathrm{const}$.
+    Получается, что $f$~--- дробно-линейная:
+
+    \[
+        f(z) = \frac{c}{z-z_0} + a
+    \]
+
+    Если же $z_0 = \infty$.
+    Тогда берём $\varphi$ такую:
+
+    \[
+        \varphi(z) = f(z) - cz
+    \]
+
+    Вычтем правильную часть ряда Лорана.
+    $\varphi(z) \in H(\CC)$, то есть $\varphi(z) \equiv \mathrm{const}$.
+    Получается, что $f$~--- линейная (а значит и дробно-линейная):
+
+    \[
+        f(z) = cz + a
+    \]
+\end{proof}
+
+\begin{consequence}
+    Если $f \in H(\C)$ и однолистна, то $f$~--- линейная.
+\end{consequence}

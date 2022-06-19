@@ -1,0 +1,374 @@
+\begin{definition}
+    $(X, \A, \mu)$~--- пространство с мерой,
+    $E \in \A$, $1 \le p < +\infty$. Введём обозначение:
+
+    \[
+        L^p(E, \mu) = \left\{ f \colon E \to \ov{R}
+        \text{ (или в $\CC$)}
+        \text{, измеримые и }
+        \int\limits_E \abs{f}^p d\mu < +\infty
+        \right\}
+    \]
+
+    А также введём такую штуку (почти норму):
+
+    \[
+        \norm{f}_p = \norm{f}_{L^p(E, \mu)}
+        = \left( \int\limits_E \abs{f}^p d\mu \right)^{1/p}
+    \]
+\end{definition}
+
+\begin{observation}
+    Неравенство треугольника есть~--- это просто неравенство
+    Минковского. Константы тоже выносятся правильно.
+    Но одно свойство нормы испортилось:
+
+    \[
+        \norm{f}_p = 0 \not\So f \equiv 0
+    \]
+
+    Следует только то, что $f = 0$ почти везде.
+    Ну давайте пофакторизуем по отношению равенства почти везде,
+    то есть будем рассматривать не функции, а классы эквивалентности
+    с точностью до совпадения почти везде.
+\end{observation}
+
+\begin{observation}
+    На таких классах эквивалентности это норма.
+\end{observation}
+
+\begin{definition}
+    Ну давайте теперь обозначать за $L^p(E, \mu)$~--- пространство
+    классов эквивалентности с нормой $\norm{\cdot}_p$.
+\end{definition}
+
+\begin{observation}
+    Теперь мы не можем писать значение функции в точке.
+\end{observation}
+
+\begin{definition}
+    Назовём существенным супремумом функции $f$ на множестве $E$ такую штуку:
+
+    \[
+        \inf \left\{ A \in \R \mid f(x) \le A \text{ при почти всех } x \in E \right\}
+    \]
+
+    Обозначается как $\esssup\limits_E f$. Можно ещё встретить обозначение
+    $\operatorname{vrai\,sup}$.
+\end{definition}
+
+\begin{property}
+    $\esssup\limits_E f \le \sup\limits_E f$
+\end{property}
+
+\begin{property}
+    $f \le \esssup\limits_E f$ почти везде на $E$.
+\end{property}
+
+\begin{proof}
+    Пусть $B \coloneqq \esssup\limits_E f < +\infty$.
+    Тогда $f \le B + \frac1n$ почти везде на $E$.
+    Значит существует $e_n \subset E$, такое что
+    $f \le B + \frac1n$ на $E \setminus e_n$.
+
+    Тогда $\bigcup\limits_{n=1}^{+\infty} e_n \supset E\{f > B \}$,
+    значит $\mu E\left\{f > B \right\} \le \sum \mu e_n = 0$,
+    то есть $E \left\{ f > B \right\}$ имеет меру ноль.
+\end{proof}
+
+\begin{definition}
+    $L^{\infty}(E, \mu)$~--- следующее множество (факторизованное по отношению почти везде):
+
+    \[
+        L^{\infty}(E, \mu) = \left\{ f \colon E \to \ov{R}
+        \text{ (или в $\CC$)}
+        \text{, измеримые и }
+        \esssup_{x \in E} \abs{f(x)} < +\infty
+        \right\}
+    \]
+
+    А норма выглядит так:
+
+    \[
+        \norm{f}_{\infty} = \norm{f}_{L^\infty(E, \mu)}
+        \coloneqq\esssup_{x\in E} \abs{f(x)}
+    \]
+\end{definition}
+
+\begin{observation}
+    Важный частный случай.
+    $X = \N$, $\mu$~--- считающая мера (мера множества это количество элементов множества).
+
+    \[
+        \norm{x}_p = \left( \sum\limits_{n=1}^{+\infty} \abs{x_n}^p \right)^{1/p}
+    \]
+
+    \[
+        \norm{x}_{\infty} = \sup \abs{x_n}
+    \]
+
+    Пространства эти обозначаются как $\ell^p$ и $\ell^\infty$.
+\end{observation}
+
+\begin{observation}
+    Неравенство Гёльдера.
+    $\frac1p + \frac1q = 1$, $p, q \ge 1$.
+    Тогда
+
+    \[
+        \norm{fg}_1 \le \norm{f}_p \norm{g}_q
+    \]
+\end{observation}
+
+\begin{theorem}[о вложении пространств Лебега]
+    Если $\mu E < +\infty$ и $1 \le p < q \le +\infty$, то тогда
+    $L^q(E, \mu) \subset L^p(E, \mu)$ и $\norm{f}_p \le (\mu E)^{1/p - 1/q} \norm{f}_q$.
+\end{theorem}
+
+\begin{proof}
+    На самом деле нас интересует только неравенство, вложение из него
+    получается по конечности $q$-й нормы.
+
+    \[
+        \norm{f}_p^p = \int\limits_E \abs{f}^p \cdot 1 d\mu \le (*)
+    \]
+
+    Пишем неравенство Гёлдьдера для $r = \frac qp$ и соответствующего $s$:
+
+    \[
+        (*) \le
+        \left( \int\limits_E \left( \abs{f}^p \right)^r d\mu \right)^{1/r}
+        \left( \int\limits_E 1^s d\mu \right)^{1/s}
+        = \left( \int \abs{f}^q d\mu \right)^{p/q}
+        \left( \mu E \right)^{1-p/q}
+    \]
+
+    Возведём обе части неравенства в степень $1/p$ и получим то что надо.
+\end{proof}
+
+\begin{observation}
+    Если $\mu E = +\infty$, то вложений нет.
+\end{observation}
+
+\begin{exercise}
+    Придумать пример для $E = \R$ и меры Лебега.
+\end{exercise}
+
+\begin{exercise}
+    Если $1 \le p < q \le +\infty$, то $\ell^p \subset \ell^q$.
+\end{exercise}
+
+\begin{theorem}
+    $L^p(E, \mu)$~--- полное.
+\end{theorem}
+
+\begin{proof}
+    $1 \le p < +\infty$. Возьмём фундаментальную последовательность $f_n$,
+    другими словами $\forall \ve > 0$, $\exists N$, $\forall n, m \ge N$,
+    $\norm{f_n - f_m} < \ve$.
+
+    Пусть $n_k = N(\frac1{2^k})$. Возьмём $m \ge n_k$,
+    тогда $\norm{f_m - f_{n_k}} < \frac1{2^k}$.
+    В частности, $\norm{f_{n_{k+1}} - f_{n_k}} < \frac{1}{2^k}$.
+    Выбрали подпоследовательность $f_{n_k}$, т.ч. $\norm{f_{n_{k+1}} - f_{n_k}}
+        < \frac{1}{2^k}$. Надо доказать, что она сходится.
+
+    Тогда $\sum\limits_{k=1}^{+\infty} \norm{f_{n_{k+1}} - f_{n_k}} < 1$.
+    Рассмотрим $\sum\limits_{k=1}^{+\infty} \abs{f_{n_{k+1}}(t) - f_{n_k}(t)}$.
+    $S_m(t)$~--- его частичная сумма, $S(t)$~--- его сумма $\in [0, +\infty]$.
+
+    В нашем пространстве,
+
+    \[
+        \norm{S_m} \le \sum\limits_{k=1}^{+\infty}
+        \norm{f_{n_k+1} - f_{n_k}} < 1
+    \]
+
+    \[
+        \norm{S}^p = \int\limits_E \abs{S}^p d\mu
+        = \int\limits_E \lim\limits_{m\to +\infty} \abs{S_m}^p d\mu
+        \le \liminf_{m\to +\infty} \int\limits_E \abs{S_m}^p d\mu
+        = \liminf_{m\to +\infty} \norm{S_m}^p
+        \le 1
+    \]
+
+    Переход к нижнему пределу происходит по лемме Фату.
+    Теперь мы знаем, что $\abs{S}^p$ почти везде конечно, а значит
+    и $S$ почти везде конечна, то есть следующий ряд сходится при
+    почти всех $t \in E$:
+
+    \[
+        S(t) = \sum\limits_{k=1}^{+\infty} \abs{f_{n_{k+1}}(t) - f_{n_k}(t)}
+    \]
+
+    а значит ряд без модулей тоже сходится при почти всех $t \in E$.
+
+    \[
+        f \coloneqq
+        f_{n_1}(t) + \sum\limits_{k=1}^{+\infty} \left( f_{n_{k+1}}(t) - f_{n_k}(t) \right)
+    \]
+
+    Значит частичные суммы ряда имеют предел при почти всех $t \in E$,
+    то есть $f_{n_k}(t) \to f(t)$ при почти всех $t \in E$.
+
+    При $n \ge n_k$ и $j \ge k$:
+
+    \[
+        \int\limits_E \abs{f_{n_j}(t) - f_n(t)}^p d\mu = \norm{f_{n_j} - f_n}^p <
+        \frac1{2^{kp}}
+    \]
+
+    Используя лемму Фату получаем:
+
+    \[
+        \frac{1}{2^{kp}} \ge \lim\limits_{j\to\infty} \int\limits_E \abs{f_{n_j}(t) - f_n(t)}^p d\mu \ge
+        \int\limits_E \abs{f(t) - f_n(t)}^p d\mu
+    \]
+
+    Ну то есть $\norm{f - f_n}^p \le \frac{1}{2^{kp}}$.
+\end{proof}
+
+\begin{observation}
+    На самом деле $L^{\infty}(E, \mu)$ тоже полное,
+    но это нам не понадобится и доказательство
+    сильно отличается, так что не будем это доказывать.
+\end{observation}
+
+\begin{definition}
+    Ступенчатая функция~--- функция, которая принимает конечное число значений.
+\end{definition}
+
+\begin{definition}
+    $(X, \rho)$~--- метрическое пространство.
+    $A \subset X$ называется всюду плотным, если $\Cl A = X$.
+\end{definition}
+
+\begin{example}
+    $\Q$ всюду плотно в $\R$.
+\end{example}
+
+\begin{lemma}
+    $1 \le p < +\infty$. $\varphi \in L^p(E, \mu)$~--- ступенчатая.
+    Тогда $\mu E \left\{ \varphi \ne 0 \right\} < +\infty$.
+\end{lemma}
+
+\begin{proof}
+    $\varphi = \sum\limits_{k=1}^{n} a_k \mathbbm{1}_{A_k}$ и $A_k$ дизъюнктны.
+    Тогда норма $\varphi$:
+
+    \[
+        \norm{\varphi}^p = \int\limits_E \abs{\sum\limits_{k=1}^n a_k \mathbbm{1}_{A_k}}^p d\mu
+        = \int\limits_E \sum\limits_{k=1}^n \abs{a_k}^p \mathbbm{1}_{A_k} d\mu
+        = \sum\limits_{k=1}^n \abs{a_k}^p \mu A_k < +\infty
+    \]
+\end{proof}
+
+\begin{theorem}
+    $1 \le p \le +\infty$.
+    Тогда множество ступенчатых функций из $L^p(E, \mu)$
+    всюду плотно в $L^p(E, \mu)$.
+\end{theorem}
+
+\begin{proof}
+    Случай $p = +\infty$.
+    Берём $f \in L^{+\infty}(E, \mu)$ и поменяем её на множестве нулевой
+    меры так, чтобы $\abs f \le \norm f_\infty$. Тогда $f$~--- ограниченная функция.
+    Следовательно существует $\varphi_n$~--- ступенчатые,
+    $\varphi_n \tto_E f$, то есть $\esssup \le \sup \abs{\varphi_n - f} \to 0$.
+
+    Случай $p < +\infty$.
+    Пусть $f \ge 0$. Тогда существует последовательность простых
+    $f_n$, которые возрастают и стремятся поточечно к $f$.
+
+    \[
+        \norm{f - f_n}^p_p = \int\limits_E \abs{f(t) - f_n(t)}^p d\mu(t)
+        \to \int\limits_E \abs{f(t) - f(t)}^p d\mu(t) = 0
+    \]
+
+    Почему можно делать переход к пределу?
+    $f^p$~--- суммируемая мажоранта.
+
+    Теперь пусть $f$~--- произвольная.
+    $f = f_+ - f_-$.
+    $\varphi_n$ и $\psi_n$~--- простые, такие что
+    $\norm{\varphi_n - f_+} \to 0$ и $\norm{\psi_n - f_-} \to 0$.
+    Тогда $\norm{\varphi_n - \psi_n - f}_p \le \norm{\varphi_n - f_+}_p
+        + \norm{\psi_n - f_-}_p \to 0$.
+\end{proof}
+
+\begin{definition}
+    Финитная функция обращается в ноль вне некоторого компакта.
+    Равносильно тому что $\supp f$~--- компакт.
+\end{definition}
+
+\begin{theorem}
+    $1 \le p < +\infty$, $E \subset \R^m$ измеримо и $\mu$~--- мера Лебега.
+    Тогда множество финитных бесконечно дифференцируемых функций всюду плотно.
+\end{theorem}
+
+\begin{proof}
+    Достаточно научиться хорошо приближать функции $\mathbbm{1}_A$
+    финитными бесконечно дифференцируемыми.
+
+    $A \subset E$~--- измеримо. Тогда по регулярности меры Лебега,
+    существует $K$~--- компакт, $G$~--- открытое, что $K \subset A \subset G$
+    и $\lambda(G \setminus K) < \ve$.
+
+    По следствию теоремы о разбиении единицы,
+    существует $\varphi \in C^\infty(\R^m)$, такая что
+    $\varphi \equiv 1$ на $K$, $\supp \varphi \subset G$ и
+    $0 \le \varphi \le 1$. Тогда
+
+    \[
+        \norm{\mathbbm{1}_A - \varphi}^p_p = \int\limits_E \abs{\mathbbm{1}_A
+            - \varphi}^p d\lambda =
+        \int\limits_{E \cap G\setminus K} \abs{\mathbbm{1}_A -
+            \varphi}^p d\lambda \le \mu(E \cap G\setminus K) \le
+        \mu(G \setminus K) < \ve
+    \]
+
+    % \texttt{// финитность доказывается в 14 лекции, кто будет её
+    % техать, допишите сюда пожалуйста доказательство}
+
+    Финитность:
+    рассмотрим одну ступеньку $A$, $\mu A < \infty$, и пересечения $A \cap B_n(\cdot)$.
+    В пределе мера таких пересечений $\to \mu A$, которое конечно, тогда можно хорошо приблизить $\mu A$.
+    Возьмем $B_N:\ \mu (B_N \cap A) \geq \mu A - \ve$.
+    Посмотрим на разность харфункций на множестве $A$ и на $A \cap B_N$.
+    Это харфункция того, что мы отрезали, то есть $\int\limits_{A \setminus B_N} 1 = \mu (A\setminus B_N) \leq \ve$. (скорее всего я тут что-то не понял, но наверное оценка такая должна быть).
+    Испортили норму не более чем на $\ve$ и свели неограниченную ступеньку к ограниченной.
+\end{proof}
+
+\begin{theorem}[О непрерывности сдвига]
+    $f_h(x) := f(x + h)$
+    \begin{enumerate}
+        \item Если $f$ равномерно непрерывна на $\R^d$, то $\norm{f_h - f}_\infty \xrightarrow{h \to 0} 0$
+        \item Если $1 \leq p < \infty$ и $f \in L^p(\R^d)$, то $\norm{f_{h} - f}_{p} \xrightarrow{h \to 0} 0$
+        \item Если $f \in C(\R)$ и $2\pi$-периодична, то $\norm{f_h - f}_\infty \xrightarrow{h \to 0} 0$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}$ $
+    \begin{enumerate}
+        \item[1.] Надо показать, что $\underset{x\in \R}{\sup} \abs{f(x + h) - f(x)} \to 0$. Это и есть определение равномерной непрерывности.
+        \item[3.] $f \in C(\R)$ и $2\pi$-периодична.
+              Тогда $\norm{f_h - f}_\infty = \max \limits_{x \in [0, 2\pi]} \abs{f(x + h) - f(x)}$.
+              Значит есть равномерная непрерывность, а значит и стремление.
+        \item[2.] Зафиксируем $\ve > 0$, возьмем финитную $g \in C^{\infty}(\R^d)$, т.ч. $\norm{f-g}_p < \ve$
+              (можем, потому что такие функции плотны).
+              \[
+                  \norm{f_h - f}_p \leq \underset{\uparrow= \norm{f-g}_p < \ve}{\norm{f_h - g_h}_p}
+                  + \norm{g_h - g}_p
+                  + \underset{<\ve}{\norm{f - g}_p} <
+                  2 \ve + \norm{g_h - g}_p \overset{?}{<} 3 \ve
+                  .\]
+              Покажем, что при малых $h$ неравенство верно.
+
+              Возьмем $B_R(0) \supset \supp g \Rightarrow B_{R+1}(0) \supset \supp g_h$ при $\norm{h} \leq 1$.
+              \[
+                  \norm{g_h - g}_p^p = \int\limits_{\R^d} \abs{g_h(x) - g(x)}^p dx
+                  = \int\limits_{B_{R+1}(0)} \abs{g_h(x) - g(x)}^p dx
+                  \leq \lambda B_{R+1}(0) \norm{g_h - g}_\infty^p \xrightarrow{h \to 0} 0.
+                  .\]
+              Мера константна, а норма разности равномерно непрерывна ($g$ непрерывна на компакте).
+    \end{enumerate}
+\end{proof}

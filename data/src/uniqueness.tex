@@ -1,0 +1,261 @@
+\begin{theorem}
+    (Теорема единственности \textnumero 1)
+
+    $f\in H(\Om)$, $z_0 \in \Om$,
+    тогда следующие условия равносильны:
+
+    \begin{enumerate}
+        \item $f^{(n)}(z_0) = 0$ для всех $n = 0, 1, \ldots$.
+        \item $f \equiv 0$ в некоторой окрестности $z_0$
+        \item $f \equiv 0$ в $\Om$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    (3) $\So$ (1) очевидно.
+
+    (1) $\So$ (2):
+    $f$ голоморфная в $z_0$, значит
+    расскладывается в ряд в некоторой окрестности,
+    значит в этой
+    окрестности равна $0$.
+
+    (2) $\So$ (3):
+    Возьмём $E \coloneqq \left\{z \in \Om \mid
+        \text{ у } z \text{ существует окрестность в которой }
+        f = 0\right\}$
+    $z_0 \in E$, значит $E$ не пустое
+
+    Докажем, что
+    $E$~--- открытое множество.
+    Если $z \in E$, то $\exists U$~--- окрестность
+    точки $z$, такая что на ней $f = 0$.
+    Тогда у любой точки из $U$ есть окрестность,
+    где $f = 0$.
+
+    Докажем, что $E$~--- замкнутое множество.
+    Пусть $z_n \in E$ и $\lim z_n = z_*$.
+    Докажем, что $z_* \in E$.
+    $z_n \in E \So \forall n \forall k f^{(k)}(z_n) = 0$
+    $f^{(k)}$~--- непрерывная,
+    $f^{(k)}(z_*) = \lim\limits_{n\to+\infty} f^{(k)}(z_n) = 0$,
+    значит $z_* \in E$.
+
+    Таким образом, $E = \Om$, то есть $f = 0$ в $\Om$.
+\end{proof}
+
+\begin{consequence}
+    $f, g \in H(\Om)$ и $f = g$ в некоторой окрестности,
+    тогда $f = g$ на $\Om$.
+\end{consequence}
+
+\begin{theorem}
+    (о среднем)
+
+    $f \in H(\Om)$ и $a \in \Om$.
+    Если $a + r\overline{\D} \subset \Om$, тогда
+
+    \begin{enumerate}
+        \item $f(a) = \frac{1}{2\pi}
+                  \int\limits_0^{2\pi} f(a+re^{i\varphi})d\varphi$
+        \item $f(a) = \frac{1}{\pi r^2}
+                  \int\limits_{|z-a| \le r}f(z)dxdy$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \textbf{1.}
+    \[
+        f(a) = \frac{1}{2\pi i}
+        \int\limits_{|z-a| = r} \frac{f(z)}{z-a}dz
+    \]
+
+    Делаем подстановку $z = a+re^{i\varphi}$,
+    продолжаем писать:
+
+    \[
+        f(a) = \frac{1}{2\pi i}
+        \int\limits_0^{2\pi} \frac{f(a+re^{i\varphi})}{re^{i\varphi}}
+        rie^{i\varphi}d\varphi =
+        \frac{1}{2\pi}
+        \int\limits_0^{2\pi} f(a+re^{i\varphi})d\varphi
+    \]
+
+    \textbf{2.}
+
+    \[
+        \frac{1}{\pi r^2}
+        \int\limits_{|z-a| \le r} f(z)dxdy =
+        \frac{1}{\pi r^2}
+        \int\limits_0^r\int\limits_0^{2\pi}
+        f(a+\rho e^{i\varphi})\rho d\varphi d\rho
+        = \frac{1}{\pi r^2} \int\limits_0^r \rho
+        \cdot 2\pi f(a) d\rho = f(a)
+    \]
+\end{proof}
+
+\begin{theorem}[принцип максимума]
+
+    $f\in H(\Om)$ и $a \in \Om$.
+    Если $|f(a)| \ge |f(z)|$ для любого
+    $z$ из окрестности $a$, тогда
+    $f = \mathrm{const}$ в $\Om$.
+\end{theorem}
+
+\begin{proof}
+    Пусть $|f(a)| \ge |f(z)|$
+    в круге $B_R(a)$.
+    Возьмём $r < R$, тогда по теореме о среднем,
+
+    \[
+        f(a) = \frac{1}{2\pi} \int\limits_0^{2\pi}
+        f(a+re^{i\varphi})d\varphi
+    \]
+
+    \[
+        |f(a)| \le \left| \frac{1}{2\pi} \int\limits_0^{2\pi}
+        f(a+re^{i\varphi})d\varphi \right|
+        \le \frac{1}{2\pi} \int\limits_0^{2\pi}
+        \left| f(a+re^{i\varphi}) \right| d\varphi
+        \le \frac{1}{2\pi} \int\limits_0^{2\pi} \left| f(a)\right| d\varphi = |f(a)|
+    \]
+
+    Получается, что $|f(a+re^{i\varphi})| = |f(a)|$.
+    Можно думать, что $f(a)$~--- вещественное положительное
+    число (можно домножить на $\ov{f(a)}$).
+
+    \[
+        \begin{aligned}
+             & f(a) = \Re f(a) = \Re \frac{1}{2\pi}
+            \int\limits_0^{2\pi} f(a+re^{i\varphi}) d\varphi
+            =  \frac{1}{2\pi}
+            \int\limits_0^{2\pi} \Re f(a+re^{i\varphi}) d\varphi
+            \\
+             & \le  \frac{1}{2\pi}
+            \int\limits_0^{2\pi}\left| f(a+re^{i\varphi})\right| d\varphi
+            \le \frac{1}{2\pi}
+            \int\limits_0^{2\pi} f(a)d\varphi = f(a)
+        \end{aligned}
+    \]
+
+    Значит, $\Im f(a+re^{i\varphi}) = 0$,
+    поэтому $f(a+re^{i\varphi}) = f(a)$.
+
+    Это верно для всех $r < R$,
+    значит $f(z) = f(a)$ на $B_R(a)$,
+    то есть $f(z) = f(a)$ в $\Om$.
+\end{proof}
+
+\begin{consequence}
+    $f \in H(\Om)$ и $f \in C(\operatorname{Cl} \Om)$,
+    $\Om$~--- ограничена.
+    $f$~--- не константа.
+    Тогда, $|f|$ достигает максимума на границе.
+\end{consequence}
+
+\begin{proof}
+    $\operatorname{Cl} \Om$~--- компакт,
+    значит $|f|$ достигает максимума
+    на $\operatorname{Cl} \Om$,
+    значит $|f|$ не имеет локального максимума
+    в $\Om$, то есть глобальный максимум на границе.
+\end{proof}
+
+\begin{definition}
+    Ноль голоморфной функции~--- точка, где
+    функция обращается в ноль (duh)
+\end{definition}
+
+\begin{theorem}
+    $f \in H(\Om)$, $f\not\equiv 0$,
+    $z_0 \in \Om$, $f(z_0) = 0$.
+
+    Тогда найдётся $m \in \N$
+    и $g \in H(\Om)$, такая что $g(z_0) \ne 0$
+    и $f(z) = (z-z_0)^m \cdot g(z)$.
+\end{theorem}
+
+\begin{proof}
+    Разложим в ряд:
+
+    \[
+        f(z) = \sum_{n=0}^{+\infty}
+        a_n(z-z_0)^n
+    \]
+
+    Знаем, что $a_0 = 0$,
+    возьмём $m$~--- наименьший индекс, что
+    $a_m \ne 0$. Тогда возьмём $g$:
+
+    \[
+        g(z) \coloneqq \begin{cases}
+            \frac{f(z)}{(z-z_0)^m} & \text{при } z \ne z_0 \\
+            a_m                    & \text{иначе}          \\
+        \end{cases}
+    \]
+
+    Осталось проверить голоморфность
+    в точке $z_0$.
+    Она расскладывается в ряд вот так:
+
+    \[
+        g(z) = \sum_{n=0}^{+\infty}
+        a_{n+m}(z-z_0)^n
+    \]
+\end{proof}
+
+\begin{consequence}
+    Если $z_0$~--- ноль голоморфной функции $f$,
+    то $f$ не обращается в ноль в некоторой проколотой
+    окрестности точки $z_0$.
+\end{consequence}
+
+\begin{proof}
+    $f(z) = (z-z_0)^m g(z)$.
+    $(z-z_0)^m$ не обращается в ноль,
+    $g(z)$ не обращается в ноль в некоторой окрестности.
+\end{proof}
+
+\begin{consequence}
+    Если $f, g \in H(\Om)$ и $fg \equiv 0$,
+    то либо $f \equiv 0$, либо $g \equiv 0$.
+\end{consequence}
+
+\begin{proof}
+    Если $f \not\equiv 0$, возьмём точку,
+    где $f(z_0) = 0$, значит
+    $f \ne 0$ в проколотой окрестности $z_0$,
+    значит в этой окрестности $g = 0$,
+    значит $g \equiv 0$.
+\end{proof}
+
+\begin{consequence}
+    $f \in H(\Om)$.
+    Множество её нулей состоит из изолированных точек.
+\end{consequence}
+
+\begin{theorem}
+    (Теорема единственности \textnumero 2)
+
+    $f, g \in H(\Om)$
+    и $z_n \in \Om$ ($z_n$ различны), т.ч.
+    $\lim z_n \in \Om$
+    и $f(z_n) = g(z_n)$ для всех $n$.
+    Тогда, $f = g$.
+\end{theorem}
+
+\begin{proof}
+    Обозначим $z_0 \coloneqq \lim z_n$.
+    Тогда $f(z_0) = \lim f(z_n) = \lim g(z_n) = g(z_0)$.
+    Рассмотрим $h \coloneqq f - g$.
+    Предположим, что $h \not\equiv 0$.
+    $h(z_n) = 0$, следовательно $h(z_0) = 0$,
+    у точки $z_0$ есть окрестность, где $h \ne 0$,
+    противоречие.
+\end{proof}
+
+\begin{consequence}
+    Мы знаем, что $\sin^2 x + \cos^2 x = 1$
+    (ну или любая хорошая формула)
+    для $x \in \R$. Тогда верно и для $x \in \C$.
+\end{consequence}
