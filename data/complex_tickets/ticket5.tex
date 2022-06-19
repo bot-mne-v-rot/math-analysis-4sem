@@ -1,0 +1,45 @@
+\section{Мероморфные функции. Свойства. Производные мероморфных функций. Характеристика существенной особой точки.}
+
+\begin{definition}
+    $f$~--- мероморфная в $\Om$ если
+    существуют точки $a_1, \ldots, a_n \in \Om$,
+    т.ч. $f \in H(\Om \setminus \left\{a_1, \ldots, a_n\right\})$
+    и $a_1, \ldots, a_n$~--- полюсы $f$.
+\end{definition}
+
+\begin{properties}
+    Пусть $f$ и $g$ мероморфные в $\Om$.
+    Тогда $f \pm g$, $fg$, $f/g$ (при $g \not\equiv 0$)
+    и $f'$~--- мероморфные.
+\end{properties}
+
+\begin{proof}
+    Для суммы можно написать ряд Лорана, в главной части ненулевых конечное число.
+
+    Для $fg$ и $f/g$ можно записать так:
+    $f = \frac{\varphi}{(z-a)^m}$, $g = \frac{\psi}{(z-a)^l}$.
+    $\frac{f}{g} = \frac{\varphi}{\psi} (z-a)^{l-m}$.
+
+    Для $f'$ понятно: производная не портит голоморфность.
+\end{proof}
+
+\begin{theorem}[характеристика существенной особой точки]
+
+    $f$ голоморфна при $0 < |z-z_0| < R$. Тогда
+    следующие утверждения равносильны:
+
+    \begin{enumerate}
+        \item $z_0$~--- существенная особая точка
+        \item в главной части ряда Лорана бесконечное число ненулевых коэффициентов
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Очевидно из предыдущих характеристик.
+\end{proof}
+
+\begin{consequence}
+    $e^{1/z} = \sum\limits_{n=0}^{+\infty} \frac{1}{z^n} \frac{1}{n!}$.
+\end{consequence}
+
+\newpage

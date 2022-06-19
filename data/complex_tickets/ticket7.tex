@@ -1,0 +1,91 @@
+\section{! Бесконечный предел и бесконечно удаленная точка. Особенность в бесконечно удаленной s точке. Теорема Лиувилля в $\bar{\C}$.}
+
+\begin{definition}
+    $\lim\limits_{z\to\infty} f(z) = A$
+    если $\forall z_n \to \infty$, $f(z_n) \to A$.
+\end{definition}
+
+\begin{definition}
+    Непрерывность функции в $\infty$.
+    Функция в бесконечности совпадает со своим пределом.
+\end{definition}
+
+\begin{notation}
+    $\CC = \C \cup \left\{\infty\right\}$.
+\end{notation}
+
+\begin{definition}
+    Пусть $f$ голоморфная в окрестности $\infty$, тогда
+
+    $\infty$~--- устранимая особая точка, если
+    $\lim\limits_{z\to\infty} f(z) \in \C$.
+
+    $\infty$~--- полюс, если
+    $\lim\limits_{z\to\infty} f(z) = \infty$.
+
+    $\infty$~--- существенная особая точка, если
+    $\lim\limits_{z\to\infty} f(z)$ не существует.
+\end{definition}
+
+\begin{observation}
+    $g(z) = f(1/z)$. Тогда $0$~--- полюс $g$
+    $\EQ$ $\infty$~--- полюс $f$ и т.п.
+\end{observation}
+
+\begin{observation}
+    Пусть $f$ голоморфная в окрестности $\infty$, тогда
+    следующие утверждения равносильны:
+
+    \begin{enumerate}
+        \item $\infty$~--- устранимая особая точка $f$
+        \item $f$ ограничена в окрестности $\infty$
+        \item В правильной части ряда Лорана
+              коэффициенты при положительных степенях нулевые
+    \end{enumerate}
+\end{observation}
+
+\begin{observation}
+    Пусть $f$ голоморфная в окрестности $\infty$, тогда
+    следующие утверждения равносильны:
+
+    \begin{enumerate}
+        \item $\infty$~--- полюс $f$
+        \item В правильной части ряда Лорана
+              конечное число ненулевых коэффициентов при положительных степенях.
+    \end{enumerate}
+\end{observation}
+
+\begin{observation}
+    Пусть $f$ голоморфная в окрестности $\infty$, тогда
+    следующие утверждения равносильны:
+
+    \begin{enumerate}
+        \item $\infty$~--- существенная особая точка $f$
+        \item В правильной части ряда Лорана
+              бесконечное число ненулевых коэффициентов
+    \end{enumerate}
+\end{observation}
+
+\begin{definition}
+    $f$ голоморфная в $\infty$ если там устранимая
+    особая точка, то есть $f$ можно доопределить
+    в $\infty$ до непрерывной функции.
+\end{definition}
+
+\begin{observation}
+    $g(z) = f(1/z)$ доопределяется до голоморфной в нуле.
+\end{observation}
+
+\begin{theorem}[Лиувилль]
+
+    $f \in H(\CC)$, то $f \equiv \mathrm{const}$.
+\end{theorem}
+
+\begin{proof}
+    $f$ ограничена в $|z| > R$ (окрестность $\infty$),
+    $f$ ограничена в $|z| \le R$, так как непрерывна.
+    Значит $f \equiv \mathrm{const}$.
+\end{proof}
+
+\newpage
+

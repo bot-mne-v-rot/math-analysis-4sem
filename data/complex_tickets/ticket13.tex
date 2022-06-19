@@ -1,0 +1,132 @@
+\section{Лемма о полувычете. Интеграл в смысле главного значения. Вычисление интеграла}
+
+\begin{lemma}(о полувычете)
+
+    Пусть $a$~--- полюс первого порядка $f$.
+    Обозначим $C_{\ve} = \left\{
+        z \in \C :
+        |z-a| = \ve,
+        \alpha \le \arg(z-a) \le \beta
+        \right\}$.
+
+    Тогда $\lim_{\ve \to 0} \int\limits_{C_\ve} f(z)dz
+        = i(\be - \al)\res\limits_{z=a} f$.
+\end{lemma}
+
+\begin{proof}
+    $f(z) = \frac{c}{z-a} + g(z)$,
+    где $g(z)$~--- голоморфная в окрестности $a$.
+
+    \[
+        \int\limits_{C_\ve} f = \int\limits_{C_\ve} \frac{c}{z-a}dz + \int\limits_{C_\ve}
+        g(z)dz
+    \]
+
+    Второй интеграл стремится к нулю, так как голоморфная функция
+    ограничена в окрестности. Посчитаем первый интеграл.
+
+    \[
+        \int\limits_{C_\ve} \frac{c}{z-a}dz
+        = c \int\limits_\al^\be \ve e^{i\varphi} i \frac{1}{\ve e^{i\varphi}}
+        d\varphi = ci \int\limits_\al^\be d\varphi = ci (\be - \al)
+    \]
+\end{proof}
+
+\begin{definition}
+    $x_0 \in (a, b)$~--- особая точка $f$.
+    Главное значение интеграла это вот что:
+
+    \[
+        \pvint_a^b f(x)dx = \lim_{\ve\to0}
+        \left(
+        \int\limits_a^{x_0 - \ve} f(x)dx
+        + \int\limits_{x_0 + \ve}^b f(x)dx
+        \right)
+    \]
+\end{definition}
+
+\begin{example}
+    \[
+        \pvint_{-1}^1 \frac{dx}{x} = 0
+    \]
+
+    Функция нечётная, под пределом всегда будет $0$.
+\end{example}
+
+\begin{observation}
+    Если интеграл сходится в обычном смысле,
+    то результат совпадает с главным значением.
+\end{observation}
+
+\begin{observation}
+    Если у $f$ будет много особых точек, то выкидываем неравномерно
+    вокруг каждой $\ve$-окрестности.
+\end{observation}
+
+\begin{example}
+    $I \coloneqq \int\limits_0^{+\infty} \frac{\sin \lambda x}{x}dx$,
+    $\lambda > 0$.
+
+    Заведём немного другую функцию чтобы было удобно:
+
+    $f(z) = \frac{e^{i\lambda z}}z$
+
+    Интегрируем по такому контуру:
+
+    \begin{tikzpicture}
+        \draw[thick,gray,->] (-4, 0) -- (4, 0) node[anchor=west] {Re};
+        \draw[thick,gray,->] (0, -1) -- (0, 4) node[anchor=west] {Im};
+        \draw[thick, decoration={
+                    markings,
+                    mark=at position 0.25 with {\arrow{>}},
+                    mark=at position 0.75 with {\arrow{>}},
+                    mark=at position 0.15 with {\node[inner sep=0] {$C_R$};}
+                }, postaction={decorate}] (3, 0) arc (0:180:3);
+        \draw[thick, decoration={
+                    markings,
+                    mark=at position 0.25 with {\arrow{>}},
+                    mark=at position 0.75 with {\arrow{>}}
+                }, postaction={decorate}] (-3, 0) node[anchor=north] {$-R$} --
+        (-0.5, 0) node[anchor=north] {$-\ve$} arc (180:0:0.5)
+        node[anchor=north] {$\ve$} --
+        (3, 0) node[anchor=north] {$R$};
+    \end{tikzpicture}
+
+    Внутрь контура особые точки не попали.
+
+    \[
+        \int\limits_{\Gamma_{R,\ve}} f(z)dz = 2\pi i \sum\res = 0
+    \]
+
+    С другой стороны,
+
+    \[
+        \int\limits_{\Gamma_{R,\ve}}
+        = \int\limits_{C_R} + \int\limits_{C_\ve}
+        + \int\limits_{-R}^{-\ve} + \int\limits_{\ve}^{R}
+    \]
+
+    Интеграл по $C_R$ стремится к нулю по лемме Жордана,
+    интеграл по $C_\ve$ по лемме о полувычете стремится к
+    $\pi i \res\limits_{z=0} f = \pi i$. Получилось:
+
+    \[
+        \pvint_{-\infty}^{+\infty}
+        \frac{e^{i\lambda z}}{z}dz = \pi i
+    \]
+
+    Приравняем мнимые части:
+
+    \[
+        \Im \pvint_{-\infty}^{+\infty}
+        \frac{e^{i\lambda z}}{z}dz
+        = \pvint_{-\infty}^{+\infty} \Im
+        \frac{e^{i\lambda z}}{z}dz
+        = \pvint_{-\infty}^{+\infty}
+        \frac{\sin \lambda x}{x}dx
+        = 2I
+    \]
+
+    Получилось, что $I = \pi / 2$ и $I$ не зависит от $\lambda$.
+\end{example}
+\newpage

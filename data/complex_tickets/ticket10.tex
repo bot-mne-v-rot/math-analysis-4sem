@@ -1,0 +1,58 @@
+\section{! Теорема о вычетах. Сумма вычетов. Пример.}
+
+\begin{theorem}[Коши о вычетах]
+
+    $f$ голоморфна в $\Om$ за исключением точек
+    $a_1, \ldots, a_n$.
+    $K \subset \Om$~--- компакт,
+    $a_1, \ldots, a_n \in \Int K$.
+
+    Тогда $\int\limits_{\partial K} fdz =
+        2\pi i \sum\limits_{k=1}^n \res\limits_{z = a_k} f$.
+\end{theorem}
+
+\begin{proof}
+    У каждой точки можно взять окрестность,
+    которая всё ещё лежит в $\Int K$. Выкинем их:
+
+    $\widetilde{K} = K \setminus B_r(a_1) \cup \cdots \cup B_r(a_n)$.
+    Это компакт и в окрестности $\widetilde{K}$ $f$ голоморфна.
+    Тогда $\int\limits_{\partial \widetilde K} fdz = 0$.
+
+    Но $\int\limits_{\partial \widetilde K} = \int\limits_{\partial K}
+        - \int\limits_{|z-a_1|=r} - \cdots - \int\limits_{|z-a_n|=r}$,
+    а значения этих интегралов известны~--- $2\pi i \cdot \res$.
+\end{proof}
+
+\begin{consequence}
+    Пусть $f$ голоморфна в $\C$ за исключением точек
+    $a_1, \ldots, a_n$.
+
+    Тогда
+    $\sum\limits_{k=1}^{n} \res\limits_{z=a_k} f + \res\limits_{z=\infty} f = 0$.
+\end{consequence}
+
+\begin{proof}
+    Возьмём кривую, огибающую все $a_k$.
+    Тогда интеграл по ней это $2\pi i \cdot \sum \res$,
+    а интеграл в обратную сторону это $2\pi i \res\limits_{z=\infty} f$.
+\end{proof}
+
+\begin{example}
+    $\int\limits_{|z|=4} \frac{z^4}{e^z+1}dz$.
+
+    Особые точки~--- нули знаменателя, то есть
+    $z = \Ln(-1) = (\pi + 2\pi k)i$.
+    Из них в круг попали $z = \pm \pi i$,
+    это полюса первого порядка,
+    значит интеграл равен:
+
+    \[
+        \int\limits_{|z|=4} \frac{z^4}{e^z+1}dz
+        = 2\pi i \left(\res\limits_{z=\pi i} f + \res\limits_{z=-\pi i} f\right)
+        = 2\pi i \cdot (-2\pi^4) = -4\pi^5i
+    \]
+\end{example}
+
+\newpage
+

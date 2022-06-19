@@ -1,0 +1,97 @@
+\section{Вычеты. Определения и свойства.}
+
+\begin{definition}
+    $a \in \C$~--- изолированная особая точка функции $f$,
+    $f(z) = \sum\limits_{n=-\infty}^{+\infty} c_n (z-a)^n$.
+
+    Вычет: $\res\limits_{z=a} f(z) \coloneqq c_{-1}$.
+\end{definition}
+
+\begin{definition}
+    Вычет в бесконечности:
+    $\res\limits_{z=\infty} f(z) = -c_{-1}$.
+    Почему минус? Обход бесконечности получается в другую сторону.
+\end{definition}
+
+\begin{property}
+    $f$ голоморфна в $0 < |z-a| < R$ и $0 < r < R$.
+    Тогда
+
+    \[
+        \int\limits_{|z-a|=r} f(z)dz = 2\pi i \cdot \res\limits_{z = a} f
+    \]
+\end{property}
+
+\begin{proof}
+    Пусть $a = 0$. $f(z) = \sum\limits_{n=-\infty}^{+\infty} c_nz^n$.
+    Равномерно сходися на $|z| = r$, тогда
+
+    \[
+        \int\limits_{|z|=r} f(z)dz = \sum\limits_{n=-\infty}^{+\infty}
+        \int\limits_{|z|=r} c_nz^ndz
+        = \sum\limits_{n=-\infty}^{+\infty} c_n
+        \int\limits_{0}^{2\pi} r^ne^{in\varphi} re^{i\varphi} id\varphi
+    \]
+
+    При $n = -1$, интеграл равен $2\pi i$, иначе равен $0$.
+\end{proof}
+
+\begin{property}
+    $\res\limits_{z=a} f = \frac{1}{(n-1)!} \lim_{z\to a}
+        \frac{d^{n-1}}{dz^{n-1}} \left((z-a)^n f(z)\right)$
+    где $a$~--- полюс порядка $n$.
+\end{property}
+
+\begin{proof}
+    Пусть $a = 0$.
+
+    $f(z) = \sum\limits_{k=-n}^{+\infty}$,
+    а
+    $z^nf(z) = \sum\limits_{k=0}^{+\infty} c_{k-n}z^k$.
+    Ну и всё получается.
+\end{proof}
+
+\begin{property}
+    $a$~--- полюс первого порядка, тогда
+    $\res\limits_{z = a} f = \lim_{z\to a} (z-a)f(z)$.
+\end{property}
+
+\begin{property}
+    Пусть $f = \frac{g}{h}$.
+    Где $g$ и $h$ голоморфны в окрестности $a$, причём
+    $g(a) \ne 0$, $h(a) = 0$, $h'(a) \ne 0$.
+
+    Тогда $\res\limits_{z = a} f = \frac{g(a)}{h'(a)}$.
+\end{property}
+
+\begin{proof}
+    У нас полюс первого порядка.
+    $\res f = \lim_{z\to a} (z-a) f(z)
+        = \lim_{z\to a} g(z) \cdot \frac{z-a}{h(z)}
+        = \frac{g(a)}{h'(a)}$.
+\end{proof}
+
+\begin{property}
+    Если $\lim_{z\to\infty} f(z) = A \in \C$,
+    то $\res\limits_{z=\infty} f = \lim_{z\to\infty} z(A-f(z))$.
+\end{property}
+
+\begin{proof}
+    $f(z) = \sum\limits_{n=0}^{+\infty} c_{-n}z^{-n}$,
+    а $c_0 = A$. Тогда,
+    $c_{-1} = \lim_{z\to\infty} (f(z) - A)z$
+\end{proof}
+
+\begin{property}
+    $\res\limits_{z=\infty} f = - \res\limits_{z=0} \frac{1}{z^2} f(\frac{1}{z})$.
+\end{property}
+
+\begin{proof}
+    $f(z) = \sum c_nz^n \So f(1/z) = \sum c_nz^{-n}$.
+
+    $\frac{1}{z^2}f(1/z) = \sum c_nz^{-n-2}$.
+
+    $\res\limits_{z=0} \frac{1}{z^2} f(1/z) = c_{-1}$.
+\end{proof}
+
+\newpage

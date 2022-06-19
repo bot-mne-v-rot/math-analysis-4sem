@@ -1,0 +1,46 @@
+\section{Теорема Руше. Пример локализации корней.}
+
+\begin{theorem}[Руше]
+
+    Пусть $f, g \in H(\Om)$,
+    $C$~--- простой контур в $\Om$.
+    На этом контуре верно, что $\abs{g(z)} < \abs{f(z)}$.
+
+    Тогда, $f$ и $f+g$ имеют внутри контура одинаковое количество
+    нулей с учётом кратности.
+\end{theorem}
+
+\begin{proof}
+
+    \[
+        2\pi N_{f+g} = \Delta_C \arg(f+g)
+        = \Delta_C \arg\left(f \cdot \left(1 + \frac{g}{f}\right)\right)
+        = \Delta_C \arg f + \Delta_C \arg \left(1 + \frac{g}{f}\right)
+    \]
+
+    Надо доказать, что $\Delta_C \arg \left(1 + \frac gf\right) = 0$.
+    Мы знаем, что $\abs{\frac gf} < 1$ на $C$.
+    Значит кривая $C$ не обходит вокруг нуля функции $1 + \frac gf$.
+\end{proof}
+
+\begin{example}
+    $z + e^{-z} = \lambda > 1$ имеет один корень в
+    полуплоскости $\Re > 0$.
+
+    Возьмём $f(z) = z - \lambda$, $g(z) = e^{-z}$.
+    Берём контур: полуокружность в $\Re \ge 0$
+    радиуса $R$ с центром в нуле. Нужно проверить что
+    на контуре $\abs{f(z)} > \abs{g(z)}$.
+
+    На отрезке от $-iR$ до $iR$, $\abs{g(z)} = 1$,
+    а $\abs{f(z)} = \abs{iy - \lambda} = \sqrt{\lambda^2 + y^2} > 1$.
+
+    На дуге, $\abs{f(z)} \ge R - \lambda$,
+    $\abs{g(z)} = \abs{\exp \left(-R\cos \varphi -iR\sin \varphi\right) }
+        = \exp\left(-R\cos\varphi\right) \le 1$.
+
+    Значит по теореме Руше, количество нулей при $\Re > 0$
+    у $f$ и $f+g$ одинаковое.
+\end{example}
+
+\newpage

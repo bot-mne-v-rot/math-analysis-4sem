@@ -1,0 +1,67 @@
+\section{Особые точки голоморфных функций. Равносильные определения устранимой особой точки.}
+
+\begin{definition}
+    $z_0$~--- изолированная особая точка,
+    если $f$ голоморфна в кольце $0 < |z-z_0| < R$
+    для некоторого $R$.
+\end{definition}
+
+\begin{definition}
+    $z_0$~--- устранимая особая точка, если
+    $\lim\limits_{z\to z_0} f(z)$ существует и конечен.
+\end{definition}
+
+\begin{example}
+    $z_0 = 0$ для функций $\frac{\sin z}{z}$ и
+    $\frac{1-e^z}{z}$.
+\end{example}
+
+\begin{definition}
+    $z_0$~--- полюс, если
+    $\lim\limits_{z\to z_0} f(z) = \infty$.
+\end{definition}
+
+\begin{example}
+    $z_0 = \pi k$ для функции $\frac{1}{\sin z}$.
+\end{example}
+
+\begin{definition}
+    $z_0$~--- существенная особая точка, если
+    $\lim\limits_{z\to z_0} f(z)$ не существует.
+\end{definition}
+
+\begin{example}
+    $z_0 = 0$ для функции $e^{1/z}$.
+\end{example}
+
+\begin{theorem}[характеристика устранимых особых точек]
+
+    $f$ голоморфна при $0 < |z-z_0| < R$. Тогда
+    следующие условия равносильны:
+
+    \begin{enumerate}
+        \item $z_0$~--- устранимая особая точка
+        \item $f$ ограничена в окрестности $z_0$
+        \item существует $g \in H(|z-z_0|<R)$ и совпадающая с
+              $f$ в $0 < |z-z_0| < R$
+        \item В главной части ряда Лорана нет ненулевых коэффициентов
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    $4 \So 3$.
+    $g(z) \coloneqq \sum\limits_{n=0}^{+\infty} a_n(z-z_0)^n$ (правильная
+    часть ряда Лорана).
+
+    $3 \So 1$. У $g$ есть предел, значит и у $f$ есть.
+
+    $1 \So 2$. Если у функции есть предел, то она ограничена локально
+
+    $2 \So 4$.
+    $f(z) = \sum\limits_{n=-\infty}^{+\infty} a_nz^n$.
+    $|a_n| \le \frac{M_r}{r^n} \le M \cdot r^{-n}$.
+    Устремим $r \to 0$, оценка стремится к нулю.
+\end{proof}
+
+\newpage
+

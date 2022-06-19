@@ -1,0 +1,97 @@
+\section{Вычисление интеграла}
+
+\begin{example}
+    $I \coloneqq \int\limits_{0}^{+\infty} \frac{x^{p-1}}{1+x} dx
+        = \frac{\pi}{\sin \pi p}$ где $p \in (0, 1)$.
+
+    \[
+        f(z) = \frac{e^{(p-1) \Ln z}}{1+z}
+    \]
+
+    Полюс первого порядка в $z = -1$.
+
+    \begin{tikzpicture}
+        \draw[thick,gray,->] (-4, 0) -- (4, 0) node[anchor=west] {Re};
+        \draw[thick,gray,->] (0, -4) -- (0, 4) node[anchor=west] {Im};
+        \draw[thick, decoration={
+                    markings,
+                    mark=at position 0.05 with {\arrow{>}},
+                    %mark=at position 0.07 with {\node [anchor=north] {$\gamma_2$};},
+                    mark=at position 0.15 with {\node [anchor=south] {$C_\ve$};},
+                    mark=at position 0.25 with {\arrow{>}},
+                    %mark=at position 0.23 with {\node [anchor=south] {$\gamma_1$};},
+                    mark=at position 0.4 with {\arrow{>}},
+                    mark=at position 0.5 with {\node [above left] {$C_R$};},
+                    mark=at position 0.6 with {\arrow{>}},
+                    mark=at position 0.75 with {\arrow{>}},
+                    mark=at position 0.9 with {\arrow{>}}
+                }, postaction={decorate}] (3, -0.25) -- (0.25, -0.25)
+        arc (315:45:0.3535) -- (3, 0.25) arc (5:355:3);
+        \draw [fill=black] (-1, 0) circle (0.1) node[below] {$-1$};
+    \end{tikzpicture}
+
+    \[
+        \int\limits_{\Gamma_{R,\ve}} f(z)dz
+        = 2\pi i \sum\res = 2\pi i \res\limits_{z=-1} f
+        = \eval{2\pi i e^{(p-1) \Ln z}}_{z=-1}
+        = 2\pi i e^{(p-1) \Ln (-1)} = (*)
+    \]
+
+    У логарифма много ветвей, давайте зафиксируем
+    и скажем что $\Ln 1 = 0$.
+
+    \[
+        (*) = 2\pi i e^{(p-1)\pi i}
+    \]
+
+    С другой стороны,
+
+    \[
+        \int\limits_{\Gamma_{R,\ve}}
+        = \int\limits_{C_R} + \int\limits_{C_\ve}
+        + \int\limits_{\ve}^{R} + \int\limits_{Re^{2\pi i}}^{\ve e^{2\pi i}}
+    \]
+
+    Оценим интеграл по большой дуге:
+
+    \[
+        \abs{\int\limits_{C_R}}
+        \le \pi R \max \abs{f(z)}
+        \le \pi R \frac{R^{p-1}}{R-1} \to 0
+    \]
+
+    И по малой:
+
+    \[
+        \abs{\int\limits_{C_\ve}} \le \pi \ve
+        \max \abs{f(z)} \le \pi \ve \frac{\ve^{p-1}}{1-\ve} \to 0
+    \]
+
+    А теперь:
+
+    \[
+        \int\limits_{Re^{2\pi i}}^{\ve e^{2\pi i}} f(z)dz
+        = \int\limits_R^\ve \frac{e^{(p-1)(x+2\pi i)}}{1+x}dx
+        = -e^{(p-1)2\pi i}
+        \int\limits_\ve^R \frac{e^{(p-1)x}}{1+x}dx
+        \to e^{2\pi i(p-1)}I
+    \]
+
+    Получается такое выражение:
+
+    \[
+        2\pi i e^{(p-1)\pi i} = I - Ie^{(p-1)2\pi i}
+    \]
+
+    В итоге интеграл равен:
+
+    \[
+        I = 2\pi i \frac{e^{(p-1)\pi i}}{1-e^{(p-1)2\pi i}}
+        = 2\pi i \frac{1}{e^{-(p-1)\pi i}-e^{(p-1)\pi i}}
+        = \frac{\pi}{-\sin (p-1)\pi } = \frac{\pi}{\sin \pi p}
+    \]
+
+\end{example}
+
+\newpage
+

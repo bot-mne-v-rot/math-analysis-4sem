@@ -1,0 +1,104 @@
+\section{Лемма Жордана. Вычисление интеграла $\int_{-\infty}^{\infty} \frac{cos \lambda x}{x^2 + 1} dx$}
+
+\begin{lemma}(Жордан)
+
+    $C_{R_n} = \left\{z \in \C : |z| = R_n \Im z > 0\right\}$,
+    $R_n \to +\infty$. $M_n \coloneqq \sup_{z\in C_{R_n}} |g(z)| \to 0$.
+
+    Тогда для любого $\lambda > 0$, $\lim_{n\to +\infty}
+        \int\limits_{C_{R_n}} g(z)e^{i\lambda z} dz \to 0$.
+\end{lemma}
+
+\begin{proof}
+    Обозначим $I_n \coloneqq \int\limits_{C_{R_n}} g(z)e^{i\lambda z} dz$.
+
+    $z = R_ne^{i\varphi}$, $\varphi \in \left[0, \pi\right]$.
+
+    \[|g(z) e^{i\lambda z}| = |g(z)| |e^{i\lambda R_n e^{i\varphi} } |
+        \le M_n e^{-\lambda R_n \sin \varphi}\]
+
+    \[I_n = \int\limits_0^{\pi} g(z) e^{i\lambda z} R_n e^{i\varphi}
+        i d\varphi\]
+
+    Добавим модули.
+
+    \[
+        \begin{aligned}[t]
+             & |I_n| = \left| \int\limits_0^{\pi} g(z) e^{i\lambda z} R_n e^{i\varphi}
+            i d\varphi \right|
+            \le \int\limits_0^\pi |g(z)| |e^{i\lambda z}| R_n d\varphi \le M_nR_n
+            \int\limits_0^\pi e^{-\lambda R_n \sin\varphi} d\varphi =                  \\
+             & = 2M_nR_n
+            \int\limits_0^{\pi/2} e^{-\lambda R_n \sin\varphi} d\varphi
+            \le 2M_nR_n\int\limits_0^{\pi/2} e^{-\lambda R_n\frac{2\varphi}{\pi}} d\varphi
+            = \eval{2M_nR_n \frac{e^{-\lambda R_n \frac{2\varphi}{\pi}}}{-\lambda R_n \frac{2}{\pi}}
+            }_0^{\pi/2} \le \frac{M_n \pi}{\lambda} \to 0
+        \end{aligned}
+    \]
+\end{proof}
+
+\begin{example}
+    $\int\limits_{-\infty}^{+\infty} \frac{e^{i\lambda x}}{1+x^2} dx$.
+    Считаем что $\lambda > 0$.
+
+    Контур тот же:
+
+    \begin{tikzpicture}
+        \draw[thick,gray,->] (-4, 0) -- (4, 0) node[anchor=west] {Re};
+        \draw[thick,gray,->] (0, -1) -- (0, 4) node[anchor=west] {Im};
+        \draw[thick, decoration={
+                    markings,
+                    mark=at position 0.25 with {\arrow{>}},
+                    mark=at position 0.75 with {\arrow{>}},
+                    mark=at position 0.15 with {\node[inner sep=0] {$C_R$};}
+                }, postaction={decorate}] (3, 0) arc (0:180:3);
+        \draw[thick, decoration={
+                    markings,
+                    mark=at position 0.25 with {\arrow{>}},
+                    mark=at position 0.75 with {\arrow{>}}
+                }, postaction={decorate}] (-3, 0) node[anchor=north] {$-R$} --
+        (3, 0) node[anchor=north] {$R$};
+    \end{tikzpicture}
+
+    Введём $f(z) = \frac{e^{i\lambda z}}{1+z^2}$.
+
+    Внутри контура только полюс первого порядка в $z = i$.
+
+    \[
+        \int\limits_{\Gamma_R} f(z) dz =
+        2\pi i \sum \res = 2\pi i \res\limits_{z=i} f
+        = \eval{2\pi i \frac{e^{i\lambda z}}{(1+z^2)'}}_{z=i}
+        = 2\pi i \frac{e^{-\lambda}}{2i} = \frac{\pi}{e^\lambda}
+    \]
+
+    С другой стороны,
+
+    \[
+        \int\limits_{\Gamma_R} f(z) dz =
+        \int\limits_{C_R} f(z) dz + \int\limits_{-R}^R f(x)dx
+    \]
+
+    Проверим условия леммы Жордана, $g(z) = \frac{1}{1+z^2}$,
+
+    \[
+        \max_{|z| = R} |g(z)| \le \frac{1}{R^2-1} \to 0
+    \]
+
+    Интеграл по $C_R$ стремится к нулю, значит
+
+    \[
+        I = \int\limits_{-\infty}^{+\infty} \frac{e^{i\lambda x}}{1+x^2} dx =
+        \lim \int\limits_{-R}^R f(x)dx = \lim \int\limits_{\Gamma_R} f(z) dz = \frac{\pi}{e^\lambda}
+    \]
+
+    Посмотрим что будет если взять вещественную часть:
+
+    \[
+        \frac{\pi}{e^{\lambda}} = \Re I
+        = \int\limits_{-\infty}^{+\infty} \Re \frac{e^{i\lambda x}}{1+x^2} dx
+        = \int\limits_{-\infty}^{+\infty} \frac{\cos(\lambda x)}{1+x^2} dx
+        = 2\int\limits_{0}^{+\infty} \frac{\cos(\lambda x)}{1+x^2} dx
+    \]
+\end{example}
+
+\newpage

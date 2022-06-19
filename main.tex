@@ -1,0 +1,260 @@
+%++++++++++++++++++++++++++++++++++++++++
+% Don't modify this section unless you know what you're doing!
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{upgreek}
+\usepackage{ulem} % ya dybil
+\usepackage{tabularx} % extra features for tabular environment
+\usepackage{amsmath,amssymb}  % improve math presentation
+\usepackage{graphicx} % takes care of graphic including machinery
+\usepackage[left=0.45in,right=0.45in,top=0.8in,bottom=0.8in,a4paper]{geometry} % decreases margins
+\usepackage{cite} % takes care of citations
+\usepackage[final]{hyperref} % adds hyper links inside the generated pdf file
+%\usepackage{ dsfont }
+\hypersetup{
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=blue,        % color of internal links
+	citecolor=blue,        % color of links to bibliography
+	filecolor=magenta,     % color of file links
+	urlcolor=blue
+}
+\usepackage{amsthm,amsfonts,amscd}
+\usepackage{blkarray}
+\usepackage{mathtools}
+\usepackage{fancyhdr}
+\usepackage{xcolor,cancel}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings,arrows.meta}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{setspace}
+\usepackage{epigraph}
+\usepackage{commath}
+\usepackage{pgfplots}
+\usepackage[mathscr]{euscript}
+\usepackage{bbm}
+\usepackage{dsfont}
+%++++++++++++++++++++++++++++++++++++++++
+
+\onehalfspacing
+
+\setlength{\headheight}{15pt}
+%++++++++++++++++++++++++++++++++++++++++
+
+\newcommand{\warning}[1]{\textcolor{red}{#1}}
+\newcommand{\graytext}[1]{\textcolor{gray!70}{#1}}
+
+\newcommand\hcancel[2][black!50]{\setbox0=\hbox{$#2$}\rlap{\raisebox{.35\ht0}{\textcolor{#1}{\rule{\wd0}{0.6pt}}}}#2}
+
+%++++++++++++++++++++++++++++++++++++++++
+
+\newtheoremstyle{break}% name
+  {}%         Space above, empty = `usual value'
+  {}%         Space below
+  {\itshape}% Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\bfseries}% Thm head font
+  {.}%        Punctuation after thm head
+  {\newline}% Space after thm head: \newline = linebreak
+  {}%         Thm head spec
+
+%\theoremstyle{break}
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{consequence}{Следствие}
+\newtheorem*{consequences}{Следствия}
+\newtheorem*{properties}{Свойства}
+\newtheorem*{property}{Свойство}
+%\newtheorem*{proof}{Доказательство}
+
+\theoremstyle{definition}
+\newtheorem*{example}{Пример}
+\newtheorem*{formula}{Формула}
+\newtheorem*{examples}{Примеры}
+\newtheorem*{reminder}{Напоминание}
+\newtheorem*{proposition}{Предложение}
+\newtheorem*{definition}{Определение}
+\newtheorem*{exercise}{Упражнение}
+\newtheorem*{observation}{Замечание}
+\newtheorem*{designation}{Обозначение}
+\newtheorem*{notation}{Обозначение}
+
+% \abs and \norm
+
+% \makeatletter
+% \let\oldabs\abs
+% \def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+% \let\oldnorm\norm
+% \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+% \makeatother
+
+% shortcuts
+\newcommand{\N}{\mathbb{N}} % set of natural numbers
+\newcommand{\Z}{\mathbb{Z}} % set of integers
+\newcommand{\Q}{\mathbb{Q}} % set of rational numbers
+\newcommand{\I}{\mathbb{I}} % set of irrational numbers
+\newcommand{\R}{\mathbb{R}} % set of real numbers
+\newcommand{\RR}{\overline {\mathbb{R}}} % set of real numbers with infinity
+\newcommand{\F}{\mathbb{F}} % finite field
+\renewcommand{\C}{\mathbb{C}} % set of complex numbers
+\newcommand{\CC}{\overline{\C}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\X}{\mathcal{X}}
+\renewcommand{\P}{\mathcal{P}}
+\renewcommand{\L}{\mathcal{L}}
+\newcommand{\EQ}{ \; \, \Leftrightarrow \; \, } % if and only if
+% \renewcommand{\inf}{\infty} % NOOO WHY WOULD YOU DO THAT
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand{\tto}{\rightrightarrows}
+\DeclareMathOperator{\supp}{supp}
+
+% \newcommand{\O}{\varnothing} % empty set
+\newcommand{\DEF}{\overset{Def}{=}}
+\newcommand{\proofed}{$\blacksquare$}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\So}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\wtd}{\widetilde}
+\newcommand{\ov}{\overline}
+
+%values
+\newcommand{\dV}{\dim\,V}
+\newcommand{\dW}{\dim\,W}
+\newcommand{\Ker}{\operatorname{Ker}}
+\renewcommand{\Im}{\operatorname{Im}}
+\renewcommand{\Re}{\operatorname{Re}}
+\newcommand{\KerA}{\operatorname{Ker}\A}
+\newcommand{\Ln}{\operatorname{Ln}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\newcommand{\Cl}{\operatorname{Cl}}
+\newcommand{\Int}{\operatorname{Int}}
+\newcommand{\res}{\operatorname*{res}}
+\newcommand{\coef}{\operatorname*{coef}}
+\newcommand{\pvint}{\mathrm{v. p. }\int}
+
+\newcommand{\rk}{\text{rk}\,}
+\newcommand{\id}{\text{id}}
+\newcommand{\Id}{\text{Id}\,}
+\newcommand{\Lin}{\text{Lin}}
+\newcommand{\Bil}{\text{Bil}}
+\newcommand{\End}{\text{End}}
+\newcommand{\EV}{\text{End}\,V}
+\newcommand{\EW}{\text{End}\,W}
+\newcommand{\charla}{\A-\la\cdot \Id_V}
+\newcommand{\charlae}{\A-\la\E}
+\newcommand{\Kercharla}{\Ker(\A-\la\cdot \Id_V)}
+\newcommand{\eigsp}{V_{\la}}
+\newcommand{\XA}{\X_{\A}}
+\newcommand{\geom}{g_{\la}}
+\newcommand{\algm}{a_{\la}}
+\newcommand{\VC}{V_{\C}}
+\newcommand{\AC}{\A_{\C}}
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Mp}{M_1\times .. \times{M_n}}
+\newcommand{\Mt}{M_1\otimes..\otimes{M_n}}
+\newcommand{\mt}{m_1\otimes..\otimes{m_n}}
+\newcommand{\mon}{m\otimes n}
+\newcommand{\MoN}{M\otimes N}
+\newcommand{\mos}{m\otimes s}
+\newcommand{\MoS}{M\otimes S}
+\newcommand{\VoW}{V\otimes W}
+\newcommand{\vow}{v\otimes w}
+\newcommand{\AoB }{\A\otimes\B}
+\newcommand{\ext}{\bigwedge}
+\newcommand{\extV}{\bigwedge^pV}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\dotprod}[2]{\ensuremath{\left\langle #1, #2 \right\rangle}}
+\newcommand*\conj[1]{\overline{#1}}
+\newcommand{\Lip}{\operatorname*{Lip}}
+
+
+% more beautiful comparision signs
+\renewcommand{\le}{\leqslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\O}{\varnothing}
+
+%greek symbols
+\newcommand{\al}{\alpha}
+\newcommand{\si}{\sigma}
+\newcommand{\be}{\beta}
+\newcommand{\ga}{\gamma}
+\newcommand{\la}{\lambda}
+\newcommand{\ve}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\uo}{\upomega}
+\newcommand{\oal}{\overline{\al}}
+\newcommand{\Om}{\Omega}
+\newcommand{\om}{\omega}
+\newcommand{\ola}{\overline{\la}}
+
+%matrix
+\newcommand{\alvech}{(\al_1, .., \al_n)}
+\newcommand{\mvech}{(m_1, .., m_n)}
+\newcommand{\alvecv}{\begin{pmatrix}
+  \al_1\\
+   ...\\
+  \al_n
+\end{pmatrix}}
+\newcommand{\bevech}{(\be_1, .., \be_n)}
+\newcommand{\bevecv}{\begin{pmatrix}
+  \be_1\\
+   ...\\
+  \be_n
+\end{pmatrix}}
+\newcommand{\evech}{(e_1, .., e_n)}
+\newcommand{\fvech}{(f_1, .., f_n)}
+\newcommand{\fmvech}{(f_1, .., f_m)}
+\newcommand{\amat}{\begin{pmatrix}
+  a_{11}& ...&a_{1n} \\
+   ...&...&...\\
+  a_{n1}& ...&a_{nn}
+\end{pmatrix}}
+
+\newcommand{\ammat}{\begin{pmatrix}
+  a_{11}& ...&a_{1m} \\
+   ...&...&...\\
+  a_{m1}& ...&a_{mm}
+\end{pmatrix}}
+
+\newcommand{\jo}{\text{J}_m(\al)}
+
+\newcommand{\jomat}{\begin{pmatrix}
+  \al &0 &0 &.. & 0 \\
+  1 &\al &0& .. & 0 \\
+  0 &1 &\al &.. & 0 \\
+  .. & ..  &.. &..  & .. \\
+  0  & 0  &0 &1 &\al
+\end{pmatrix}}
+
+
+\newcommand{\Xm}{X_{\mvech}}
+\newcommand{\pder}[2]{
+  \frac{\partial #1}{\partial #2}
+}
+\newcommand{\ppder}[2]{
+  \frac{\partial^2 {#1}}{\partial {#2}^2}
+}
+
+\pagestyle{fancy}
+
+% \pgfplotsset{compat=1.16}
+\begin{document}
+
+\tableofcontents
+\newpage
+\input{data/complex.tex}
+\input{data/fourier.tex}
+
+\end{document}

@@ -1,0 +1,42 @@
+\section{Полтора способа для вычисление интеграла $\int\limits_{-\infty}^{+\infty} \frac{dx}{1+x^{2n}}$}
+
+\begin{example}
+    $\int\limits_{-\infty}^{+\infty} \frac{dx}{1+x^{2n}}$.
+
+    Вводим контур для некоторого $R > 0$.
+
+    \begin{tikzpicture}
+        \draw[thick,gray,->] (-4, 0) -- (4, 0) node[anchor=west] {Re};
+        \draw[thick,gray,->] (0, -1) -- (0, 4) node[anchor=west] {Im};
+        \draw[thick, decoration={
+                    markings,
+                    mark=at position 0.25 with {\arrow{>}},
+                    mark=at position 0.75 with {\arrow{>}},
+                    mark=at position 0.15 with {\node[inner sep=0] {$C_R$};}
+                }, postaction={decorate}] (3, 0) arc (0:180:3);
+        \draw[thick, decoration={
+                    markings,
+                    mark=at position 0.25 with {\arrow{>}},
+                    mark=at position 0.75 with {\arrow{>}}
+                }, postaction={decorate}] (-3, 0) node[anchor=north] {$-R$} --
+        (3, 0) node[anchor=north] {$R$};
+    \end{tikzpicture}
+
+    Особые точки: $z = e^{i(2k-1)\pi / (2n)}$ для $k = 1, \ldots, n$.
+
+    Интеграл по кривой будет равен:
+
+    $\int\limits_{\Gamma_R} \frac{dz}{1+z^{2n}} = 2\pi i \sum \res
+        = \int\limits_{-R}^R + \int\limits_{C_R} \to \int\limits_{-\infty}^{+\infty}$.
+
+    Интеграл по $C_R$ пропадает если его оценить
+    как длину дуги на максимум модуля функции:
+    $\int\limits_{C_R} \le \pi R \cdot \frac{1}{R^{2n}-1} \to 0$.
+
+    Мне так лень писать это всё... Ну вы же были на практике, да?
+    Можете посмотреть вторую половину девятой лекции если хотите.
+    Тут ещё есть упрощённый способ посчитать интеграл если что.
+\end{example}
+
+\newpage
+
