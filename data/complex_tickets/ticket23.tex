@@ -1,4 +1,69 @@
 \section{Производящие функции. Операции с производящими функциями. Задача о размене.}
 
+\begin{definition}
+    $a_0, a_1, \ldots$~--- последовательность,
+    тогда: 
+    \begin{gather*}
+        \mathscr A(z) \coloneqq \sum\limits_{n=0}^{+\infty} a_nz^n
+    \end{gather*}
+    Это производящая функция. Ряд сходится в $\abs{z} < R$. 
+\end{definition}
+
+\begin{observation}
+    Можем складывать, вычитать и не думать о сходимости.
+\end{observation}
+
+\begin{observation}
+    Можем перемножать:
+
+    \[
+        \mathscr A(z) \mathscr B(z) = \sum\limits_{n=0}^{+\infty}
+        c_nz^n
+    \]
+
+    где $c_n = a_0b_n + a_1b_{n-1} + \cdots + a_nb_0$. Тогда $\{c_n\}$ -- свертка последовательностей $\{a_n\}$ и $\{b_n\}$. 
+\end{observation}
+
+\begin{example} \; (задача о размене)
+
+    Есть бесконечное количество монет $1$, $2$, $5$ и $10$ рублей.
+    Сколько способов заплатить $n$ рублей?
+
+    \[
+        \mathscr A(z) =
+        \left(1 + z + z^2 + \cdots\right)
+        \left(1 + z^2 + z^4 + \cdots\right)
+        \left(1 + z^5 + z^{10} + \cdots\right)
+        \left(1 + z^{10} + z^{20} + \cdots\right)
+    \]
+
+    Свернём, получим
+
+    \[
+        \mathscr A(z) = \sum z^az^{2b}z^{5c}z^{10d}
+        = \frac{1}{1-z}\cdot\frac{1}{1-z^2}\cdot
+        \frac{1}{1-z^5}\cdot\frac{1}{1-z^{10}}
+    \]
+
+    Коэффицент при $z^k$~--- ответ для $k$.
+
+    Обобщим, пусть $p(H, n)$~--- количество способов
+    представить $n$ в виде суммы слагаемых из $H$.
+    Производящая функция:
+
+    \[
+        \mathscr A(z) = \prod_{k\in H} \frac{1}{1-z^k}
+    \]
+
+    Если каждое из слагаемых встречается $\le d$ раз,
+    то
+
+    \[
+        \mathscr A(z) = \prod_{k\in H} \left(
+        1+z^k+z^{2k}+\cdots+z^{dk}
+        \right)
+    \]
+\end{example}
+
 \newpage
 

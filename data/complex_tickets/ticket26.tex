@@ -1,4 +1,66 @@
 \section{Произведение Адамара рациональных функций. Способ вычисления произведения Адамара.}
 
+\begin{conj} 
+
+    У нас есть: 
+    \begin{align*}
+        \mathscr A(z) &= \sum\limits_{n=0}^{+\infty} a_nz^n & \mathscr B(z) &= \sum\limits_{n=0}^{+\infty} b_nz^n
+    \end{align*}
+    
+    Тогда произведение Адамара $\mathscr A \circ \mathscr B$: 
+
+    \[
+        \mathscr A \circ \mathscr B (z) \coloneqq \sum\limits_{n = 0}^{+\infty} a_n b_n z^n
+    \]
+\end{conj}
+\begin{conj}
+    Последовательность $a_n$ -- квазимногочлен, если найдутся $q_j \in \R$, $p_j \in \R[z]$ такие, что: 
+    \begin{gather*}
+        a_n = q_1^n \cdot p_1(n) + q_n^2 p_2(n) + \cdot + q_n^n p_n(n)
+    \end{gather*} 
+\end{conj}
+\begin{lemma}
+    $\mathcal{A}(z)$ -- рациональная функция $\Longleftrightarrow$ $a_n$ -- квазимногочлен
+\end{lemma}
+\begin{proof} \quad 
+
+    \begin{itemize}
+        \item[``$\Longrightarrow$'':] Раскладываем $\mathscr A(z)$ на простейшие:
+        \begin{gather*}
+            \mathscr A (z) = \frac{A_{11}}{z - c_1} + \frac{A_{12}}{(z - c_1)^2} + \dots + \frac{A_{1m_1}}{(z - c_1)^{m_1}} + \frac{A_{21}}{z - c_2} + \dots    
+        \end{gather*}
+        Заметим, что линейная комбинация квазимногочленов -- квазимногочлен. Тогда если $\frac{A}{(z - c)^k}$ -- квазимногочлен, то и $\mathscr A$ -- тоже квазимногочлен. 
+        Заметим, что: 
+        \begin{gather*}
+            \frac{A}{(z - c)^k} = \frac{A (-c)^k}{(1 - \frac{z}{c})^k}
+        \end{gather*}
+        Тогда можно понять, что $\frac{1}{(1 - z)^k}$ и все сложится. 
+        \begin{gather*}
+            \frac{1}{(1 - z)^k} = \sum\limits_{j=0}^{\infty} C_{j+k-1}^{k-1} z^j
+        \end{gather*}
+        Это можно проверить по индукции. База -- геометрическая прогрессия. Переход -- дифференцируем левую и правую части и проверяем. 
+        \item[``$\Longleftarrow$'':] Поймем, что для квазимногочлена $a_n = q^n \cdot p(n)$, $A(z)$ -- рациональная функция. Тогда для других квазимногочленов получим через линейные комбинации. 
+        
+        Пусть степень многочлена $p$ равна $d$. Тогда, сделав индукцию по степени, можем доказать, что любой многочлен представим в виде: 
+        \begin{gather*}
+            p(n) = b_d \stackabove{\overbrace{(n+d-1)(n+d-2) \dots n}}{d! \cdot C_{n+d-1}^{n-1} = C_{n+d-1}^{n-1} \cdot d!} + b_{d-1}n(n+d-2)(n+d-3)\dots n + \dots + b_1n + b_0
+        \end{gather*}
+        Тогда нужно понять, что для следующей последовательности у нас будет рациональная функция:
+        \begin{gather*}
+            a_n = q^n C_{n+d-1}^{n-1}
+        \end{gather*}
+        А для нее уже мы все понимали и производящая функция будет: 
+        \begin{gather*}
+            \frac{1}{(1 - q^z)^d}
+        \end{gather*}
+    \end{itemize}
+\end{proof}
+
+\example 
+\[
+    f(z, w) = \sum\limits_{n, m = 0}^{+\infty} a_nb_mz^nw^m
+    = \mathscr A(z) \mathscr B(w)
+\]
+А дальше диагонализируем $\sum\limits_{n=0}^\infty a_n b_n z^n$. 
 \newpage
 

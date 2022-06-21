@@ -1,2 +1,76 @@
 \section{Диагонализация степенных рядов.}
+
+\begin{example} \; Диагонализация степенных рядов
+
+    Пусть у нас есть ряд:
+
+    \[
+        f(z, w) = \sum\limits_{n, m = 0}^{+\infty} a_{nm}z^nw^m
+    \]
+
+    Хотим найти ``диагональ'':
+
+    \[
+        \sum\limits_{n=0}^{+\infty} a_{nn}z^n
+    \]
+
+    Например (здесь $k = n + m$):
+
+    \[
+        f(z, w) = \sum\limits_{n, m = 0}^{+\infty}
+        C_{n+m}^n z^nw^m
+        = \sum\limits_{k=0}^{+\infty}
+        \sum\limits_{m=0}^k C_k^m z^{k-m}w^m
+        = \sum\limits_{k=0}^{+\infty}
+        \left(w + z\right)^k
+        = \frac{1}{1-w-z}
+    \]
+
+    Посмотрим на $f(z, w/z)$:
+
+    \[
+        f(z, w/z)
+        =\sum\limits_{n, m = 0}^{+\infty} C_{n+m}^m z^{n-m}w^m
+    \]
+
+    Хотим найти коэффициент при $z^0$, поделим на $z$
+    и найдём вычет:
+
+    \begin{align*}
+        \frac{1}{2\pi i}\int\limits_{\abs z=r} f(z, w/z) \frac{dz}{z}
+            &= \frac{1}{2\pi i}\int\limits_{\abs z = r}
+            \sum\limits_{n, m = 0}^{+\infty} a_{nm}z^{n-m-1}w^m
+            dz \\ 
+            &= \frac{1}{2\pi i}\sum\limits_{n, m = 0}^{+\infty} a_{nm}
+            \int\limits_{\abs z = r} z^{n-m-1}w^mdz \\ 
+            &= \sum\limits_{m=0}^{+\infty} a_{mm}w^m =: g(w)
+    \end{align*}
+
+    Почему могли поменять местами интеграл и сумму?
+    Сумма равномерно сходится когда мало $\abs z$ и $\abs {w/z}$.
+    Выбираем малое $z$ и $w$ сильно меньше чем $z$.
+
+    \[
+        g(w) = \frac{1}{2\pi i}\int\limits_{\abs z = r}
+        \frac{dz/z}{1-z-w/z} = \sum\res\limits_{\abs z < r}
+    \]
+
+    При малых $z$ и $w < z$ единственная
+    особая точка~--- в $\frac{1-\sqrt{1-4w}}{2}$.
+    Посчитаем вычет для функции $\frac{1}{z-z^2-w}$:
+
+    \[
+        \res = \eval{\frac{1}{1-2z}}_{z=\frac{1-\sqrt{1-4w}}{2}}
+        = \frac{1}{\sqrt{1-4w}}
+    \]
+
+    Получается производящая функция для средних биномиальных коэффициентов:
+
+    \[
+        \sum\limits_{n=0}^{+\infty} C_{2n}^n z^n = \frac{1}{\sqrt{1-4z}}
+    \]
+
+\end{example}
+
+
 \newpage
