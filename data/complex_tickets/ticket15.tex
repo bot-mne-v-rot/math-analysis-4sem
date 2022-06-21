@@ -1,3 +1,108 @@
 \section{Две теоремы о разложении мероморфной функции в сумму.}
 
+\begin{theorem}
+    $f$~--- мероморфная функция в $\C$ с полюсами
+    $a_1, \ldots, a_n$, а в бесконечности~--- устранимая
+    особая точка или полюс.
+
+    Тогда: 
+    \begin{gather*}
+        f(z) = C + G(z) + \sum\limits_{k=1}^n G_k(z)    
+    \end{gather*}
+    где $C$~--- константа, $G_k(z)$~--- главная
+    часть ряда Лорана в точке $a_k$, $G(z)$~--- правильная
+    часть ряда Лорана в $\infty$.
+
+    В частности, $f$~--- дробно-рациональное
+\end{theorem}
+
+\begin{proof}
+    Рассмотрим такое $g(z)$:
+    $$g(z) \coloneqq f(z) - G(z) - \sum\limits_{k=1}^n G_k(z)$$
+    Понятно, что мы хотим показать, что $g(z)$ будет той самой $C$. Подгоним под вторую теорему Лиувилля. 
+    $g(z)$ задана и голоморфна в
+    $\C \setminus \left\{a_1, \ldots, a_n\right\}$.
+    $a_k$~--- устранимая особая точка,
+    так как $f(z) - G_k(z)$~--- это правильная часть ряда Лорана для
+    $f$, а в остальных слагаемых особенностей в $a_k$ точно нет.
+    Доопределим $g$ до целой функции.
+    Также заметим что у $g$ в бесконечности
+    имеет устранимую особую точку, то есть $g$~--- константа.
+\end{proof}
+
+\begin{theorem}
+    $f$~--- голоморфна в $\C$ за исключением полюсов
+    $a_1, a_2, \ldots$ и при этом $\lim a_n = \infty$.
+
+    Если существует последовательность $R_n \to \infty$, такая, что: 
+    \begin{gather*}
+        M_{R_n} \coloneqq \max_{\abs{z} = R_n} \abs{f(z)} \to 0
+    \end{gather*}
+    Тогда: 
+    \begin{gather*}
+        f(z) = \lim_{n\to\infty} \sum\limits_{\abs{a_k} < R_n} G_k(z)
+    \end{gather*}
+\end{theorem}
+
+\begin{proof}
+    Обозначим (если $\abs{z} < R_n, \, z \neq a_k$):
+
+    \[
+        I_n(z) \coloneqq \frac{1}{2\pi i}
+        \int\limits_{\abs{\zeta} = R_n} \frac{f(\zeta)}{\zeta - z}d\zeta
+    \]
+
+    Значение этого интеграла это
+
+    \[
+        I_n(z) = \sum\res f =
+        \res\limits_{\zeta=z} \frac{f(\zeta)}{\zeta-z}
+        + \sum\limits_{\abs{a_k}<R_n} \res\limits_{\zeta=a_k} \frac{f(\zeta)}{\zeta - z}
+        = \oast 
+    \]
+    Вычет в $z$ это очевидно $f(z)$, потому что полюс первого порядка. Вычет в $a_k$:  
+    \begin{gather*}
+        \res\limits_{\zeta=a_k} g = \stackbelow{\underbrace{\res\limits_{\zeta=a_k} \frac{f(\zeta) - G_k(\zeta)}{\zeta - z}}}{0} + \res\limits_{\zeta=a_k} \frac{G_k(\zeta)}{\zeta - z}
+    \end{gather*}
+    $f(\zeta)$ голоморфна в проколотой окрестности $a_k$, мы вычитаем главную часть ее ряда Лорана в этой точке, избавляясь от особенности. Значит получившаяся вещь будет голоморфна в $a_k$. Поэтому вычет там ноль. 
+    Тогда: 
+    \begin{gather*}
+        \oast = f(z) +\sum\limits_{\abs{a_k}<R_n} \res\limits_{\zeta=a_k} \frac{G_k(\zeta)}{\zeta - z}
+    \end{gather*}
+
+    Хотим посчитать тот вычет.
+
+    \[
+        \frac{1}{2\pi i} \int\limits_{\abs{\zeta} = R}
+        \frac{G_k(\zeta)}{\zeta - z} d\zeta
+        = \res\limits_{\zeta = a_k} + \res\limits_{\zeta = z}
+    \]
+
+    Где $R$~--- такой радиус, что и $z$ и $a_k$ в него попали.
+    Подинтегральная функция это $O(1/R^2)$ (в числителе самая большая
+    степень $\zeta$~--- это $-1$, в знаменателе~--- $1$).
+    При $R\to\infty$, интеграл стремится к нулю, значит сумма
+    вычетов равна нулю:
+
+    \[
+        \res\limits_{\zeta=a_k} \frac{G_k(\zeta)}{\zeta - z}
+        = -\res\limits_{\zeta=z} \frac{G_k(\zeta)}{\zeta - z}
+        = -G_k(z)
+    \]
+
+    Подставляем,
+
+    \[
+        I_n(z) = f(z) - \sum\limits_{\abs{a_k} < R_n} G_k(z)
+    \]
+
+    Оценим его как длина на максимум:
+
+    \[
+        \abs{I_n(z)} \le 2\pi R_n \max_{\abs\zeta = R_n}
+        \abs{\frac{f(\zeta)}{\zeta - z}} \le
+        2\pi R_n \cdot \frac{M_{R_n}}{R_n-\abs{z}} \to 0
+    \]
+\end{proof}
+
 \newpage
