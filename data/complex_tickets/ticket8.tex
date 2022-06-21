@@ -1,4 +1,4 @@
-\section{!!!!!!!!!! Сфера Римана. Стереографическая проекция. Связь между расстояниями образов и прообразов.}
+\section{Сфера Римана. Стереографическая проекция. Связь между расстояниями образов и прообразов.}
 
 \begin{definition}
     Сфера Римана.
@@ -33,9 +33,15 @@
 \end{theorem}
 
 \begin{proof}
-    Задаём прямую параметрически: $u = tx$, $v = ty$, $w = 1 - t$.
-    Уравнение сферы: $u^2+v^2+w^2 = w$.
-    Подставляем, всё получается.
+    Будем сразу считать обратное соотвествие. У нас есть точка в пространстве с координатами $(x, y, 0)$, а также северный полюс $\mathcal{N}(0, 0, 1)$. Проведем прямую через эти две точки. Зададим ее параметрически: $(t x, t y, (1-t))$. Тогда уравнение сферы такое: 
+    \begin{gather*}
+        u^2 + v^2 +  \left(w - \frac{1}{2}\right)^2 = \frac{1}{4}
+    \end{gather*} 
+    Подставляем: 
+    \begin{gather*}
+        (tx)^2 + (ty)^2 + (1-t)^2 = 1 - t \\ 
+        t^2 \abs{z}^2 + t^2  - t = 0 \Longrightarrow t = \boxed{\frac{1}{1 + \abs{z}^2}}
+    \end{gather*}
 \end{proof}
 
 \begin{consequence}
@@ -54,16 +60,36 @@
 \end{consequence}
 
 \begin{proof}
-    Ну надо противные формулы написать.
+    Доказательство нудное. 
 \end{proof}
 
 \begin{consequence}
     Сходимости в $\CC$ и на сфере Римана эквивалентны.
 \end{consequence}
 
-\begin{proof}
-    Посмотрим на формулы для расстояния.
-    Они ведут себя так как надо.
+\begin{proof} \quad 
+
+    \begin{itemize} 
+        \item[``$\Longrightarrow$'':] Рассмотрим последовательность $z_n \longrightarrow z_0$. Тогда $\abs{z_n - z_0} \longrightarrow 0$. Тогда: 
+        \begin{gather*}
+            \frac{\toabove{\overbrace{\abs{z_n - z_0}}}{0}}{\morebelow{\underbrace{\sqrt{1+|z_n|^2}\sqrt{1+|z_0|^2}}}{1}} \longrightarrow 0
+        \end{gather*} 
+        \item[``$\Longleftarrow$'':] Имеем: 
+        \begin{gather*}
+            \frac{|z-\widetilde z|}{\sqrt{1+|z|^2}\sqrt{1+|\widetilde z|^2}} \Longrightarrow \begin{sqcases}
+                \abs{z_n - z_0} \to 0 \\ 
+                \sqrt{1 + \abs{z_n}^2} \to \infty \Longrightarrow \abs{z_n} \to \infty \Longrightarrow \oast
+            \end{sqcases}
+        \end{gather*}
+        В первом случае то, что надо, второе продолжаем: 
+        \begin{gather*}
+            \oast \Longrightarrow \frac{\abs{z_n - z_0}}{\sqrt{1 + \abs{z_n}^2}} \frac{1}{\sqrt{1 + \abs{z_0}^2}} \cancel{\longrightarrow} 0 
+        \end{gather*}
+        Значит такого не бывает. Случай с бесконечностью: 
+        \begin{gather*}
+            z_n \to \infty \Longleftrightarrow \sqrt{1 + \abs{z_n}^2} \to \infty \Longleftrightarrow \frac{1}{\sqrt{1 + \abs{z_n}^2}} \to 0
+        \end{gather*}
+    \end{itemize}
 \end{proof}
 
 \begin{consequence}
@@ -71,7 +97,7 @@
 \end{consequence}
 
 \begin{proof}
-    С точки зрения сходимости это сфера.
+    Сфера компакт, а мы показали, что сходимости на сфере и в $\CC$ эквивалентны. 
 \end{proof}
 
 \newpage

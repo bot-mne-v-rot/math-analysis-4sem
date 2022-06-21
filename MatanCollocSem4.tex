@@ -353,15 +353,31 @@
   \frac{\partial^2 {#1}}{\partial {#2}^2}
 }
 
+\makeatletter
+\newenvironment{sqcases}{%
+  \matrix@check\sqcases\env@sqcases
+}{%
+  \endarray\right.%
+}
+\def\env@sqcases{%
+  \let\@ifnextchar\new@ifnextchar
+  \left\lbrack
+  \def\arraystretch{1.2}%
+  \array{@{}l@{\quad}l@{}}%
+}
+\makeatother
 
 %%%%%%%  ---------------------------------------------------
 
 
 \def\inbelow#1#2{\underset{\displaystyle\overset{\displaystyle\rotatebox{270}{$\in$}}{#2}}{#1}}
 \def\lessbelow#1#2{\underset{\displaystyle\overset{\displaystyle\rotatebox{270}{$\leqslant$}}{#2}}{#1}}
+\def\morebelow#1#2{\underset{\displaystyle\overset{\displaystyle\rotatebox{270}{$\geqslant$}}{#2}}{#1}}
 \def\lessabove#1#2{\overset{\displaystyle\underset{\displaystyle\rotatebox{90}{$\leqslant$}}{#2}}{#1}}
 \def\stackbelow#1#2{\underset{\displaystyle\overset{\displaystyle\shortparallel}{#2}}{#1}}
 \def\stackabove#1#2{\overset{\displaystyle\underset{\displaystyle\shortparallel}{#2}}{#1}}
+\def\tobelow#1#2{\underset{\displaystyle\overset{\displaystyle\rotatebox{270}{$\to$}}{#2}}{#1}}
+\def\toabove#1#2{\overset{\displaystyle\underset{\displaystyle\rotatebox{90}{$\to$}}{#2}}{#1}}
 
 \newcommand{\rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 \newcommand{\vardbtilde}[1]{\widetilde{\raisebox{0pt}[0.85\height]{$\widetilde{#1}$}}}
