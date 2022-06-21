@@ -3,11 +3,10 @@
 \begin{theorem}[Руше]
 
     Пусть $f, g \in H(\Om)$,
-    $C$~--- простой контур в $\Om$.
+    $C$~--- простой замкнутый контур в $\Om$.
     На этом контуре верно, что $\abs{g(z)} < \abs{f(z)}$.
-
     Тогда, $f$ и $f+g$ имеют внутри контура одинаковое количество
-    нулей с учётом кратности.
+    нулей с учётом кратности. То есть $\mathcal{N}_{f+g} = \mathcal{N}_f$. 
 \end{theorem}
 
 \begin{proof}
@@ -15,11 +14,50 @@
     \[
         2\pi N_{f+g} = \Delta_C \arg(f+g)
         = \Delta_C \arg\left(f \cdot \left(1 + \frac{g}{f}\right)\right)
-        = \Delta_C \arg f + \Delta_C \arg \left(1 + \frac{g}{f}\right)
+        = \stackbelow{\underbrace{\Delta_C \arg f}}{2\pi \mathcal{N}_f} + \Delta_C \arg \left(1 + \frac{g}{f}\right)
     \]
 
-    Надо доказать, что $\Delta_C \arg \left(1 + \frac gf\right) = 0$.
+    Надо доказать, что:
+    $$\Delta_C \arg \left(1 + \frac gf\right) = 0$$
     Мы знаем, что $\abs{\frac gf} < 1$ на $C$.
+    \begin{center}
+        \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+        \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+        %uncomment if require: \path (0,401); %set diagram left start at 0, and has height of 401
+
+        %Straight Lines [id:da7424322947986554] 
+        \draw [line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (357,69) -- (280.38,105.38) ;
+        \draw [shift={(277.67,106.67)}, rotate = 334.6] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (14.21,-4.28) .. controls (9.04,-1.82) and (4.3,-0.39) .. (0,0) .. controls (4.3,0.39) and (9.04,1.82) .. (14.21,4.28)   ;
+        %Shape: Circle [id:dp8446208158026871] 
+        \draw  [line width=1.5]  (196.46,131.15) .. controls (190.35,92.52) and (216.71,56.26) .. (255.33,50.15) .. controls (293.96,44.04) and (330.22,70.4) .. (336.33,109.02) .. controls (342.44,147.64) and (316.08,183.9) .. (277.46,190.01) .. controls (238.84,196.12) and (202.57,169.77) .. (196.46,131.15) -- cycle ;
+        %Shape: Circle [id:dp04395722926658119] 
+        \draw  [fill={rgb, 255:red, 3; green, 3; blue, 3 }  ,fill opacity=1 ][line width=1.5]  (194,120.92) .. controls (194,119.86) and (194.86,119) .. (195.92,119) .. controls (196.98,119) and (197.84,119.86) .. (197.84,120.92) .. controls (197.84,121.98) and (196.98,122.84) .. (195.92,122.84) .. controls (194.86,122.84) and (194,121.98) .. (194,120.92) -- cycle ;
+        %Shape: Circle [id:dp9394776739191444] 
+        \draw  [fill={rgb, 255:red, 3; green, 3; blue, 3 }  ,fill opacity=1 ][line width=1.5]  (264.48,122) .. controls (264.48,120.94) and (265.34,120.08) .. (266.4,120.08) .. controls (267.46,120.08) and (268.32,120.94) .. (268.32,122) .. controls (268.32,123.06) and (267.46,123.92) .. (266.4,123.92) .. controls (265.34,123.92) and (264.48,123.06) .. (264.48,122) -- cycle ;
+        %Curve Lines [id:da19211736951479297] 
+        \draw [line width=1.5]    (209,140) .. controls (214.62,91.99) and (242.66,175.44) .. (282.66,145.44) .. controls (322.66,115.44) and (237.02,108.19) .. (262.02,83.19) .. controls (287.02,58.19) and (326,86.44) .. (322,117.44) .. controls (318,148.44) and (303.05,157.83) .. (296.05,162.83) .. controls (289.05,167.83) and (263,175.44) .. (241,158.44) .. controls (219,141.44) and (222.98,162.63) .. (209,140) -- cycle ;
+        %Straight Lines [id:da05776022762119992] 
+        \draw [line width=1.5]    (282.66,145.44) -- (273.35,150.1) ;
+        \draw [shift={(270.67,151.44)}, rotate = 333.42] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (14.21,-6.37) .. controls (9.04,-2.99) and (4.3,-0.87) .. (0,0) .. controls (4.3,0.87) and (9.04,2.99) .. (14.21,6.37)   ;
+        %Straight Lines [id:da727700820040327] 
+        \draw [line width=1.5]    (241,158.44) -- (248.12,162.86) ;
+        \draw [shift={(250.67,164.44)}, rotate = 211.83] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (14.21,-6.37) .. controls (9.04,-2.99) and (4.3,-0.87) .. (0,0) .. controls (4.3,0.87) and (9.04,2.99) .. (14.21,6.37)   ;
+        %Straight Lines [id:da6222215905621254] 
+        \draw [line width=1.5]    (317,136.44) -- (319.72,128.28) ;
+        \draw [shift={(320.67,125.44)}, rotate = 108.44] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (14.21,-6.37) .. controls (9.04,-2.99) and (4.3,-0.87) .. (0,0) .. controls (4.3,0.87) and (9.04,2.99) .. (14.21,6.37)   ;
+
+        % Text Node
+        \draw (367,58) node [anchor=north west][inner sep=0.75pt]  [font=\Large] [align=left] {Образ конутра};
+        % Text Node
+        \draw (174,118) node [anchor=north west][inner sep=0.75pt]  [font=\Large] [align=left] {0};
+        % Text Node
+        \draw (248,104) node [anchor=north west][inner sep=0.75pt]  [font=\Large] [align=left] {1};
+
+
+        \end{tikzpicture}
+    \end{center}
+
     Значит кривая $C$ не обходит вокруг нуля функции $1 + \frac gf$.
 \end{proof}
 
@@ -27,18 +65,28 @@
     $z + e^{-z} = \lambda > 1$ имеет один корень в
     полуплоскости $\Re > 0$.
 
-    Возьмём $f(z) = z - \lambda$, $g(z) = e^{-z}$.
+    Возьмём: 
+    \begin{gather*}
+        f(z) = z - \lambda, \; g(z) = e^{-z}
+    \end{gather*}
     Берём контур: полуокружность в $\Re \ge 0$
     радиуса $R$ с центром в нуле. Нужно проверить что
-    на контуре $\abs{f(z)} > \abs{g(z)}$.
+    на контуре: 
+    \begin{gather*}
+        \abs{f(z)} > \abs{g(z)}
+    \end{gather*}
 
-    На отрезке от $-iR$ до $iR$, $\abs{g(z)} = 1$,
-    а $\abs{f(z)} = \abs{iy - \lambda} = \sqrt{\lambda^2 + y^2} > 1$.
+    На отрезке от $-iR$ до $iR$: 
+    \begin{align*}
+        \abs{g(z)} &= 1 & \abs{f(z)} &= \abs{iy - \lambda} = \sqrt{\lambda^2 + y^2} > 1
+    \end{align*}
 
-    На дуге, $\abs{f(z)} \ge R - \lambda$,
-    $\abs{g(z)} = \abs{\exp \left(-R\cos \varphi -iR\sin \varphi\right) }
-        = \exp\left(-R\cos\varphi\right) \le 1$.
-
+    На дуге, $\abs{f(z)} \ge R - \lambda$ и: 
+    \begin{gather*}
+        \abs{g(z)} = \abs{\exp \left(-R\cos \varphi -iR\sin \varphi\right) }
+        = \exp\left(-R\cos\varphi\right) \le 1
+    \end{gather*}
+    
     Значит по теореме Руше, количество нулей при $\Re > 0$
     у $f$ и $f+g$ одинаковое.
 \end{example}
