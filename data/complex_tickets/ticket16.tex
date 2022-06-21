@@ -5,56 +5,46 @@
     \end{gather*}
 \end{example}
 
-Хотим показать, что
+\begin{lemma}
+    $\ctg z$ ограничен на окружностях вида $\abs{z} = \pi\left(n + \frac12\right)$
+\end{lemma}
 
-\[
-    f(z) = \frac{\ctg z}{z} = \frac{1}{z^2} +
-    \sum\limits_{k=1}^{+\infty} \frac{2}{z^2-\pi^2k^2}
-\]
+\begin{proof}
 
-$R_n = \pi\left(n + \frac12\right)$,
-$M_{R_n} \le \frac{M}{R_n} \to 0$.
+    Доказывается в 17ом билете и здесь её достаточно только сформулировать.
+    
+\end{proof}
 
-Особые точки $z = 0$, $z = \pi k$.
+Рассмотрим такое $f(z)$:
+\begin{gather*}
+    f(z) = \frac{\ctg z}{z}
+\end{gather*}
 
-Точки вида $z = \pi k$ это полюсы первого порядка,
-$f(z) = \frac{\cos z}{z} \cdot \frac{1}{\sin z}$.
+Из леммы $\abs{z} \le M$ при $\abs{z} = \pi\left(n + \frac12\right)$. Тогда берём радиусы $R_n = \pi\left(n + \frac12\right)$, и говорим что на таких окружностях функция $M_{R_n} \le \frac{M}{R_n} \to 0$.
 
-\[
-    G_k(z) = \frac{\res}{z-\pi k} = \frac{1}{\pi k}
-    \cdot \frac{1}{z-\pi k}, \res\limits_{z=\pi k} \frac{\cos z}{z}
-    \cdot \eval{\frac{1}{(\sin z)'}}_{z=\pi k} = \frac{1}{\pi k}
-\]
+Особые точки $z = 0$, $z = \pi k$. Точки вида $z = \pi k$ это полюсы первого порядка при $k \neq 0$. Точка $z = 0$ это полюс второго порядка. $G_k$ -главная часть ряда Лорана в $\pi k$. Тогда: 
+\begin{gather*}
+    \res\limits_{z=\pi k} \ctg z = \eval{\frac{\cos z}{\left( \sin z \right)'}}_{z=\pi k}
+\end{gather*}
+И тогда:
+\begin{gather*}
+    G_k(z) = \frac{\res}{z-\pi k} = \frac{1}{z-\pi k}
+\end{gather*}
+Теперь нули: функция чётная, значит слагаемые в разложение в точке $z$ по степеням могут быть только чётных степеней, то есть при нечётных степенях коэффициенты нулевые. Также мы знаем, что:
+\begin{gather*}
+    \frac{\ctg z}{z} = \frac{\cos z}{z \cdot \sin z} \sim \frac{1}{z^2}
+\end{gather*} 
+Поэтому: 
+\begin{gather*}
+    G_0(z) = \frac{1}{z^2} + \frac{res}{z}= \frac{1}{z^2}
+\end{gather*}
 
-Точка $z = 0$ это полюс второго порядка.
-$f$~--- это чётная функция.
+Остаётся сложить главные части для точек, которые попали в наш круг - это просто те $k$, которые не превосходят $n$, при том важно, что точки попадают парами, поэтому и считаем тоже парами:
+\begin{align*}
+    \frac{\ctg z}{z} &= G_0(z) + \sum\limits_{k=1}^{+\infty} \left( G_k(z) + G_{-k}(z)\right) \\ 
+    &= \frac{1}{z^2} + \sum\limits_{k=1}^{+\infty} \left( \frac{1}{z - \pi k} + \frac{1}{z + \pi k} \right) \\ 
+    &= \frac{1}{z^2} + \sum\limits_{k=1}^{+\infty} \frac{2z}{z^2-\pi^2k^2}
+\end{align*}
 
-\[
-    G_0(z) = \frac{c}{z^2} = \frac{1}{z^2}
-\]
-
-Посчитаем предел:
-
-\[
-    \lim_{z\to0} z^2f(z) = \lim_{z\to0} \frac{\cos z}{\sin z}\cdot z = 1
-\]
-
-Теперь:
-
-\[
-    \frac{\ctg z}{z}
-    = \frac{1}{z^2}+\lim_{n\to\infty}
-    \sum\limits_{\abs{\pi k} < \pi\left(n + \frac12\right)}
-    \frac{1}{\pi k} \cdot \frac{1}{z-\pi k}
-    = \frac{1}{z^2}
-    + \lim\limits_{n \to +\infty} \sum\limits_{k=1}^n
-    \left(\frac{1}{\pi k } \cdot \frac{1}{z - \pi k} + \frac{1}{-\pi k } \cdot \frac{1}{z + \pi k} \right)  =
-\]
-
-\[
-    \frac{1}{z^2}
-    + \lim\limits_{n \to +\infty} \sum\limits_{k=1}^n \frac{1}{\pi k} \cdot \frac{2 \pi k}{z ^ 2 - \pi ^ 2 k ^ 2}=
-    \frac{1}{z^2} + \sum\limits_{k=1}^{+\infty} \frac{2}{z^2-\pi^2k^2}
-\]
 \newpage
 
