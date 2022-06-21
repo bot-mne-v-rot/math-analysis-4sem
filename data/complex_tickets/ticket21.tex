@@ -15,9 +15,13 @@
 \begin{proof}
     $\gamma\colon [0, 1] \to \Om$, $\gamma(0) = a$,
     вектор касательной~--- это $\gamma^\prime(0) \ne 0$.
-    $(f \circ \gamma )(0) = f(a)$.
-    $(f\circ\gamma)^\prime(0) = f^\prime(\gamma(0))\gamma^\prime(0)
-        = f^\prime(a)\gamma^\prime(0)$.
+    \begin{gather*}
+        (f \circ \gamma )(0) = f(a)
+    \end{gather*}
+    И тогда: 
+    \begin{gather*}
+        (f\circ\gamma)^\prime(0) = f^\prime(\gamma(0))\gamma^\prime(0) = f^\prime(a)\gamma^\prime(0)
+    \end{gather*}
     Углы не меняеются, потому что умножение на $f^\prime(a)$
     поворачивает обе касательных на один и тот же угол.
 \end{proof}
@@ -28,22 +32,32 @@
 \end{theorem}
 
 \begin{proof}
-    Надо доказать, что $f(\Om)$~--- открыто.
+    Линейная связность есть. Надо доказать, что $f(\Om)$~--- открыто.
     Возьмём $b \in f(\Om) \So b = f(a)$.
-    Заметим, что $\abs{f(z) - b} \ne 0$ в проколотой окрестности
-    точки $a$. Действительно, иначе можно было найти
+    Заметим, что $\abs{f(z) - b} \ne 0$ в некоторой проколотой окрестности
+    точки $a$. 
+    
+    Действительно, иначе можно было найти
     последовательность сходящуюся к точке $a$
     где $f(z) = b$, по теореме единственности $f(z) = b$
     везде, противоречит условию $f(z) \not\equiv \mathrm{const}$.
 
     Выберем $\ve > 0$, такой что $\abs{f(z) - b} \ne 0$
-    при $\abs{z-a}=\ve$. Пусть $r \coloneqq \min\limits_{\abs{z-a}=\ve}
-        \abs{f(z) - b} > 0$. Пусть $w \in B_{r/2} (b)$.
+    при $\abs{z-a}=\ve$. Пусть: 
+    \begin{gather*}
+        r \coloneqq \min\limits_{\abs{z-a}=\ve} \abs{f(z) - b} > 0
+    \end{gather*}
+    Хотим доказать, что $B_{r/2} (b) \subset f(\Omega)$.     
+    Возьмем $w \in B_{r/2} (b)$.
     Проверим, что $w \in f(\Om)$, то есть что
-    $f(z) - w$ имеет корень. Представим
-    $f(z) - w = f(z) - b + b - w$.
-    Выполняется условие теоремы Руше ($\abs{f(z) - b} \ge
-        r > \frac{r}{2} \ge \abs{b-w}$).
+    $f(z) - w$ имеет корень. Представим $f(z)$ как: 
+    \begin{gather*}
+        f(z) - w = f(z) - b + b - w
+    \end{gather*}
+    Выполняется условие теоремы Руше: 
+    \begin{gather*}
+        \abs{f(z) - b} \ge r > \frac{r}{2} \ge \abs{b-w}
+    \end{gather*}
     Значит один корень, так как у $f(z) - b$ один корень.
 \end{proof}
 
