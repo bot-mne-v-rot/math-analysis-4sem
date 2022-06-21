@@ -1,7 +1,8 @@
-\section{!!!!!!! Полтора способа для вычисления интеграла $\int\limits_{-\infty}^{+\infty} \frac{dx}{1+x^{2n}}$}
+\section{Полтора способа для вычисления интеграла $\int\limits_{-\infty}^{+\infty} \frac{dx}{1+x^{2n}}$}
+
 
 \begin{example}
-    $\int\limits_{-\infty}^{+\infty} \frac{dx}{1+x^{2n}}$.
+    $I = \int\limits_{-\infty}^{+\infty} \frac{dx}{1+x^{2n}}$.
 
     Вводим контур для некоторого $R > 0$.
  
@@ -23,9 +24,6 @@
             (3, 0) node[anchor=north] {$R$};
         \end{tikzpicture}        
     \end{center}
-
-    Особые точки: $z = e^{i(2k-1)\pi / (2n)}$ для $k = 1, \ldots, n$.
-
     Интеграл по кривой будет равен:
     \begin{gather*}
         \int\limits_{\Gamma_R} \frac{dz}{1+z^{2n}} = 2\pi i \sum \res
@@ -37,9 +35,68 @@
     \begin{gather*}
         \int\limits_{C_R} \le \pi R \cdot \frac{1}{R^{2n}-1} \to 0
     \end{gather*}
-    Мне так лень писать это всё... Ну вы же были на практике, да?
-    Можете посмотреть вторую половину девятой лекции если хотите.
-    Тут ещё есть упрощённый способ посчитать интеграл если что.
+    Посчитаем особые точки: $z^{2n} = -1 \longrightarrow a_k = e^{i(2k-1)\pi / (2n)}$ для $k = 1, \ldots, n$.
+
+    Посчитаем вычеты: $res_{z = a_k} f = \frac{1}{(z^{2n} + 1)'} \Big|_{z = a_k} = \frac{a_k}{2n a_k^{2n}} = -\frac{a_k}{2n}$
+    
+    Тогда получим, что наш интеграл $I = \pi i \sum \limits_{k = 1}^{n} -\frac{a_k}{n}$
+    А дальше давайте соптимизируем это дело, чтобы не суммировать эту страшную геометрическую прогрессию.
+\end{example}
+
+\begin{example}
+    Улучшенный спооб (хотим для $f(x)$ получать сразу $Re$):\\
+    Сделаем замену: $$z = e^{i \phi t}$$
+    \begin{gather*}
+         \int\limits_{0}^{Re^{i \phi}} \frac{dz}{1+z^{2n}} = 
+         e^{\frac{i\pi}{n}} \int\limits_{0}^{R_1} \to e^{\frac{i\pi}{n}}\frac{I}{2}
+    \end{gather*}
+    Получится такой контур (для угла $\phi = \frac{\pi}{n})$:
+    
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[thick,gray,->] (-4, 0) -- (4, 0) node[anchor=west] {Re};
+            \draw[thick,gray,->] (0, -1) -- (0, 4) node[anchor=west] {Im};
+            \draw[thick, decoration={
+                        markings,
+                        mark=at position 0.25 with {\arrow{>}},
+                        mark=at position 0.75 with {\arrow{>}},
+                        mark=at position 0.5 with {\node[inner sep=0] {$C_R$};}
+                    }, postaction={decorate}] (3, 0) arc (0:45:3);
+            \draw[thick, decoration={
+                        markings,
+                        mark=at position 0.25 with {\arrow{>}},
+                        mark=at position 0.75 with {\arrow{>}}
+                    }, postaction={decorate}] (0, 0) node[anchor=north] {$0$} --
+            (3, 0) node[anchor=north] {$R$};
+             \draw[thick, decoration={
+                        markings,
+                        mark=at position 0.25 with {\arrow{>}},
+                        mark=at position 0.75 with {\arrow{>}}
+                    }, postaction={decorate}] (2.2, 2) node[anchor=south] {$\Gamma_R$} --
+            (0, 0) node[anchor=north] {};
+        \end{tikzpicture}        
+    \end{center}
+    
+    Особая точка внутри контура в таком случае будет всего одна: $a_1 = e^{\frac{\pi i}{2n}}$
+    Тогда получим такое равенство c двух сторон на нужный нам интеграл:
+     \begin{gather*}
+        \int\limits_{0}^R + \int\limits_{C_R} + \int\limits_{Re^\frac{i \pi}{n}}^{0} =
+        \int\limits_{\Gamma_R} \frac{dz}{1+z^{2n}} = 2\pi i \res_{z = a_1} = 2 \pi i \frac{-a_1}{2n} =
+        \frac{-\pi i}{n}e^{\frac{\pi i}{2n}}
+    \end{gather*}
+    
+    Поймём, к чему стремятся интегралы, что были слева от равенства:
+    \begin{gather*}
+        \int\limits_{0}^R  \to \frac{I}{2}\\
+        \int\limits_{Re^\frac{i \pi}{n}}^{0} \to 0\\
+        \int\limits_{\Gamma_R} \frac{dz}{1+z^{2n}} \to -e^{\frac{\pi i}{n}}\frac{I}{2}
+    \end{gather*}
+    Получаем равенство:
+    \begin{gather*}
+        \frac{I}{2}(1 - e^{\frac{\pi i}{n}}) = 
+        -\frac{\pi i}{n} e^{\frac{\pi i}{2n}}
+    \end{gather*}
+    Отсюда можно получить, что $I = \frac{\pi}{n \sin(\frac{\pi}{n})}$
 \end{example}
 
 \newpage
