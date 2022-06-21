@@ -39,14 +39,14 @@
 \end{proof}
 
 \begin{consequence}
-    Если $f\in H(\Om)$, то
+    Если $f\in H(\Om)$ и $C$ -- простой замкнутый контур, не проходящий через нули $f$, то:
 
     \[N_f = \frac{1}{2\pi i}\int\limits_C
         \frac{f'(z)}{f(z)}dz\]
 \end{consequence}
 
-\begin{consequence}(принцип аргумента)
-
+\begin{consequence}(Принцип аргумента)
+    Условия такие же. 
     \[
         N_f = \frac{1}{2\pi}\Delta_C\arg f
     \]
@@ -55,6 +55,14 @@
     функции при проходе по контуру.
 \end{consequence}
 
+\begin{proof}
+    $F(z) \coloneqq \Ln f(z)$ -- первообразная вдоль пути $\frac{f'(z)}{f(z)}$. 
+    Мы знаем, что: 
+    \begin{align*}
+        N_f = \frac{1}{2\pi i}\int\limits_C
+        \frac{f'(z)}{f(z)}dz = \frac{1}{2\pi i} \Ln f(z) \Bigg|_{\text{концы}} = \frac{1}{2\pi i} \left(\ln{\abs{f(z)}} + i \Arg f(z) \right) \Bigg|_{\text{концы}} = \frac{1}{2\pi}\Delta_C\arg f 
+    \end{align*}
+\end{proof}
 
 \newpage
 
