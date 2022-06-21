@@ -10,25 +10,27 @@
 
     Полюс первого порядка в $z = -1$.
 
-    \begin{tikzpicture}
-        \draw[thick,gray,->] (-4, 0) -- (4, 0) node[anchor=west] {Re};
-        \draw[thick,gray,->] (0, -4) -- (0, 4) node[anchor=west] {Im};
-        \draw[thick, decoration={
-                    markings,
-                    mark=at position 0.05 with {\arrow{>}},
-                    %mark=at position 0.07 with {\node [anchor=north] {$\gamma_2$};},
-                    mark=at position 0.15 with {\node [anchor=south] {$C_\ve$};},
-                    mark=at position 0.25 with {\arrow{>}},
-                    %mark=at position 0.23 with {\node [anchor=south] {$\gamma_1$};},
-                    mark=at position 0.4 with {\arrow{>}},
-                    mark=at position 0.5 with {\node [above left] {$C_R$};},
-                    mark=at position 0.6 with {\arrow{>}},
-                    mark=at position 0.75 with {\arrow{>}},
-                    mark=at position 0.9 with {\arrow{>}}
-                }, postaction={decorate}] (3, -0.25) -- (0.25, -0.25)
-        arc (315:45:0.3535) -- (3, 0.25) arc (5:355:3);
-        \draw [fill=black] (-1, 0) circle (0.1) node[below] {$-1$};
-    \end{tikzpicture}
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[thick,gray,->] (-4, 0) -- (4, 0) node[anchor=west] {Re};
+            \draw[thick,gray,->] (0, -4) -- (0, 4) node[anchor=west] {Im};
+            \draw[thick, decoration={
+                        markings,
+                        mark=at position 0.05 with {\arrow{>}},
+                        %mark=at position 0.07 with {\node [anchor=north] {$\gamma_2$};},
+                        mark=at position 0.15 with {\node [anchor=south] {$C_\ve$};},
+                        mark=at position 0.25 with {\arrow{>}},
+                        %mark=at position 0.23 with {\node [anchor=south] {$\gamma_1$};},
+                        mark=at position 0.4 with {\arrow{>}},
+                        mark=at position 0.5 with {\node [above left] {$C_R$};},
+                        mark=at position 0.6 with {\arrow{>}},
+                        mark=at position 0.75 with {\arrow{>}},
+                        mark=at position 0.9 with {\arrow{>}}
+                    }, postaction={decorate}] (3, -0.25) -- (0.25, -0.25)
+            arc (315:45:0.3535) -- (3, 0.25) arc (5:355:3);
+            \draw [fill=black] (-1, 0) circle (0.1) node[below] {$-1$};
+        \end{tikzpicture}
+    \end{center}
 
     \[
         \int\limits_{\Gamma_{R,\ve}} f(z)dz

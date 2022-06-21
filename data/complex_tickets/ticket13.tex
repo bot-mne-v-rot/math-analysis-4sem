@@ -73,24 +73,26 @@
 
     Интегрируем по такому контуру:
 
-    \begin{tikzpicture}
-        \draw[thick,gray,->] (-4, 0) -- (4, 0) node[anchor=west] {Re};
-        \draw[thick,gray,->] (0, -1) -- (0, 4) node[anchor=west] {Im};
-        \draw[thick, decoration={
-                    markings,
-                    mark=at position 0.25 with {\arrow{>}},
-                    mark=at position 0.75 with {\arrow{>}},
-                    mark=at position 0.15 with {\node[inner sep=0] {$C_R$};}
-                }, postaction={decorate}] (3, 0) arc (0:180:3);
-        \draw[thick, decoration={
-                    markings,
-                    mark=at position 0.25 with {\arrow{>}},
-                    mark=at position 0.75 with {\arrow{>}}
-                }, postaction={decorate}] (-3, 0) node[anchor=north] {$-R$} --
-        (-0.5, 0) node[anchor=north] {$-\ve$} arc (180:0:0.5)
-        node[anchor=north] {$\ve$} --
-        (3, 0) node[anchor=north] {$R$};
-    \end{tikzpicture}
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[thick,gray,->] (-4, 0) -- (4, 0) node[anchor=west] {Re};
+            \draw[thick,gray,->] (0, -1) -- (0, 4) node[anchor=west] {Im};
+            \draw[thick, decoration={
+                        markings,
+                        mark=at position 0.25 with {\arrow{>}},
+                        mark=at position 0.75 with {\arrow{>}},
+                        mark=at position 0.15 with {\node[inner sep=0] {$C_R$};}
+                    }, postaction={decorate}] (3, 0) arc (0:180:3);
+            \draw[thick, decoration={
+                        markings,
+                        mark=at position 0.25 with {\arrow{>}},
+                        mark=at position 0.75 with {\arrow{>}}
+                    }, postaction={decorate}] (-3, 0) node[anchor=north] {$-R$} --
+            (-0.5, 0) node[anchor=north] {$-\ve$} arc (180:0:0.5)
+            node[anchor=north] {$\ve$} --
+            (3, 0) node[anchor=north] {$R$};
+        \end{tikzpicture}
+    \end{center}
 
     Внутрь контура особые точки не попали.
 

@@ -12,26 +12,63 @@
         2\pi i \sum\limits_{k=1}^n \res\limits_{z = a_k} f
     \end{gather*}
 \end{theorem}
-
-\begin{proof}
+\begin{proof} \quad 
+    
     У каждой точки можно взять окрестность,
     которая всё ещё лежит в $\Int K$. Выкинем их:
 
-    $\widetilde{K} = K \setminus B_r(a_1) \cup \cdots \cup B_r(a_n)$.
-    Это компакт и в окрестности $\widetilde{K}$ $f$ голоморфна.
-    Тогда $\int\limits_{\partial \widetilde K} fdz = 0$.
+    $\widetilde{K} = K \setminus B_r(a_1) \cup \cdots \cup B_r(a_n)$. 
+    
+    \begin{center}
+        \begin{tikzpicture}[>=stealth,
+            mycirc/.style={circle,fill=blue!20, minimum size=0.0001}
+        ]
+            % irregular shape
+            \draw  plot[smooth, tension=.9, very thick] coordinates {(-3.5,2.5) (-3,3.2) (-2.4, 3.3) (-1,3.7) (0,3.4) (2,3.9) (2.5,3.5) (3,2.5) (2.5,0.2) (0,0.7) (-3,0.2) (-3.5,2.5)}[postaction={decorate,
+                 decoration={markings,
+                 mark=between positions -0.35 and 0.3 step 0.025 with {\arrow{<};}}}];
+            
+                 
+            % poles
+            \path[draw, postaction={decorate,
+                 decoration={markings,
+                 mark=between positions 0.2 and 1 step 0.33 with {\arrow{<};}}}] 
+                 (-1.5,1.3)  arc (0:360:0.6) --cycle;
+            \path[draw, postaction={decorate,
+                 decoration={markings,
+                 mark=between positions 0.2 and 1 step 0.33 with {\arrow{<};}}}] 
+                 (0,2.5)  arc (0:360:0.6) --cycle;
+            \path[draw, postaction={decorate,
+                 decoration={markings,
+                 mark=between positions 0.2 and 1 step 0.33 with {\arrow{<};}}}] 
+                 (1.9,1.7)  arc (0:360:0.6) --cycle;
+            \draw [circle, inner sep=0pt, minimum size=1.5pt] (-2.1,1.3) node [fill, label=right:$a_1$] {};
+            \draw [circle, inner sep=0pt, minimum size=1.5pt] (-0.6,2.5) node [fill, label=right:$a_2$] {};
+            \draw [circle, inner sep=0pt, minimum size=1.5pt] (1.3,1.7) node [fill, label=right:$a_3$] {};
+        \end{tikzpicture}
+    \end{center}
 
-    Но $\int\limits_{\partial \widetilde K} = \int\limits_{\partial K}
-        - \int\limits_{|z-a_1|=r} - \cdots - \int\limits_{|z-a_n|=r}$,
-    а значения этих интегралов известны~--- $2\pi i \cdot \res$.
+    Это компакт и в окрестности $\widetilde{K}$ $f$ голоморфна. Тогда: 
+    \begin{gather*}
+        \widetilde{K} \subset \Omega \Longrightarrow \int\limits_{\partial \widetilde K} f(z) dz = 0 = \oast
+    \end{gather*}
+
+   \begin{gather*}
+        \int\limits_{\partial Br(a_k)} f dz = 2 \pi i \cdot \res\limits_{z = a_k} f(z)
+   \end{gather*}
+   И тогда: 
+   \begin{gather*}
+    \oast = \int\limits_{\partial K} fdz - \sum\limits_{k=1}^n \int\limits_{\partial Br(a_k)} f dz
+   \end{gather*}
+   И все получилось. 
 \end{proof}
 
 \begin{consequence}
     Пусть $f$ голоморфна в $\C$ за исключением точек
-    $a_1, \ldots, a_n$.
-
-    Тогда
-    $\sum\limits_{k=1}^{n} \res\limits_{z=a_k} f + \res\limits_{z=\infty} f = 0$.
+    $a_1, \ldots, a_n$. Тогда:
+    \begin{gather*}
+        \sum\limits_{k=1}^{n} \res\limits_{z=a_k} f + \res\limits_{z=\infty} f = 0
+    \end{gather*} 
 \end{consequence}
 
 \begin{proof}
