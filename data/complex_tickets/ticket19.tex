@@ -1,4 +1,60 @@
 \section{Теорема о числе нулей и полюсов.}
 
+\begin{theorem}
+    $f$~--- мероморфная в $\Om$ и $C$~---
+    это простой контур, не проходящий через нули и
+    полюсы $f$.
+
+    Тогда:
+    \begin{gather*}
+        \frac{1}{2\pi i}\int\limits_C \frac{f'(z)}{f(z)}dz = N_f - P_f
+    \end{gather*}
+    где $N_f$ ($P_f$)~---
+    количество нулей (полюсов) функции внутри контура
+    с учётом кратности (порядка).
+\end{theorem}
+
+\begin{proof}
+    Возьмём $a$~--- ноль или полюс $f$.
+    Тогда $f(z) = (z-a)^m g(z)$,
+    где $g(a) \ne 0$, $g$ голоморфная в окрестности.
+    Если $a$~--- полюс, то $m < 0$, если ноль, то $m > 0$.
+
+    \[
+        \frac{f'(z)}{f(z)}
+        = \frac{m(z-a)^{m-1} g(z) + (z-a)^mg'(z)}{(z-a)^mg(z)}
+        = \frac{m}{z-a} + \frac{g'(z)}{g(z)}
+    \]
+
+    Знаем, что $g'/g$~--- голоморфная в точке $a$.
+    Получается, что $f'/f$ имеет полюс первого порядка
+    в точке $a$ и вычет там равен $m$.
+
+    По теореме о вычетах,
+
+    \[
+        \frac{1}{2\pi i}\int\limits_C \frac{f'(z)}{f(z)}dz
+        = \sum\res = \sum m = N_f - P_f
+    \]
+\end{proof}
+
+\begin{consequence}
+    Если $f\in H(\Om)$, то
+
+    \[N_f = \frac{1}{2\pi i}\int\limits_C
+        \frac{f'(z)}{f(z)}dz\]
+\end{consequence}
+
+\begin{consequence}(принцип аргумента)
+
+    \[
+        N_f = \frac{1}{2\pi}\Delta_C\arg f
+    \]
+
+    $\Delta_C \arg f$~--- это изменение аргумента
+    функции при проходе по контуру.
+\end{consequence}
+
+
 \newpage
 

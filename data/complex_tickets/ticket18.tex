@@ -1,4 +1,89 @@
 \section{Вычисление сумм рядов (общая схема). Пример с рядом из обратных квадратов.}
 
+\begin{example}
+    (Суммирование рядов с помощью вычетов)
+
+    Хотим посчитать ряд $\sum\limits_{n\in\Z} f(n)$.
+
+    Посчитаем вычеты:
+
+    \[
+        \res\limits_{z=n} \frac{f(z)}{\sin (\pi z)} =
+        \eval{\frac{f(z)}{(\sin(\pi z))'}}_{z=n} =
+        \frac{f(n)}{\pi \cos(\pi n)} =
+        \frac{(-1)^nf(n)}{\pi}
+    \]
+
+    Нужно домножить $f(n)$ на что-то что в целых
+    точках~--- это $(-1)^n$.
+
+    \[
+        \res\limits_{z=n} \frac{f(z)\cos(\pi z)}{\sin (\pi z)} =
+        \frac{f(n)}{\pi}
+    \]
+
+    Например, если мы хотим посчитать $\sum\limits_{n=1}^{+\infty}
+        \frac{1}{n^2}$, то возьмём $f(z) = \frac{\ctg(\pi z)}{z^2}$.
+
+    Считаем интеграл по окружности радиуса $n + \frac12$.
+
+    \[
+        \int\limits_{\abs{z}=n+\frac{1}{2}} f(z)dz =
+        2\pi i\sum\res
+        = 2\pi i\res\limits_{n=0} + 2\pi i
+        \left(\frac{2}{\pi} \sum\limits_{k=1}^n \frac{1}{k^2}\right)
+    \]
+
+    Перейдём к пределу $n \to +\infty$.
+    Интегралы стремятся к нулю:
+
+    \[
+        \abs{\int f(z)dz} \le 2\pi \left(n + \frac12\right)
+        \frac{\max \abs{\ctg}}{\left(n+\frac12\right)^2}
+        \le \frac{\mathrm{const}}{n} \to 0
+    \]
+
+    Переходим к пределу, получаем
+
+    \[
+        0 = 2\pi i \res\limits_{z=0}
+        + 4i\sum\limits_{k=1}^{+\infty} \frac{1}{k^2}
+    \]
+
+    Осталось посчитать вычет в нуле.
+    Это полюс третьего порядка (квадрат в знаменателе и котангенс).
+
+    Разложим $\ctg(\pi z)$ в ряд:
+
+    \[
+        \ctg \pi z = \frac{\cos \pi z}{\sin \pi z}
+        = \frac{1-\frac{\pi^2z^2}{2} + \cdots}{\pi z
+            - \frac{\pi^2z^3}{6} + \cdots} =
+        \frac{1}{\pi z}\left(1 - \frac{\pi^2z^2}{2} + \cdots\right)
+        \left(1-\frac{\pi^2z^2}{6} + \cdots\right)^{-1}
+    \]
+
+    Вычет получается:
+
+    \[
+        \res\limits_{z=0} f = \coef_{\text{при } z^1} \ctg(\pi z)
+        = -\frac{\pi}{3}
+    \]
+
+    Итого сумма ряда:
+
+    \[
+        \sum\limits_{k=1}^{+\infty} \frac{1}{k^2} =
+        -\frac{2\pi i}{4i} \cdot \frac{\pi}{3}
+        = \frac{\pi^2}{6}
+    \]
+\end{example}
+
+\begin{observation}
+    Можно провести похожие рассуждения для
+    ограниченности $\frac{1}{\sin \pi z}$ и научится
+    считать ряды вида $\sum\limits_{n\in\Z} (-1)^nf(n)$.
+\end{observation}
+
 \newpage
 
