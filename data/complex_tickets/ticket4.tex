@@ -14,28 +14,42 @@
     \end{enumerate}
 \end{theorem}
 
-\begin{proof}
-    $2 \So 3$. Разложим $g$ в ряд, максимум $m$ ненулевых
-    коэффициентов у $f$.
+\begin{proof} \quad 
 
-    $3 \So 1$.
-    $f(z) = \sum\limits_{n=-m}^{+\infty} a_n(z-z_0)^n$,
-    $a_{-m} \ne 0$. Тогда
-    $\lim\limits_{z \to z_0} f(z) = \lim\limits_{z \to z_0} \sum\limits_{n=-m}^{0} a_n(z-z_0)^n
-        = \infty$.
-
-    $1 \So 2$. $\lim\limits_{z \to z_0} f(z) = \infty$.
-    Возьмём такое $r$, что при $|z-z_0| < r$, $|f(z)| > 1$.
-    Функция $h(z) = 1/f(z)$ голоморфна при $0 < |z-z_0| < r$.
-    $\lim\limits_{z\to z_0} h(z) = 0$. Значит $z_0$~--- устранимая
-    особая точка для $h$. Положим $h(z_0) = 0$, тогда
-    $h \in H(|z-z_0| < r)$ и $z_0$~--- ноль функции $h$.
-
-    Тогда существует $m \in \N$, т.ч. $h(z) = g(z)(z-z_0)^m$,
-    где $g(z_0) \ne 0$, значит $g(z) \ne 0$ во всех точках.
-    $1/f(z) = h(z) = (z-z_0)^m g(z)$,
-    тогда $f(z) = \frac{1/g(z)}{(z-z_0)^m}$, получили разложение
-    в кольце $0 < |z-z_0| < r$.
+    \begin{itemize}
+        \item[$2 \So 3$] Разложим $g$ в ряд, максимум $m$ ненулевых
+        коэффициентов у $f$.
+        \item[$3 \So 1$] 
+            \begin{gather*}
+                f(z) = \sum\limits_{n=-m}^{+\infty} a_n(z-z_0)^n, \quad a_{-m} \ne 0
+            \end{gather*}
+            Тогда: 
+            \begin{gather*}
+                \lim\limits_{z \to z_0} f(z) = \lim\limits_{z \to z_0} \sum\limits_{n=-m}^{0} a_n(z-z_0)^n = \infty
+            \end{gather*}
+        \item[$1 \So 2$] $\lim\limits_{z \to z_0} f(z) = \infty$.
+        Возьмём такое $r$, что при $|z-z_0| < r$, $|f(z)| > 1$.
+        Функция $h(z) = 1/f(z)$ голоморфна при $0 < |z-z_0| < r$.
+        $\lim\limits_{z\to z_0} h(z) = 0$. Значит $z_0$~--- устранимая
+        особая точка для $h$. Положим $h(z_0) = 0$, тогда:
+        \begin{gather*}
+            h \in H(|z-z_0| < r)
+        \end{gather*} 
+        и $z_0$~--- ноль функции $h$.
+        Тогда существует $m \in \N$, т.ч:
+        \begin{gather*}
+            h(z) = g(z)(z-z_0)^m
+        \end{gather*}
+        где $g(z_0) \ne 0$, значит $g(z) \ne 0$ во всех точках.
+        \begin{gather*}
+            1/f(z) = h(z) = (z-z_0)^m g(z)
+        \end{gather*}
+        Тогда: 
+        \begin{gather*}
+            f(z) = \frac{1/g(z)}{(z-z_0)^m}   
+        \end{gather*}
+        Получили разложение в кольце $0 < |z-z_0| < r$.
+    \end{itemize}
 \end{proof}
 
 \begin{definition}

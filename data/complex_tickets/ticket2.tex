@@ -1,4 +1,117 @@
-\section{Ряд Лорана. Существование. Разложение голоморфной в кольце функции в сумму голоморфных функций.}\newpage
+\section{Ряд Лорана. Существование. Разложение голоморфной в кольце функции в сумму голоморфных функций.}
+
+\begin{definition}
+    Ряд Лорана это такая штука:
+    $\sum\limits_{n=-\infty}^{+\infty} c_n(z-z_0)^n$.
+\end{definition}
+
+\begin{definition}
+    $\sum\limits_{n=-\infty}^{-1} c_n(z-z_0)^n$~--- главная часть.
+\end{definition}
+
+\begin{definition}
+    $\sum\limits_{n=0}^{+\infty} c_n(z-z_0)^n$~--- правильная часть.
+\end{definition}
+
+
+\begin{theorem}[Лоран]
+
+    $f$ голоморфна в кольце $r < |z| < R$,
+    тогда $f$ в этом кольце расскладывается в ряд Лорана.
+\end{theorem}
+
+\begin{proof}
+    Берём $r_2, R_2$, так что $r < r_1 < r_2 < R_2 < R_1 < R$.
+    По интегральной формуле Коши:
+
+    \begin{gather*}
+        \int\limits_{d K} \frac{f(\zeta)} {\zeta - z} d\zeta = 2 \pi i f(z)
+    \end{gather*}
+
+    С другой стороны: 
+    \begin{gather*}
+        \int\limits_{d K} \frac{f(\zeta)} {\zeta - z} d\zeta = \int\limits_{R_1\T} \frac{f(\zeta)}
+        {\zeta - z} d\zeta - \int\limits_{r_1\T} \frac{f(\zeta)}{\zeta - z}d\zeta
+    \end{gather*}
+
+    Тогда: 
+    \begin{gather*}
+        f(z) = \frac{1}{2\pi i} \int\limits_{R_1\T} \frac{f(\zeta)}
+        {\zeta - z} d\zeta - \frac{1}{2\pi i}
+        \int\limits_{r_1\T} \frac{f(\zeta)}{\zeta - z}d\zeta
+    \end{gather*}
+
+    При $|\zeta| = R_1$ и $|z| < R_2$:
+
+    \[
+        \frac{1}{\zeta - z} =
+        \frac{1}{\zeta}\cdot \frac{1}{1-\frac{z}{\zeta}}
+        = \sum\limits_{n=0}^{+\infty} \frac{z^n}{\zeta^{n+1}}
+    \]
+
+    Такой ряд равномерно сходится, значит можно сделать так:
+
+    \[
+        \int\limits_{R_1\T} \frac{f(\zeta)}{\zeta - z}d\zeta =
+        \int\limits_{R_1\T} f(\zeta) \sum\limits_{n=0}^{+\infty}
+        \frac{z^n}{\zeta^{n+1}}d\zeta =
+        \sum\limits_{n=0}^{+\infty} z^n
+        \int\limits_{R_1\T} f(\zeta) \frac{d\zeta}{\zeta^{n+1}}
+        = \sum\limits_{n=0}^{+\infty} a_nz^n
+    \]
+
+    При $|\zeta| = r_1$ и $|z| > r_2$:
+
+    \[
+        \frac{1}{\zeta - z} =
+        -\frac{1}{\zeta}\cdot \frac{1}{1-\frac{\zeta}{z}}
+        = -\sum\limits_{n=0}^{+\infty} \frac{\zeta^n}{z^{n+1}}
+    \]
+
+    Подставим второй интеграл:
+
+    \[
+        \int\limits_{r_1\T} \frac{f(\zeta)}{\zeta-z}d\zeta
+        = -\int\limits_{r_1\T} f(\zeta) \sum\limits_{n=0}^{+\infty}
+        \frac{\zeta^n}{z^{n+1}} d\zeta
+        = -\sum\limits_{n=0}^{+\infty} \frac{1}{z^{n+1}}
+        \int\limits_{r_1\T} f(\zeta)\zeta^n d\zeta
+        = \sum\limits_{n=-1}^{-\infty} a_nz^n
+    \]
+
+    Итого, мы доказали сущуествование разложения в кольце $r_2 < |z| < R_2$. Для любой точки $z$ мы можем выбрать такие $r_1, R_1$, а для них такие $r_2, R_2$, что там тоже будет сущестововать разложение, а коэффициенты будут равны по единственности разложения в ряд.  
+\end{proof}
+
+\begin{theorem}
+    $f$ голоморфна в кольце $r < |z| < R$,
+    тогда $\exists f_1 \in H(R\D)$,
+    $\exists f_2 \in H(\C \setminus r\overline{\D})$,
+    такие что $f = f_1 + f_2$.
+    Если $\lim\limits_{z\to \infty} f_2(z) = 0$,
+    то разложение единственно.
+\end{theorem}
+
+\begin{proof}
+    $f_1(z) \coloneqq \sum\limits_{n=0}^{+\infty} a_nz^n$,
+    $f_2(z) \coloneqq \sum\limits_{n=-1}^{-\infty} a_nz^n$.
+
+    Единственность:
+    пусть $f = f_1 + f_2 = g_1 + g_2$.
+
+    Возьмём функцию $g$:
+
+    \[
+        g = \begin{cases}
+            g_1 - f_1 & \text{ в } R\D                         \\
+            f_2 - g_2 & \text{ в } \C \setminus r\overline{\D} \\
+        \end{cases}
+    \]
+
+    $g \in H(\C)$ (аналитическое продолжение с $R\D$).
+    $\lim\limits_{z\to\infty} g(z) =
+        \lim f_2(z) - \lim g_2(z) = 0$, значит $g$
+    ограниченна, значит $g \equiv \mathrm{const} = 0$.
+\end{proof}
 
 \newpage
 

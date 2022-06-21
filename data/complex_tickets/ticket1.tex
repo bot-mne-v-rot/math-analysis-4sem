@@ -1,2 +1,63 @@
-\section{! Ряд Лорана. Кольцо сходимости. Единственность.}
+\section{Ряд Лорана. Кольцо сходимости. Единственность.}
+
+\begin{definition}
+    Ряд Лорана это такая штука:
+    $\sum\limits_{n=-\infty}^{+\infty} c_n(z-z_0)^n$.
+\end{definition}
+
+\begin{definition}
+    $\sum\limits_{n=-\infty}^{-1} c_n(z-z_0)^n$~--- главная часть.
+\end{definition}
+
+\begin{definition}
+    $\sum\limits_{n=0}^{+\infty} c_n(z-z_0)^n$~--- правильная часть.
+\end{definition}
+
+Считаем, что ряд сходится если сходится и главная и правильная часть.
+
+\begin{property}
+    Существуют $r$ и $R$, такие что ряд сходится
+    при $r < |z| < R$ и расходится вне этого кольца.
+\end{property}
+
+\begin{proof}
+    $R$~--- радиус сходимости правильной части,
+    $1/r$~--- радиус сходимости главной части если сделать
+    замену $1/z$.
+\end{proof}
+
+\begin{theorem}
+    Пусть $f$~--- голоморфная функция в кольце $r < |z| < R$
+    и расскладывается в ряд Лорана: $f = \sum\limits_n a_nz^n$.
+    Тогда:
+    $$a_n = \frac{1}{2\pi i} \int\limits_{\rho\T}\frac{f(\zeta)}{\zeta^{n+1}} d\zeta$$
+    при $r < \rho < R$.
+\end{theorem}
+
+\begin{proof} \quad 
+
+    $f(\zeta) = \sum\limits_n a_nz^n$, значит
+
+    \begin{align*} 
+        \int\limits_{\rho\T} \frac{f(\zeta)}{\zeta^{n+1}} d\zeta 
+        &= \int\limits_{\rho\T} \frac{\sum\limits_{k=-\infty}^{+\infty} a_k \zeta^k}{\zeta^{n+1}} d\zeta \\ 
+        &= \sum\limits_k a_k \int\limits_{\rho\T} \frac{\zeta^k}{\zeta^{n+1}} d\zeta
+    \end{align*}
+
+    Введем параметризацию: 
+
+    \begin{align*}
+        \zeta(\varphi) &= \rho e^{i\varphi} & d \zeta & = i  \rho e^{i\varphi} d \varphi
+    \end{align*}
+    \quad \; \text{Считаем интеграл:} 
+    
+    \begin{gather*}
+        \int\limits_{\rho\T} \zeta^m d\zeta = \int\limits_0^{2\pi}
+        \rho^m e^{i\varphi m}\rho e^{i\varphi} i d\varphi
+        = \rho^{m+1} i \int\limits_0^{2\pi } e^{i(m+1)\varphi} d\varphi
+    \end{gather*}
+
+    При $m \ne -1$ получается $0$, иначе получается $2\pi i$.
+\end{proof}
+
 \newpage

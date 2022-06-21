@@ -37,61 +37,92 @@
 \end{proof}
 
 \begin{property}
-    $\res\limits_{z=a} f = \frac{1}{(n-1)!} \lim_{z\to a}
-        \frac{d^{n-1}}{dz^{n-1}} \left((z-a)^n f(z)\right)$
+    \begin{gather*}
+        \res\limits_{z=a} f = \frac{1}{(n-1)!} \lim_{z\to a}
+        \frac{d^{n-1}}{dz^{n-1}} \left(\underbrace{(z-a)^n f(z)}_{g(z)}\right)
+    \end{gather*}
     где $a$~--- полюс порядка $n$.
 \end{property}
 
 \begin{proof}
-    Пусть $a = 0$.
+    Пусть $a = 0$. Мы знаем, что: 
+    \begin{align*}
+        f(z) = \sum\limits_{k=-n}^{+\infty} C_k z^k \Longrightarrow g(z) = \sum\limits_{k=0}^{+\infty} c_{k-n}z^k
+    \end{align*}
 
-    $f(z) = \sum\limits_{k=-n}^{+\infty}$,
-    а
-    $z^nf(z) = \sum\limits_{k=0}^{+\infty} c_{k-n}z^k$.
-    Ну и всё получается.
+    Теперь хотим посмотреть на $-1$-ый коэффициент в ряде тейлора у $g(z)$ и все получается. 
 \end{proof}
 
 \begin{property}
-    $a$~--- полюс первого порядка, тогда
-    $\res\limits_{z = a} f = \lim_{z\to a} (z-a)f(z)$.
+    $a$~--- полюс первого порядка, тогда:
+    \begin{gather*}
+        \res\limits_{z = a} f = \lim_{z\to a} (z-a)f(z)
+    \end{gather*}
 \end{property}
 
 \begin{property}
     Пусть $f = \frac{g}{h}$.
     Где $g$ и $h$ голоморфны в окрестности $a$, причём
     $g(a) \ne 0$, $h(a) = 0$, $h'(a) \ne 0$.
-
-    Тогда $\res\limits_{z = a} f = \frac{g(a)}{h'(a)}$.
+    Тогда:
+    \begin{gather*}
+        \res\limits_{z = a} f = \frac{g(a)}{h'(a)}
+    \end{gather*}
 \end{property}
 
 \begin{proof}
     У нас полюс первого порядка.
-    $\res f = \lim_{z\to a} (z-a) f(z)
-        = \lim_{z\to a} g(z) \cdot \frac{z-a}{h(z)}
-        = \frac{g(a)}{h'(a)}$.
+    \begin{align*}
+        \res f &= \lim_{z\to a} (z-a) f(z) \\ 
+        &= \lim_{z\to a} g(z) \cdot \frac{z-a}{h(z)} \\
+        &= \frac{g(a)}{h'(a)}
+    \end{align*}
 \end{proof}
 
 \begin{property}
     Если $\lim_{z\to\infty} f(z) = A \in \C$,
-    то $\res\limits_{z=\infty} f = \lim_{z\to\infty} z(A-f(z))$.
+    то:
+    \begin{gather*}
+        \res\limits_{z=\infty} f = \lim_{z\to\infty} z(A-f(z))
+    \end{gather*}
 \end{property}
 
 \begin{proof}
-    $f(z) = \sum\limits_{n=0}^{+\infty} c_{-n}z^{-n}$,
-    а $c_0 = A$. Тогда,
-    $c_{-1} = \lim_{z\to\infty} (f(z) - A)z$
+    Раз предел конечный, то $a$ -- устранимая особая точка. $f$ раскладывается следующим образом: 
+    \begin{gather*}
+        f(z) = \sum\limits_{n=-\infty}^{0} c_{n}z^n
+    \end{gather*}
+    Тогда: 
+    \begin{gather*}
+        \lim\limits_{z\to\infty} \stackbelow{f(z)}{c_0} = A
+    \end{gather*}
+    И тогда: 
+    \begin{align*}
+        z(A-f(z)) &= z\sum\limits_{n=-\infty}^{-1} -c_{n}z^{n} \\ 
+         &= \sum\limits_{n=-\infty}^{-1} -c_{n}z^{n+1} \\ 
+         &= \sum\limits_{n=-\infty}^{0} -c_{n-1}z^{n}
+    \end{align*}
 \end{proof}
 
 \begin{property}
-    $\res\limits_{z=\infty} f = - \res\limits_{z=0} \frac{1}{z^2} f(\frac{1}{z})$.
+    \begin{gather*}
+        \res\limits_{z=\infty} f = - \res\limits_{z=0} \frac{1}{z^2} f \left(\frac{1}{z}\right)
+    \end{gather*}
 \end{property}
 
 \begin{proof}
-    $f(z) = \sum c_nz^n \So f(1/z) = \sum c_nz^{-n}$.
+    \begin{gather*}
+        f(z) = \sum\limits_{n=-\infty}^{+\infty} c_nz^n \Longrightarrow f\left(\frac{1}{z}\right) = \sum\limits_{n=-\infty}^{+\infty} c_nz^{-n}
+    \end{gather*}
+    Поделим на $z^2$: 
+    \begin{gather*}
+        \frac{1}{z^2}f\left(\frac{1}{z}\right) = \sum\limits_{n=-\infty}^{+\infty} c_{-n}z^{n-2} = \sum\limits_{n=-\infty}^{+\infty} c_{-n-2}z^{n} 
+    \end{gather*}
 
-    $\frac{1}{z^2}f(1/z) = \sum c_nz^{-n-2}$.
-
-    $\res\limits_{z=0} \frac{1}{z^2} f(1/z) = c_{-1}$.
+    Тогда: 
+    \begin{gather*}
+        \res\limits_{z=0} \frac{1}{z^2} f\left(\frac{1}{z}\right) = c_{-1}
+    \end{gather*}
 \end{proof}
 
 \newpage
