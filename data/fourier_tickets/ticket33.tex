@@ -1,3 +1,71 @@
-\section{}
+\section{Свойства частичных сумм ряда Фурье. Неравенство Бесселя. Теорема Рисса–Фишера}
+
+\begin{theorem}{Свойства частичных сумм ряда Фурье}
+
+    Пусть $\set{e_n}$ --- ортогональная система в гильбертовом пространстве $H$, $x \in H$.
+    \begin{align*}
+        S_n &:= \sum\limits_{k=1}^n c_k(x) e_k & \L_n &:= \Lin(e_1, \ldots, e_n)
+    \end{align*}
+    Тогда
+    \begin{enumerate}
+        \item $S_n$ --- ортогональная проекция $x$ на $\L_n$, т.е. $x = S_n + z$, $z \perp \L_n$
+        \item $S_n$ --- наилучшее приближение к $x$ в $\L_n$, т.е. $\norm{S_n - x} = \min\limits_{y \in \L_n} \norm{y-x}$
+        \item $\norm{S_n} \leq \norm{x}$
+    \end{enumerate}
+\end{theorem}
+\begin{proof} \quad 
+
+    \begin{enumerate}
+        \item $z := x - S_n$, надо доказать, что $z \perp e_k, k = 1,\ldots, n$.
+              $$\dotprod{z}{e_k} = \dotprod{x}{e_k} - \dotprod{S_n}{e_k} = \dotprod{x}{e_k} - c_k(x)\dotprod{e_k}{e_k} = 0$$
+        \item $x-y = S_n - y + z$
+              $$\norm{x - y}^2 \underset{\perp}{=} \norm{S_n - y}^2 + \norm{z}^2 \geq \norm{z}^2 \text{ и равенство } \iff S_n = y$$
+        \item $x = S_n + z$ и $z \perp S_n \Rightarrow \norm{x}^2 = \norm{S_n}^2 + \norm{z}^2 \geq \norm{S_n}^2$
+    \end{enumerate}
+\end{proof}
+
+\begin{consequence}{Неравенство Бесселя} 
+    $$\sum\limits_{k=1}^\infty \abs{c_k(x)}^2 \norm{e_k}^2 \leq \norm{x}^2$$
+\end{consequence}
+\begin{proof}
+    \[
+        \norm{x}^2 \geq \norm{S_n}^2 = \norm{\sum\limits_{k=1}^n c_k(x) e_k}^2 \underset{\perp}{=} \sum\limits_{k=1}^n \norm{c_k(x) e_k}^2 = \sum\limits_{k=1}^n \abs{c_k(x)}^2 \norm{e_k}^2
+    \]
+    Верно $\forall n$, значит в пределе тоже.
+\end{proof}
+
+\begin{theorem}{Рисса-Фишера}
+
+    $\set{e_n}$ --- ортогональная система в гильбертовом пространстве $H$. Тогда:
+    \begin{enumerate}
+        \item ряд Фурье для вектора $x \in H$ сходится
+        \item $x = \sum\limits_{n=1}^\infty c_n(x)e_n + z$, где $z \perp e_n \quad \forall n \in \N$
+        \item $x = \sum\limits_{n=1}^\infty c_n(x)e_n \iff \norm{x}^2 = \sum\limits_{n=1}^\infty \abs{c_n(x)}^2 \norm{e_n}^2$
+    \end{enumerate}
+\end{theorem}
+\begin{proof} \quad 
+
+    \begin{enumerate}
+        \item Используем неравенство Бесселя: 
+        $$\sum\limits_{n=1}^\infty \norm{c_n(x)e_n}^2 = \sum\limits_{n=1}^\infty \abs{c_n(x)}^2 \norm{e_n}^2 \leq \norm{x}^2$$        
+        \item $z := x - \sum\limits_{n=1}^\infty c_n(x)e_n$
+
+        $$\dotprod{z}{e_n} = \dotprod{x}{e_n} - \sum\limits_{k=1}^\infty c_k(x) \dotprod{e_k}{e_n} = \dotprod{x}{e_n} - c_n(x) \dotprod{e_n}{e_n} = 0$$
+        \item $\Rightarrow$ --- было ($\sim$ начало параграфа).
+        
+        $\Leftarrow$: через пункт 2. 
+        $$\norm{x}^2 = \sum\limits_{n=1}^\infty \abs{c_n(x)}^2 \norm{e_n}^2 + \norm{z}^2 \Rightarrow z = 0$$
+    \end{enumerate}
+\end{proof}
+
+\begin{observation} \quad 
+
+    \begin{enumerate}
+        \item $\norm{x}^2 = \sum\limits_n \abs{c_n(x)}^2 \norm{e_n}^2$ --- тождество Парсеваля.
+        \item $\sum\limits_{n=1}^\infty c_n(x) e_n$ --- проекции $x$ на $\Cl \Lin \set{e_1, \ldots}$ (частичные суммы в $\Lin$, а предел в замыкании).
+        \item Если $\sum \abs{c_n}^2 \norm{e_n}^2 < +\infty$, то найдется $x \in H: c_n = c_n(x)$
+    \end{enumerate}
+\end{observation}
+
 \newpage
 

@@ -224,56 +224,7 @@
     \end{enumerate}
 \end{observation}
 
-\begin{definition}
-    Пусть $\set{e_n}$ --- ортогональная система
-    \begin{enumerate}
-        \item $\set{e_n}$ --- базис, если $\forall\ x \in H\quad x = \sum\limits_{n=1}^\infty c_n(x) e_n$
-        \item $\set{e_n}$ --- полная, если не существует такого $z \in H: z \neq 0$, что $z \perp e_n\ \forall\ n \in \N$
-        \item $\set{e_n}$ --- замкнутая, если $\forall\ x \in H$ выполняется тождество Парсеваля.
-    \end{enumerate}
-\end{definition}
-
-\begin{theorem}
-    $\set{e_n}$ --- ортогональная система.
-
-    Следующие условия равносильны:
-    \begin{enumerate}
-        \item $\set{e_n}$ --- базис
-        \item $\forall\ x, y \in H\ \dotprod{x}{y} = \sum\limits_{n=1}^\infty c_k(x)\conj{c_k(y)} \norm{e_k}^2$
-        \item $\set{e_n}$ --- замкнута
-        \item $\set{e_n}$ ---  полная
-        \item $\Cl \Lin \set{e_n} = H$
-    \end{enumerate}
-\end{theorem}
-\begin{proof} $ $
-    \begin{itemize}
-        \item $1 \Rightarrow 2$:
-
-              $\dotprod{x}{y} = \dotprod{\sum\limits_{n=1}^\infty c_n(x)e_n}{\sum\limits_{k=1}^\infty c_k(y) e_k}
-                  = \sum\limits_n \sum\limits_k c_n(x) \conj{c_k(y)} \dotprod{e_n}{e_k} = \sum\limits_n c_n(x) \conj{c_n(y)} \norm{e_n}^2$
-
-        \item $2 \Rightarrow 3$: $x = y$ в п.2, очевидно-тривиально.
-        \item $3 \Rightarrow 4$:
-
-              Возьмем $z \perp e_n$ и напишем для него тождество Парсеваля. $\norm{z}^2 = 0 \Rightarrow z = 0$.
-
-        \item $4 \Rightarrow 1$:
-
-              по т. Рисса-Фишера $x = \sum\limits_{n=1}^\infty c_n(x) e_n + z$, $z \perp e_n \ \forall\ n \in \N$.
-              По полноте $z = 0$.
-
-        \item $1 \Rightarrow 5$:
-
-              $x = \sum\limits_{n=1}^\infty c_n(x) e_n \Rightarrow S_n \in \Lin \set{e_1, \ldots}$, а тогда
-              $\lim_{n \to \infty} S_n \in \Cl \Lin \set{e_1, \ldots}$.
-
-        \item $5 \Rightarrow 4$:
-
-              Пусть $z \perp e_n \Rightarrow z \perp \Lin \set{e_1, \ldots}$.
-              При переходе к пределу $\perp$ сохранится $\Rightarrow z \perp \Cl \Lin \set{e_1, \ldots} = H$.
-              Но тогда и $z \perp z \Rightarrow z = 0$.
-    \end{itemize}
-\end{proof}
+ч
 
 \begin{example}{Функции Радемахера}
 

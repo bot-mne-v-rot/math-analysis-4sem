@@ -1,3 +1,70 @@
-\section{}
+\section{Плотность ступенчатых функций в $L^p (E, \mu)$}
+
+\begin{definition}
+    Ступенчатая функция~--- функция, которая принимает конечное число значений.
+\end{definition}
+
+\begin{lemma}
+    Пусть $1 \le p < +\infty$. Тогда $\varphi \in L^p(E, \mu)$~--- ступенчатая $\Longleftrightarrow$
+    $\mu E \left\{ \varphi \ne 0 \right\} < +\infty$.
+\end{lemma}
+\begin{proof}
+    $\varphi = \sum\limits_{k=1}^{n} a_k \mathbbm{1}_{A_k}$ и $A_k$ дизъюнктны.
+    Тогда норма $\varphi$:
+
+    \[
+        \norm{\varphi}^p = \int\limits_E \abs{\sum\limits_{k=1}^n a_k \mathbbm{1}_{A_k}}^p d\mu
+        = \int\limits_E \sum\limits_{k=1}^n \abs{a_k}^p \mathbbm{1}_{A_k} d\mu
+        = \sum\limits_{k=1}^n \abs{a_k}^p \mu A_k < +\infty
+    \]
+\end{proof}
+
+\begin{definition}
+    $(X, \rho)$~--- метрическое пространство.
+    $A \subset X$ называется всюду плотным, если $\Cl A = X$.
+\end{definition}
+
+\begin{example}
+    $\Q$ всюду плотно в $\R$.
+\end{example}
+
+\begin{theorem}
+    $1 \le p \le +\infty$.
+    Тогда множество ступенчатых функций из $L^p(E, \mu)$
+    всюду плотно в $L^p(E, \mu)$.
+\end{theorem}
+
+\begin{proof}
+    Случай $p = +\infty$.
+    Берём $f \in L^{+\infty}(E, \mu)$ и поменяем её на множестве нулевой
+    меры так, чтобы $\abs f \le \norm f_\infty$. Тогда $f$~--- ограниченная функция.
+    Следовательно существует $\varphi_n$~--- ступенчатые,
+    $\varphi_n \tto_E f$, то есть:
+    \begin{gather*}
+        \esssup \le \sup \abs{\varphi_n - f} \to 0
+    \end{gather*}
+
+    Случай $p < +\infty$.
+    Пусть $f \ge 0$. Тогда существует последовательность простых
+    $f_n$, которые возрастают и стремятся поточечно к $f$.
+
+    \[
+        \norm{f - f_n}^p_p = \int\limits_E \abs{f(t) - f_n(t)}^p d\mu(t)
+        \to \int\limits_E \abs{f(t) - f(t)}^p d\mu(t) = 0
+    \]
+
+    Почему можно делать переход к пределу?
+    $f^p$~--- суммируемая мажоранта.
+
+    Теперь пусть $f$~--- произвольная.
+    $f = f_+ - f_-$.
+    $\varphi_n$ и $\psi_n$~--- простые, такие что
+    $\norm{\varphi_n - f_+} \to 0$ и $\norm{\psi_n - f_-} \to 0$.
+    Тогда:
+    \begin{gather*}
+        \norm{\varphi_n - \psi_n - f}_p \le \norm{\varphi_n - f_+}_p + \norm{\psi_n - f_-}_p \to 0
+    \end{gather*}
+\end{proof}
+
 \newpage
 

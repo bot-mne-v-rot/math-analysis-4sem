@@ -1,3 +1,118 @@
-\section{}
+\section{Ортогональные и ортонормированные системы. Примеры. Коэффициенты Фурье}
+
+\begin{definition}
+    Векторы $x$ и $y$ ортогональны ($x \perp y$), если $\dotprod{x}{y} = 0$.
+\end{definition}
+\begin{definition}
+    $\sum\limits_{n=1}^\infty x_n$ --- ортогональный ряд, если
+    $\dotprod{x_k}{x_j} = 0\quad \forall k \neq j$.
+\end{definition}
+
+\begin{theorem}
+    $\sum x_n$ --- ортогональный ряд. Тогда:
+    \begin{gather*}
+        \text{ряд сходится} \iff \sum\limits_{n=1}^\infty \norm{x_n}^2 \text{ сходится}
+    \end{gather*}
+    И в этом случае: 
+    $$\norm{\sum x_n}^2 = \sum \norm{x_n}^2$$
+\end{theorem}
+\begin{proof}
+    Пусть: 
+    \begin{align*}
+        S_n &:= \sum\limits_{k=1}^n x_k & C_n &:= \sum\limits_{k=1}^n \norm{x_k}^2
+    \end{align*}
+
+    Тогда:
+    \[\norm{S_n - S_m}^2 = \dotprod{\sum\limits_{k=m+1}^n x_k}{\sum\limits_{k=m+1}^n x_k}
+        = \sum\limits_{k=m+1}^n \dotprod{x_k}{x_k} = \sum\limits_{k=m+1}^n \norm{x_k}^2 = |C_n - C_m|
+    \]
+
+    Сходится ряд из $x$-ов, значит $S_n$ имеет предел, значит она фундаментальна, а тогда $C_n$ тоже фундаментальна и имеет предел (есть полнота и в $H$ и в $\R$). В обратную сторону аналогично.
+
+    \[\norm{\sum\limits_{k=1}^\infty x_k}^2 = \dotprod{\sum\limits_{k=1}^\infty x_k}{\sum\limits_{j=1}^\infty x_j}
+        = \sum\limits_k \sum\limits_j \dotprod{x_k}{x_j} = \sum\limits_k \dotprod{x_k}{x_k} = \sum\limits_k \norm{x_k}^2
+    \]
+\end{proof}
+
+\begin{consequence}
+    $\sum x_n$ --- сходящийся ортогональный ряд, $\vp \in S_\N$ (перестановка).
+    Тогда $\sum x_{\vp(n)}$ тоже сходится и к той же самой сумме по теореме с первого курса, потому что ряд сходится абсолютно.
+\end{consequence}
+\begin{proof}
+    Исходный ряд сходится, значит сходится ряд из квадратов норм, в таком ряду можно переставлять члены, а тогда ряд с перестановкой тоже сходится.
+
+    \begin{align*}
+        \norm{\sum x_n - \sum x_{\vp(n)}}^2 & = \dotprod{\sum (x_n - x_{\vp(n)}}{\sum (x_k - x_{\vp(k)})}                                                                                 \\
+                                            & = \sum\limits_n \sum\limits_k \dotprod{x_n}{x_k} - \dotprod{x_{\vp(n)}}{x_k} - \dotprod{x_n}{x_{\vp(k)}} + \dotprod{x_{\vp(n)}}{x_{\vp(k)}} \\
+                                            & = \sum\limits_n \norm{x_n}^2 - \norm{x_{\vp(n)}}^2 - \norm{x_n}^2 + \norm{x_{\vp(n)}}^2                                                     \\
+                                            & = 0
+    \end{align*}
+    И тогда $\sum x_n = \sum x_{\vp(n)}$.
+\end{proof}
+
+\begin{definition}
+    $x_1, x_2, \ldots$ --- ортогональная система, если $x_i \perp x_j$ при $i \neq j$ и $x_i \neq 0 \quad \forall i$.
+\end{definition}
+\begin{definition}
+    $x_1, x_2, \ldots$ --- ортонормированная система, если $x_i \perp x_j$ при $i \neq j$ и $\norm{x_i} = 1\quad \forall i$.
+\end{definition}
+
+\begin{observation}
+    Ортогональная система линейно независима
+\end{observation}
+\begin{proof}
+    От противного. $\alpha_1 x_1 + \ldots + \alpha_n x_n = 0$. Тогда:
+    $$\dotprod{\alpha_1 x_1 + \ldots \alpha_n x_n}{x_k} = 0 \quad \forall k$$
+    Но: 
+    $$\dotprod{\cdot}{x_k} = \alpha_k \norm{x_k}^2 = 0 \Rightarrow \alpha_k = 0$$
+\end{proof}
+
+\begin{examples} Ортогональные системы.
+    \begin{enumerate}
+        \item $e_n = (0, \ldots, 0, 1, 0, 0, \ldots)$ (на $n$-й позиции). Это ортонормированная система в $\ell^2$.
+        \item $1, \cos t, \sin t, \cos 2t, \sin 2t, \ldots$ в $L^2[0, 2\pi]$ --- ортогональная система.
+        \item $e^{i n t}$ при $n \in \Z$ в $L^2[0, 2\pi]$ --- ортогональная система.
+
+              $\frac{e^{int}}{\sqrt{2\pi}}$ --- ортонормированная.
+        \item $1, \cos t, \cos 2t, \cos 3t, \ldots$ в $L^2[0, \pi]$ --- ортогональная система.
+
+              $\sin t, \sin 2t, \sin 3t, \ldots$ в $L^2[0, \pi]$ --- ортогональная система.
+    \end{enumerate}
+\end{examples}
+
+\begin{theorem}
+    Пусть $\set{e_n}$ --- ортогональная система в гильбертовом пространстве $H$.
+    \begin{gather*}
+        x = \sum\limits_{n=1}^\infty c_n e_n \text{ -- сходящийся ряд}
+    \end{gather*}
+    Тогда: 
+    $$c_k = \dfrac{\dotprod{x}{e_k}}{\norm{e_k}^2}$$
+\end{theorem}
+\begin{proof}
+    \[
+        \dotprod{x}{e_k} = \dotprod{\sum c_n e_n}{e_k} = \sum\limits_n \dotprod{c_n e_n}{e_k} = \dotprod{c_k e_k}{e_k} = c_k \norm{e_k}^2
+        .\]
+\end{proof}
+
+\begin{definition}
+    $x \in H$ --- гильбертово пространство.
+    Тогда коэффициент Фурье вектора $x$ по ортогональной системе $\set{e_n}$ -- это: 
+    $$c_k(x) := \dfrac{\dotprod{x}{e_k}}{\norm{e_k}^2}$$ 
+    Ряд Фурье для вектора $x$:
+    $$\sum\limits_{n=1}^\infty c_n(x) e_n$$ 
+\end{definition}
+
+\begin{observation} \quad 
+
+    \begin{enumerate}
+        \item Если $x = \sum\limits_{n=1}^\infty c_n e_n$, то это его ряд Фурье.
+        \item $k$-ое слагаемое в ряде Фурье $c_k(x) e_k$ -- это проекция $x$ на прямую в направлении $e_k$.
+        $$c_k(x) e_k = \dfrac{\dotprod{x}{e_k}}{\norm{e_k}^2} e_k$$
+        То есть:
+        $$x = c_k(x)e_k + z \text { где } z \perp e_k$$
+    \end{enumerate}
+\end{observation}
+
+
 \newpage
 
