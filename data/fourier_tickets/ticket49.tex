@@ -1,3 +1,52 @@
-\section{}
+\section{Свертка функций. Свойства}
+
+\begin{definition}
+    $f, g \in L^1[-\pi, \pi]$ и $2\pi$-периодические (будем обозначать такие функции $L^1_{2\pi}$)
+    
+    $h(x) := \int\limits_{-\pi}^\pi f(x - t)g(t)dt$~--- свертка функций $f$ и $g$. Обозначается $h = f \ast g$.
+\end{definition}
+
+\begin{properties}
+    \leavevmode
+    \begin{enumerate}
+        \item $f \ast g \in L^1_{2\pi}$
+        \item $f \ast g = g \ast f$
+        \item $c_k(f\ast g) = 2\pi c_k(f) c_k(g)$ ($c_k$~--- коэффициент Фурье)
+        \item $1 \leq p \leq +\infty$ и $\frac{1}{p} + \frac{1}{q} = 1$, $f \in L^p_{2\pi}, g \in L^q_{2\pi} \Rightarrow f \ast g \in C_{2\pi}$ и $\|f \ast g\|_\infty \leq \|f\|_p\|g\|_q$
+        \item $1 \leq p \leq +\infty$, $f \in L^p_{2\pi}, g \in L^1_{2\pi}$, тогда $\|f \ast g\|_p \leq \|f\|_p \|g\|_1$
+    \end{enumerate}
+\end{properties}
+
+\begin{proof}
+    \leavevmode
+    \begin{enumerate}
+        \item $F(x, t) := f(x - t)g(t)$~--- измерима, как функция двух переменных, т.к. произведение измеримых измеримо. $g$ измерима как функция двух переменных, т.к. измерима по одной переменной, а по другой константа. $f(x - t) < c,\ x - t \in f^{-1}(c)$~--- это какая-то полуплоскость, так что $f$ тоже измерима.
+        
+              $\int\limits_{-\pi}^{\pi}|h(x)|dx  = \int\limits_{-\pi}^\pi \left| \int\limits_{-\pi}^{\pi}f(x - t)g(t) dt\right| dx \leq \int\limits_{-\pi}^\pi\int\limits_{-\pi}^\pi |f(x - t)\|g(t)|dtdx = \int\limits_{-\pi}^\pi |g(t)| \int\limits_{-\pi}^\pi |f(x - t)|dx dt = \text{\textcolor{gray}{подинтегральаня функция периодична}} = \int\limits_{-\pi}^\pi |g(t)| \int\limits_{-\pi}^\pi |f(x)| dx dt = \|f\|_1 \int\limits_{-\pi}^\pi |g(t)| dt = \|f\|_1 \|g\|_1$
+        \item $f \ast g = \int\limits_{-\pi}^\pi f(x - t)g(t) dt = (x - t = s) = -\int\limits_{x + \pi}^{x - \pi} f(s)g(x - s) ds = \int\limits_{x - \pi}^{x + \pi} g(x - s)f(s) ds = \text{\textcolor{gray}{все периодично}} = \int\limits_{-\pi}^\pi g(x - s)f(s) ds = g \ast f$
+        \item $2\pi c_k(f \ast g) = \int\limits_{-\pi}^\pi f\ast g(x) e^{-ikx} dx = \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi f(x - t)g(t) e^{-ikx} dt dx \overset{*}{=} \int\limits_{-\pi}^\pi g(t) e^{-ikt} \int\limits_{-\pi}^\pi f(x - t)e^{-ik(x - t)} dx dt = (x - t = s) = \int\limits_{-\pi}^\pi g(t)e^{-ikt} \int\limits_{x-\pi}^{x + \pi} f(s)e^{-iks}ds dt = \int\limits_{-\pi}^\pi g(t)e^{-ikt} \int\limits_{-\pi}^{\pi} f(s)e^{-iks}ds dt = \int\limits_{-\pi}^\pi g(t)e^{-ikt} 2\pi c_k(f) dt = 2\pi c_k(f) \int\limits_{-\pi}^\pi g(t)e^{-ikt} dt = 2\pi c_k(f) \cdot 2\pi c_k(g)$
+        
+              $*$~--- по теореме Фубини, т.к. поняли что интеграл от модуля выражения конечен
+        \item $|f \ast g(x)| = |\int\limits_{-\pi}^\pi f(x - t)g(t) dt| \leq \int\limits_{-\pi}^\pi|f(x - t)| |g(t)| dt \overset{\text{Гёльдер}}{\leq} \left(\int\limits_{-\pi}^\pi|f(x-t)|^pdt \right)^\frac{1}{p} \left( \int\limits_{-\pi}^\pi |g(t)|^q dt \right)^\frac{1}{q} = \left(\int\limits_{-\pi}^\pi|f(x-t)|^pdt \right)^\frac{1}{p} \|g\|_q = (x - t = s) = \left(-\int\limits_{x + \pi}^{x - \pi}|f(s)|^p ds\right)^{\frac{1}{p}}\|g\|_q = \left(\int\limits_{-\pi}^\pi |f(s)|^p ds\right)^{\frac{1}{p}}\|g\|_q = \|f\|_p\|g\|_q$
+        
+              
+        
+              Непрерывность:
+              
+              $|h(x+y) - h(x)| = |\int\limits_{-\pi}^\pi (f(x+y - t) - f(x - t))g(t)dt| \leq \|g\|_q \left(\int\limits_{-\pi}^\pi|f(x + y - t) - f(x - t)|^pdt\right)^{\frac{1}{p}} = (x - t = s) = \|g\|_q \left(\int\limits_{-\pi}^\pi|f(y + s) - f(s)|^pds\right)^{\frac{1}{p}} = \|g\|_q\|f_y - f\|_p \xrightarrow[y \to 0]{\text{теорема о непрерывности сдвига}} 0$
+              
+              $f_y$~--- сдивг функции на $y$
+        \item $\|f \ast g\|_p^p = \int\limits_{-\pi}^{\pi} \left|\int\limits_{-\pi}^{\pi} f(x - t)g(t)dt\right|^p dx$
+        
+              $\left|\int\limits_{-\pi}^{\pi}f(x - t)g(t)\right| \leq \int\limits_{-\pi}^{\pi} |f(x - t)\|g(t)|^\frac{1}{p} |g(t)|^\frac{1}{q}dt\ (\text{где } \frac{1}{p} + \frac{1}{q} = 1)\ \overset{\text{Гёльдер}}{\leq} \left(\int\limits_{-\pi}^{\pi} |f(x - t)|^p|g(t)| dt\right)^{\frac{1}{p}} \cdot
+               \cdot \left(\int\limits_{-\pi}^{\pi} |g(t)| dt\right)^{\frac{1}{q}}$
+              
+              $\left| \int\limits_{-\pi}^{\pi} f(x - t)g(t) dt \right|^p \leq \int\limits_{-\pi}^{\pi} |f(x - t)|^p|g(t)| dt \|g\|_1^{\frac{p}{q}}$
+              
+              $\|f \ast g\|^p_p = \int\limits_{-\pi}^{\pi} |\ldots|^p dx \leq \|g\|^{\frac{p}{q}}_1 \int\limits_{-\pi}^{\pi}\int\limits_{-\pi}^{\pi}|f(x - t)|^p|g(t)| dt dx = \|g\|^{\frac{p}{q}}_1 \int\limits_{-\pi}^{\pi}|g(t)| \int\limits_{-\pi}^{\pi}|f(x - t)|^p dx dt = \text{\textcolor{gray}{неважно по какому периоду}} = \|g\|^{\frac{p}{q}}_1 \int\limits_{-\pi}^{\pi}|g(t)| \int\limits_{-\pi}^{\pi}|f(x)|^p dx dt = \|g\|^{\frac{p}{q}}_1 \int\limits_{-\pi}^{\pi}|g(t)| \|f\|_p^p dt = \|g\|_1^{\frac{p}{q} + 1} \|f\|_p^p = (\frac{p}{q} + 1 = (\frac{1}{p} + \frac{1}{q})p = p) = \|g\|^p_1\|f\|^p_p$
+    \end{enumerate}
+\end{proof}
+
+
 \newpage
 

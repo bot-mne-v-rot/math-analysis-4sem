@@ -1,3 +1,44 @@
 \section{Наилучшие приближения. Теорема о существовании наилучшего приближения}
+
+\begin{definition}
+    $(X, \rho)$ ~--- метрическое пространство $A\subset X$, $x\in X$
+    
+    Величина $E_A(x) := \rho(x, A) = \inf_{y \in A} \rho(x, y)$ называется наилучшим приближением
+    к $x$ в множестве $A$.
+   \end{definition}
+   
+   \begin{definition}
+    Если есть $y^*\in A$, такое что $\rho(x, y^*) = \rho(x, A)$, то $y*$ ~--- элемент наилучшего
+    приближения к $x$ в множестве $A$
+   \end{definition}
+   
+   \begin{theorem}(о существовании наилучшего приближения в гильбертовом пространстве)
+   
+   $A$ непустое, замкнутое и выпуклое подмножество $H$ ~--- гильбертово пространство, $x\in H$.
+   Тогда существует единственный элемент наил. прибл. к $x$ в мн-ве $A$.
+   \end{theorem}
+   
+   \begin{lemma}
+   $\|x + y\|^2 + \|x-y\|^2  = 2 \|x\|^2 + 2\|y\|^2$
+   \end{lemma}
+   
+   \begin{proof}
+   $d := \rho(x, A)$. Пусть $y, z \in A$ $\Rightarrow$ $\frac{y + z}{2}\in A$
+   
+   $\|2x -y - z\|^2 + \|y - z\|^2 = 2\|x-y\|^2 + 2\|x-z\|^2$ ($\|2x - y - z\|^2 = 4\|x - \frac{y + z}{2}\|^2 \ge 4d^2$)
+   
+   $\Rightarrow $ $\|y - z\|^2\le 2(\|x - y\|^2 + \| x- z\|^2 - 2d^2)$
+   
+   Единственность. Пусть $\|x - z\| = \|x - y\| = d \Rightarrow \|y - z\|\le 0 \Rightarrow y = z$
+   
+   Существование. Возьмем $y_n \in A$, т.ч. $\|x - y_n\|\rightarrow d$
+   
+   $\|y_n - y_m\|^2 \le 2(\underset{\text{мала при бол. $n$}}{\|x - y_n\|^2  - d^2}+
+    \underset{\text{мала при бол. $m$}}{\| x- y_m\|^2 - d^2})$ $\Rightarrow$ $y_n$ ~--- 
+    фундаментальна $\Rightarrow y_n\rightarrow y^* \in A$
+    
+    $\|x - y_n\|\rightarrow \|x - y^*\| \Rightarrow \|x - y^*\| = d$
+    \end{proof}
+
 \newpage
 

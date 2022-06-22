@@ -1,3 +1,85 @@
-\section{}
+\section{Связь дискретного преобразования Фурье
+и ряда Фурье. Оценки коэффициентов Фурье для
+равномерно непрерывных, липшицевых и диффе-
+ренцируемых функций.}
+
+\begin{example}
+    Дискретное преобразование Фурье.
+
+    $a_k = \sum \limits_{n = 0}^{N - 1} x_n e^{-\frac{2 \pi i}{N} n k}$~--- прямое дискретное преобразование Фурье.
+
+    $x_n = \frac1N \sum \limits_{k = 0}^{N - 1} a_k e^{\frac{2 \pi i}{N} k n}$~--- обратное дискретное преобразование Фурье.
+
+    Разобьем отрезок $[0, 2 \pi]$ на $N$ одинаковых по длине отрезков. Пусть на каждом отрезке функция постоянна (значения на концах отрезков неважны). Пусть значение на $i$-м отрезке (нумерация с нуля) равно $x_i$.
+    Назовем эту функцию $x(t)$. посчитаем ее коэффициенты Фурье:
+
+    $c_k(x) = \frac{1}{\pi} \int \limits_{0}^{2 \pi} x(t) e^{-ikt} dt =
+        \frac{1}{\pi} \sum \limits_{k = 0}^{N - 1} x_n \int \limits_{\frac{2 \pi}{N} n}^{\frac{2 \pi}{N} (n + 1)} e^{-ikt} dt =
+        \frac{1}{\pi} \sum \limits_{k = 0}^{N - 1} x_n \frac{e^{-ikt}}{-ik} \bigr|_{t = \frac{2 \pi}{N}n}^{t = \frac{2 \pi}{N} (n + 1)} =
+        \frac{1}{\pi} \cdot \frac{i}{k} \sum \limits_{k = 0}^{N - 1} x_n e^{-\frac{2 \pi}{N} i k n} (e^{-\frac{2 \pi}{N} k i} - 1) =
+        \frac{i}{\pi} \cdot \frac{e^{-\frac{2 \pi}{N} k i} - 1}{k} \sum \limits_{k = 0}^{N - 1} x_n e^{-\frac{2 \pi}{N} i k n}  =
+        \frac{i}{\pi} \cdot \frac{e^{-\frac{2 \pi}{N} k i} - 1}{k} \cdot a_k$, где $k = 0, 1, \ldots, N - 1$.
+    Мы можем обойтись $N$ штуками, потому что $e^{-ikt}$~--- ортогональные штуки, поэтому они линейно независимы. Так что первые $N$ элементов~--- ортогональный базис, потому что размерность пространства, натянутого на кусочно-постоянные фунции, равна $N$
+    (базис~--- $\mathbbm{1}_{\left[\frac{2 \pi k}{N}, \frac{2 \pi (k + 1)}{N}\right)})$.
+    Из-за того, что в знаменателе стоит $k$, $c_k \to 0$, а $a_k$ не стремятся.
+
+\end{example}
+
+\begin{notice}
+    Модуль непрерывности: $\omega_f(\delta) := \sup \limits_{|x - y| \le \delta} |f(x) - f(y)|$.
+
+    Липшицевы функции с показателем $\alpha$ и константой $M$: $|f(x) - f(y)| \le M |x - y|^{\alpha}$. Это $\Lip_{\alpha} M$.
+    Тогда пусть $\Lip_{\alpha} = \bigcup \limits_{M > 0} \Lip_{\alpha} M$.
+
+    На самом деле осмысленны только $0 < \alpha \le 1$. Если $\alpha > 1$, то функция вырождается в константу.
+
+    Если $f \in \Lip_{\alpha} M$, то $\omega_f(h) \le M h^{\alpha}$.
+\end{notice}
+
+\begin{theorem}
+    Пусть $f \in C_{2 \pi}$. Тогда $|a_k(f)|, |b_k(f)|, 2|c_k(f)| \le \omega_f(\frac{\pi}{k})$ при $k \neq 0$.
+\end{theorem}
+
+\begin{proof}
+    $a_k = \frac{1}{\pi} \int \limits_{-\pi}^{\pi} f(t) \cos kt dt = / (t = s + \frac{\pi}{k}) / =
+        \frac{1}{\pi} \int \limits_{-\pi - \frac{\pi}{k}}^{\pi - \frac{\pi}{k}} f(s + \frac{\pi}{k}) \cos(ks + \pi) ds = $
+    \text{/ функция $2\pi$-периодична, поэтому можно сдвинуть ингетрал, а также вычесть $\pi$ из $\cos$, домножив все на $-1$ /}
+    $= \frac{-1}{\pi} \int \limits_{-\pi}^{\pi} f(s + \frac{\pi}{k}) \cos(ks) ds$.
+
+    $|a_k| = |\frac{1}{2} (a_k + a_k)| =
+        |\frac{1}{2} \cdot \frac{1}{\pi} \int \limits_{-\pi}^{\pi} (f(t) - f(t + \frac{\pi}{k})) \cos kt dt| \le
+        \frac{1}{2} \cdot \frac{1}{\pi} \int \limits_{-\pi}^{\pi} |f(t) - f(t + \frac{\pi}{k})| \cdot |\cos kt| dt \le
+        \frac{1}{2} \cdot \frac{1}{\pi} \int \limits_{-\pi}^{\pi} |f(t) - f(t + \frac{\pi}{k})| dt \le
+        \frac{1}{2} \cdot \frac{1}{\pi} \int \limits_{-\pi}^{\pi} \omega_f(\frac{\pi}{k}) dt \le = \omega_f(\frac{\pi}{k})$.
+
+    Аналогичное неравенство можно получить для $b_k$. Для $c_k$ тоже почти аналогично. Разница в том, что когда мы считаем коэффициент для цэшки, мы пишем не $\frac{1}{\pi}$, а $\frac{1}{2 \pi}$, поэтому появляется двойка.
+\end{proof}
+
+\begin{lemma}
+    Если $f \in C_{2 \pi}^1$, то $a_k(f') = k b_k(f)$, $b_k(f') = -k a_k(f)$, $c_k(f') = i k c_k(f)$.
+\end{lemma}
+
+\begin{proof}
+    $a_k(f') = \frac{1}{\pi} \int \limits_{-\pi}^{\pi} f'(t) \cos kt dt = \frac{f(t) \cos kt}{ \pi k} \bigr|_{t = -\pi}^{t = \pi} +
+        \frac{1}{\pi} f(t) k \sin kt dt = k b_k(f)$ ($f(t)$ и $cos(kt)$ $2\pi$-периодичны, так что подстановка обращается в ноль).
+
+    Аналогично доказываются остальные формулы.
+\end{proof}
+
+\begin{consequence}
+    Если $f \in C_{2 \pi}^r$ и $f^{(r)} \in \Lip_{\alpha} M$ при $0 < \alpha \le 1$, то
+    $|a_k(f)|, |b_k(f)|, 2 |c_k(f)| \le \frac{M \pi^{\alpha}}{|k|^{r + \alpha}}$.
+\end{consequence}
+
+\begin{proof}
+    Докажем по индукции.
+
+    База: По предыдущая теореме $\ldots \le \omega_f(\frac{\pi}{k}) \le M (\frac{\pi}{k})^{\alpha}$
+
+    Переход $r \to r + 1$:
+    $|a_k(f)| = |\frac{1}{k} b_k(f')| \le \frac{1}{k} \cdot \frac{M \pi^{\alpha}}{k^{r + \alpha}}$.
+\end{proof}
+
+
 \newpage
 

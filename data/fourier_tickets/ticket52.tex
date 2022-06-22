@@ -1,3 +1,81 @@
-\section{}
+\section{Многочлены Бернштейна. Теорема Берн-
+штейна. Кривые Безье.}
+
+\begin{definition}
+	$f: [0, 1] \rightarrow \mathbb{R}(\mathbb{C})$ 
+	
+	Тогда многочлен Бернштейна это:
+	
+	$B_n(x) := \sum\limits_{k = 0}^n f(\frac{k}{n}) C_n^k x^k (1 - x)^{n-k}$
+\end{definition}
+
+\begin{observation}
+	Рассмотрим схему Бернулли с вероятностью успеха $x \in [0, 1]$. 
+	
+	Тогда $B_n(x) = Ef(\frac{S_n}{n}) = \sum\limits_{k = 0}^n f(\frac{k}{n}) \cdot P(S_n = k) = \sum\limits_{k = 0}^n f(\frac{k}{n}) C_n^k x^k (1 - x)^{n-k}$
+	
+	$\frac{S_n}{n} \rightarrow x$ по усиленному ЗБЧ $\Rightarrow \frac{S_n}{n} \rightarrow x$ по распределению $\Rightarrow Ef(\frac{S_n}{n}) \rightarrow Ef(x) = f(x)$
+\end{observation}
+
+\begin{theorem}
+	Бернштейна
+	
+	Если $f \in C[0, 1]$, то $B_n \rightrightarrows f$
+\end{theorem}
+
+\begin{proof}
+	$\xi_n := \frac{S_n}{n}$
+	
+	$|Ef(\xi_n) - f(x)| = |E(f(\xi_n) - f(x))| \leqslant E|f(\xi_n)-f(x)| = E(|f(\xi_n) - f(x)|\mathds{1}_{\{\xi_n-x < \delta\}}) + E(|f(\xi_n) - f(x)|\mathds{1}_{\{\xi_n-x \geqslant \delta\}}) \leqslant \sup\limits_{|x - y| < \delta} |f(x) - f(y)| + E(2M\mathds{1}_{\{\xi_n-x \geqslant \delta\}}) = \sup\limits_{|x - y| < \delta} |f(x) - f(y)| + 2M P(|\xi_n - x| \geqslant \delta) \leqslant \sup\limits_{|x - y| < \delta} |f(x) - f(y)| + 2M\frac{D\frac{S_n}{n}}{\delta^2} = \sup\limits_{|x - y| < \delta} |f(x) - f(y)| + \frac{x(1-x)n}{n^2\delta^2} \leqslant \sup\limits_{|x - y| < \delta} |f(x) - f(y)| + \frac{M}{2n\delta^2} < 2\varepsilon$
+	
+	$\sup < \varepsilon$ если выбрать $\delta$ из равномерной непрерывности. $\frac{M}{2n\delta^2} < \varepsilon$ при $n \geqslant \frac{M}{2\varepsilon\delta^2}$
+\end{proof}
+
+\begin{notice}
+	Если $f$ непрерывна в $x$, то $B_n(x) \rightarrow f(x)$
+\end{notice}
+
+\begin{properties}
+	многочлена Бернштейна
+	
+	\begin{enumerate}
+		\item $B_n(0) = f(0)$
+		
+		$B_n(1) = f(1)$
+		
+		\item $B_n'(x) = \sum\limits_{k = 0}^n f(\frac{k}{n})C_n^k (k-nx)x^{k-1} (1-x)^{n-k-1}$
+		
+		\item $B_n'(0) = n(f(\frac{1}{n}) - f(0))$
+		
+		$B_n'(1) = n(f(1) - f(\frac{n-1}{n}))$
+		
+		\item $B_n^{(f+g)} = B_n^{(f)} + B_n^{(g)}$
+	\end{enumerate}
+\end{properties}
+
+\begin{definition}
+	Кривая Безье степени $n$~--- это $\sum\limits_{k = 0}^n a_k C_n^k t^k (1-t)^{n-k}$, $a_k \in \mathbb{C}$, $t \in [0, 1]$
+	
+	$n = 1$ 
+	
+	отрезок $a(1-t) + bt$, соединяет точки $a$ и $b$
+	
+	$n = 2$  
+	
+	$a(1-t)^2 + 2bt(1-t) + ct^2$, начинается в $a$, заканчивается в $c$
+	
+	$g'(0) = 2(b-a)$, $g'(1) = 2(c-b)$
+	
+	$n = 3$
+	
+	$g(t) = a(1-t)^3 + 3bt(1-t)^2 + 3ct^2(1-t) + dt^3$, начало в $a$, конец в $d$
+	
+	$g'(0) = 3(b-a)$, $g'(1) = 3(d-c)$
+	
+	Вот \href{https://www.jasondavies.com/animated-bezier/}{тут} можно посмотреть рисунки этих штук.
+\end{definition}
+
+
+
 \newpage
 

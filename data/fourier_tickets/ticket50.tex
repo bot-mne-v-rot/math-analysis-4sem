@@ -1,3 +1,69 @@
-\section{}
+\section{Аппроксимативная единица. Теорема об ап-
+проксимативной единице.}
+
+\begin{definition}
+    $D$~--- множество парамтетров, $h_0$~--- его предельная точка.
+    
+    $K_h$~--- апроксимативная единица, если
+    \begin{enumerate}
+        \item $K_h \in L_{2\pi}^1$ и $\int\limits_{-\pi}^{\pi}K_h = 1$
+        \item $\|K_h\|_1 \leq M\ \forall h \in D$
+        \item $\int\limits_{[-\pi, \pi] \setminus [-\delta, \delta]} |K_h| \xrightarrow[h \to h_0]{} 0$
+    \end{enumerate}
+    Если третье свойство заменить на
+    
+    $3'.\ \underset{\delta \leq |t| \leq \pi}{\mathrm{esssup}} |K_h(t)| \xrightarrow[h \to h_0]{} 0$
+    
+    То будет \textit{усиленная} апроксимативная единица
+\end{definition}
+
+\begin{examples}
+    \leavevmode
+    \begin{enumerate}
+        \item $\frac{1}{\pi}\upphi_n$~--- усиленная апроксимативная единица. Множество параметров~--- натуральные числа, предельная точка~--- бесконечность
+        \item $\frac{1}{\pi}P_r$~--- усиленная апроксимативная единица. Первые два свойства были, свойство номер 3:
+        
+              $P_r(t) = \frac{1}{2} \frac{1 - r^2}{1 - 2r\cos t + r^2} \leq (\delta \leq |t| \leq \pi) \leq \frac{1}{2} \frac{1 - r^2}{1 - 2r\cos\sigma + r^2} \xrightarrow[r \to 1-]{} 0 $
+    \end{enumerate}
+\end{examples}
+
+\begin{theorem}
+    об апроксимативной единице.
+    
+    Пусть $K_h$~--- апроксимативная единица. Тогда
+    \begin{enumerate}
+        \item Если $f \in C_{2\pi}$, то $f \ast K_h \rightrightarrows f$
+        \item Если $1 \leq p < +\infty$, $f \in L_{2\pi}^p$, то $\|f\ast K_p - f\|_p \xrightarrow[h \to h_0]{} 0$
+        \item Если $K_h$~--- усиленная и $f \in L_{2\pi}^1$ и $f$ непрерывна в точке $x$, тогда $(f \ast K_h)(x) \xrightarrow[h \to h_0]{} f(x)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \leavevmode
+    $f \ast K_h(x) - f(x) = \int\limits_{-\pi}^{\pi}f(x - t)K_h(t) dt - \int\limits_{-\pi}^{\pi}f(x)K_h(t)dt \text{ \textcolor{gray}{ интеграл от апрокс. единицы}} \\
+     \text{\textcolor{gray}{ по периоду = 1}} = \int\limits_{-\pi}^{\pi} (f(x - t) - f(x))K_h(t)dt$
+    \begin{enumerate}
+        \item Возьмем $\varepsilon > 0$, $f$~--- равномерно непрерывна $\Rightarrow \exists \delta(\varepsilon)$ из равномерной непрерывности. 
+        
+              $|f \ast K_h(x) - f(x)| \leq \int\limits_{-\pi}^{\pi}|f(x - t) - f(x)| |K_h(t)|dt = \int\limits_{-\delta}^\delta + \int\limits_{\delta \leq |t| \leq \pi} =: I_1 + I_2$
+              
+              $I_1 = \int\limits_{-\delta}^\delta \underbrace{|f(x -t) - f(x)|}_{<\varepsilon} |K_h(t)|dt \leq \varepsilon \int\limits_{-\delta}^\delta|K_h(t)|dt \leq \varepsilon \|K_h\|_1 \leq \varepsilon M$
+              
+              $I_2 = \int\limits_{\delta \leq |t| \leq \pi} \leq 2C\int\limits_{\delta \leq |t| \leq \pi} |(K_h(t)|dt \xrightarrow[h\to h_0]{} 0 < \varepsilon$ при $h$ близких к $h_0$
+        \item $\|f\ast K_h - f\|_p^p = \int\limits_{-\pi}^{\pi} \left| \int\limits_{-\pi}^{\pi} (f(x - t) - f(x))K_h(t) dt\right|^p dx \leq \int\limits_{-\pi}^{\pi}\left(\int\limits_{-\pi}^{\pi}|f(x - t) - f(x)\|K_h(t)|dt\right)^p dx = \int\limits_{-\pi}^{\pi}\left(\int\limits_{-\pi}^{\pi}|f(x - t) - f(x)| |K_h(t)|^{\frac{1}{p}}|K_h(t)|^{\frac{1}{q}}dt\right)^p dx \overset{\text{Гёльдер}}{\leq}\\
+        \int\limits_{-\pi}^{\pi}\int\limits_{-\pi}^{\pi}|f(x - t) - f(x)|^p|K_h(t)|dt \cdot \left(\int\limits_{-\pi}^{\pi} |K_h(t)|dt\right)^{\frac{p}{q}}dx =\\
+        \|K_h\|^{\frac{p}{q}}_1 \int\limits_{-\pi}^{\pi}\underbrace{\int\limits_{-\pi}^{\pi}|f(x - t) - f(x)|^pdx}_{g(-t)}|K_h(t)|dt = \|K_h\|^p_1 \int\limits_{-\pi}^{\pi}g(-t) \frac{|K_h(t)|}{\|K_h\|_1}dt$\\
+         $g(0) = 0$, таким образом достаточно показать, что $\int\limits_{-\pi}^{\pi}g(-t) \frac{|K_h(t)|}{\|K_h\|_1}dt \xrightarrow[h \to 0]{} g(0)$\\
+         $g \in C_{2\pi}$ по теореме о непрерывности сдвига\\
+         Таким образом нас интересует $g \ast \frac{|K_h|}{\|K_h\|_1}(0) \xrightarrow[]{?} g(0)$. Чтобы сослаться на пункт 1, надо понять, что $\frac{|K_h|}{\|K_h\|_1}$ - апрокс. единица, а это понятно
+         \begin{itemize}
+         	\item Она суммируема, т.к. интеграл от числителя равен знаменателю
+         	\item $\int\limits_{[-\pi, \pi] \setminus [-\delta, \delta]} \frac{|K_h|}{\|K_h\|_1} \to 0$
+         \end{itemize}
+        \item $\delta$ из определения непрерывности в точке $x$, тогда $I_1 \leq \varepsilon M$, $I_2 = \int\limits_{\delta \leq |t| \leq \pi} |f(x - t) - f(x)| |K_h(t)|dt \leq \underset{\delta \leq |t| \leq \pi}{\esssup} |K_h(t)| \int |f(x - t)| + |f(x)| dt = \esssup |K_h| \cdot (2\pi|f(x)| + \|f\|_1) \to 0$
+    \end{enumerate}
+\end{proof}
+
+
 \newpage
 

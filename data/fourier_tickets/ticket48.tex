@@ -1,3 +1,52 @@
-\section{}
+\section{Ядро Фейера. Свойства.}
+
+\begin{example}
+    $\frac{1}{2} + \sum\limits_{n = 1}^\infty \cos nt$
+
+    Его частичные суммы $D_n(t) = \frac{\sin(n + \frac{1}{2})t}{2\sin\frac{t}{2}}$
+
+    $\Phi_n(t) := \frac{D_0(t) + D_1(t) + \ldots + D_n(t)}{n  + 1}$~--- ядро Фейера.
+
+    \begin{properties}
+        \leavevmode
+        \begin{enumerate}
+            \item $\Phi_n$~--- четная, непрерывная, $2\pi$-периодичная функция
+                  \begin{proof}
+                      Каждое слагаемое такое
+                  \end{proof}
+            \item $\Phi_n(0) = \frac{n + 1}{2}$
+                  \begin{proof}
+                      $D_n(0) = n + \frac{1}{2}$
+                  \end{proof}
+            \item $\frac{1}{\pi}\int\limits_{-\pi}^\pi \Phi_n(t)dt = \frac{2}{\pi}\int\limits_0^{\pi}\Phi_n(t)dt = 1$
+                  \begin{proof}
+                      $\int\limits_{-\pi}^{\pi}D_i(t)dt = \pi$ (считали раньше)
+                  \end{proof}
+            \item При $t \neq 2\pi k$ $\Phi_n(t) = \frac{\sin^2(\frac{n +1}{2}) t}{2(n+1)\sin^2\frac{t}{2}}$
+                  \begin{proof}
+                      $2\sin(n + \frac{1}{2})t \sin\frac{t}{2} = \cos nt - \cos (n+1)t$
+                      
+                      $\sum\limits_{k = 0}^n2\sin(n + \frac{1}{2})t\sin \frac{t}{2} = 1 - \cos(n+1)t = 2\sin^2\frac{n +1}{2}t$
+                      
+                      $\sum\limits_{k = 0}^n2\sin(n + \frac{1}{2})t\sin \frac{t}{2} = 4\sin^2\frac{t}{2} \sum\limits_{k = 0}^nD_k(t)$
+                  \end{proof}
+            \item $\Phi_n(t) \geq 0$
+            \item $\lim\limits_{n \to \infty} \max\limits_{\delta \leq |t| \leq \pi} \Phi_n(t) = 0$
+                  \begin{proof}
+                      Если $\delta \leq |t| \leq \pi$, то $0 \leq \Phi_n(t) \leq \frac{1}{2(n + 1)\sin^2\frac{\delta}{2}} \xrightarrow[n \to \infty]{} 0$
+                  \end{proof}
+            \item $\Phi_n(0) \to +\infty$, $\Phi_n(t) \to 0$, при $t \neq 0$.
+        \end{enumerate}
+    \end{properties}
+\end{example}
+
+\leavevmode
+
+
+$S_n(x) = \frac{1}{\pi}\int\limits_{-\pi}^{\pi}D_n(t)f(x - t)dt$~--- $n$-я частичная сумма ряда Фурье для $f$.
+
+$\sigma_n(x) := \frac{S_0(x) + S_1(x) + \ldots + S_n(x)}{n} = \frac{1}{\pi}\int\limits_{-\pi}^{\pi} \frac{D_0(t) + \ldots + D_n(t)}{n + 1}f(x - t) dt = \frac{1}{\pi} \int\limits_{-\pi}^{\pi}\Phi_n(t)f(x - t)dt$
+
+
 \newpage
 
