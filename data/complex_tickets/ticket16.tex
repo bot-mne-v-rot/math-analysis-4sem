@@ -15,16 +15,16 @@
     
 \end{proof}
 
-Рассмотрим такое $f(z)$:
-\begin{gather*}
-    f(z) = \frac{\ctg z}{z}
-\end{gather*}
+Рассмотрим такое $f(z) = \frac{\ctg z}{z}$
 
-Из леммы $\abs{z} \le M$ при $\abs{z} = \pi\left(n + \frac12\right)$. Тогда берём радиусы $R_n = \pi\left(n + \frac12\right)$, и говорим что на таких окружностях функция $M_{R_n} \le \frac{M}{R_n} \to 0$.
+Для $f(z)$ хотим воспользоваться второй теоремой о разложении мероморфной функции в сумму, а именно заключить, что $\lim\limits_{n \to +\infty} \sum\limits_{\abs{a_k} < R_n}^{} G_k(z)$
+Для этого нам нужно понять, что для такой последовательности радиусов $R_n$, что $R_n \to \infty$: $M_{R_n} := \underset{\abs{z} = R_n}{\max} \abs{f(z)} \to 0$.
+
+Воспользуемся леммой: $\abs{z} \le M$ при $\abs{z} = \pi\left(n + \frac12\right) =: R_n$. На окружностях с такими радиусами: $M_{R_n} \le \frac{M}{R_n} \to 0$.
 
 Особые точки $z = 0$, $z = \pi k$. Точки вида $z = \pi k$ это полюсы первого порядка при $k \neq 0$. Точка $z = 0$ это полюс второго порядка. $G_k$ -главная часть ряда Лорана в $\pi k$. Тогда: 
 \begin{gather*}
-    \res\limits_{z=\pi k} \ctg z = \eval{\frac{\cos z}{\left( \sin z \right)'}}_{z=\pi k}
+    \res\limits_{z=\pi k} \ctg z = \eval{\frac{\frac{\cos z}{z}}{\left( \sin z \right)'}}_{z=\pi k} = \frac{1}{\pi k}
 \end{gather*}
 И тогда:
 \begin{gather*}
@@ -42,9 +42,8 @@
 Остаётся сложить главные части для точек, которые попали в наш круг - это просто те $k$, которые не превосходят $n$, при том важно, что точки попадают парами, поэтому и считаем тоже парами:
 \begin{align*}
     \frac{\ctg z}{z} &= G_0(z) + \sum\limits_{k=1}^{+\infty} \left( G_k(z) + G_{-k}(z)\right) \\ 
-    &= \frac{1}{z^2} + \sum\limits_{k=1}^{+\infty} \left( \frac{1}{z - \pi k} + \frac{1}{z + \pi k} \right) \\ 
-    &= \frac{1}{z^2} + \sum\limits_{k=1}^{+\infty} \frac{2z}{z^2-\pi^2k^2}
+    &= \frac{1}{z^2} + \sum\limits_{k=1}^{+\infty} \left( \frac{1}{\pi k} \cdot \frac{1}{z - \pi k} + \frac{1}{\pi (-k)} \cdot \frac{1}{z + \pi k} \right) \\ 
+    &= \frac{1}{z^2} + \sum\limits_{k=1}^{+\infty} \frac{2}{z^2-\pi^2k^2}
 \end{align*}
-
 \newpage
 
