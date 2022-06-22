@@ -1,3 +1,39 @@
-\section{}
+\section{Ряд Фурье для функции sign. Эффект
+Гиббса.}
+
+\begin{example}
+    
+    Раскладываем функцию знак на $[-\pi, \pi)$, продолжая по периоду.
+    В точке, где происходит разрыв, график выскакивает вверх практически на фиксированную высоту. Это неслучайно. Высота этого всплеска всегда фиксирована.
+    Это называется эффектом Гиббса. Сейчас мы его изучим.
+
+
+    $f(x) = -1$ на $(-\pi, 0)$,
+    $f(x) = 1$ на $(0, \pi)$.
+
+    $a_n = 0$.
+
+    $b_n = \frac{1}{\pi} \int \limits_{-\pi}^{\pi} sign x \cdot \sin nx dx = \frac{2}{\pi}\int \limits_{0}^{\pi} \sin nx dx =
+        \frac{2}{\pi} \cdot \frac{\cos nx}{n} \bigr|_{x = 0}^{x = \pi}$.
+
+    Получается, что $b_{2n} = 0$, $b_{2n - 1} = \frac{4}{\pi(2n-1)}$.
+
+    Ряд Фурье: $\frac{4}{\pi} \sum \limits_{k = 1}^{\infty} \frac{\sin ((2k -1)x)}{2k - 1}$.
+
+    $S_n(x) = \frac{4}{\pi} \sum \limits_{k = 1}^{n} \frac{\sin ((2k -1)x)}{2k - 1}$.
+
+    $S_n'(x) = \frac{4}{\pi} \sum \limits_{k = 1}^{n} \cos((2k - 1)x) =$ \text{/ похожее считали чуть выше /}
+    $ = \frac{2}{\pi} \cdot \frac{\sin 2nx}{\sin x}$.
+    Ближайший к нулю корень $S_n'(x)$~--- это $\frac{\pi}{2n}$.
+
+    $S_n(\frac{\pi}{2n}) = \int \limits_{0}^{\frac{\pi}{2 n}} S_n'(x) dx = \frac{2}{\pi} \int \limits_{0}^{\frac{\pi}{2n}} \frac{\sin 2nx}{\sin x} dx = $
+    \text{/ $t = 2nx$ /} $ = \frac{2}{\pi} \int \limits_{0}^{\pi} \frac{\sin t}{\sin \frac{t}{2n}} \cdot \frac{dt}{2n}$
+    \text{/ $\sin \frac{t}{2 n} = \frac{t}{2 n} + o(\frac{t}{n})$ /}
+    $ = \frac{2}{\pi} \int \limits_{0}^{\pi}  \frac{\sin t}{t + o(t)} dt = \frac{2}{\pi} \int \limits_{0}^{\pi} \frac{\sin t}{t} (1 + o(1)) dt = \frac{2}{\pi} \int \limits_{0}^{\pi} \frac{\sin t}{t} dt + o(1)$.
+
+    При $n \to +\infty$ получается $S_n(\frac{\pi}{2 n}) \to \frac{2}{\pi} \int \limits_{0}^{\pi} \frac{\sin t}{t} dt \approx 1.17898$. Всплеск $\approx 17.8\%$.
+
+\end{example}
+
 \newpage
 

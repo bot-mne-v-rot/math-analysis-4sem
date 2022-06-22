@@ -1,3 +1,58 @@
-\section{}
+\section{Ядро Дирихле. Свойства. Три формулы
+для частичных сумм ряда Фурье. Следствие.}
+
+\begin{definition}
+    Ядро Дирихле~--- это $D_n(t) := \frac{1}{2} + \sum \limits_{k = 1}^{n} \cos kt$
+\end{definition}
+
+\begin{properties}
+    1. $D_n(t)$~--- четная, $2 \pi$-периодическая и $D_n(0) = n + \frac{1}{2}$.
+
+    2. $\frac{1}{\pi} \int \limits_{-\pi}^{\pi} D_n(t) dt = 1$, потому что интеграл каждого косинуса~--- это ноль, и  $\frac{1}{\pi} \int \limits_{0}^{\pi} D_n(t) dt = \frac{1}{2}$,
+    потому что функция четная.
+
+    3. При $t \neq 2 \pi m$ выполнено $D_n(t) = \frac{\sin(n + \frac{1}{2}) t}{2 \sin \frac{t}{2}}$.
+\end{properties}
+
+\begin{proof}
+    $2 \sin \frac{t}{2} D_n(t) = \sin \frac{t}{2} + \sum \limits_{k = 1}^{n} \cos kt \sin \frac{t}{2} =
+        \sin \frac{t}{2} + \sum \limits_{k = 1}^{n} \sin(k + \frac{1}{2}) t - \sin (k - \frac{1}{2}) t = \sin(n + \frac{1}{2}) t$.
+\end{proof}
+
+\begin{lemma}
+    $S_n(f, x) = \frac{1}{\pi} \int \limits_{-\pi}^{\pi} D_n(t) f(x \pm t) dt =
+        \frac{1}{\pi} \int \limits_{0}^{\pi} D_n(t) (f(x + t) + f(x - t)) dt$.
+\end{lemma}
+
+\begin{proof}
+    $A_k(f, x) = \begin{cases}
+            \frac{a_0(f)}{2}, \text{ при } k = 0 \\
+            a_k(f) \cos kx + b_k(f) \sin kx, \text{ иначе}
+        \end{cases} =
+        \begin{cases}
+            \frac{1}{\pi} \int \limits_{-\pi}^{\pi} \frac{f(x - t)}{2} dt, \text{ при } k = 0 \\
+            \frac{1}{\pi} \int \limits_{-\pi}^{\pi} f(x - t) cos(kt) dt , \text{ иначе}
+        \end{cases}$
+
+    $S_n(f, x) = \sum \limits_{k = 0}^{n} A_k(f, x) = \frac{1}{\pi} \int \limits_{-\pi}^{\pi} f(x - t) \left(
+        \sum \limits_{k = 1}^{n} \cos kt + \frac{1}{2} \right) dt = \frac{1}{\pi} \int \limits_{-\pi}^{\pi} D_n(t) f(x - t) dt$.
+
+    Заменой $t \to -t$ получим формулу $S_n(f, x) = \frac{1}{\pi} \int \limits_{-\pi}^{\pi} D_n(t) f(x + t) dt$.
+
+    Последняя формула~--- просто соединение интеграла от $-\pi$ до $0$ и интеграла от $0$ до $\pi$ в первой формуле.
+\end{proof}
+
+\begin{consequence}
+    $S_n(f, x) = \frac{1}{\pi} \int \limits_{0}^{\delta} D_n(t) (f(x + t) + f(x - t)) dt + o(1)$ при $0 < \delta < \pi$.
+\end{consequence}
+
+\begin{proof}
+    $\int \limits_{\delta}^{\pi} D_n(t) (f(x + t) + f(x - t)) dt =
+        \int \limits_{\delta}^{\pi} \frac{f(x + t) + f(x - t)}{2 \sin \frac{t}{2}} \cdot \sin (n + \frac{1}{2}) t dt$.
+    По лемме Римана-Лебега, если $\frac{f(x + t) + f(x - t)}{2 \sin \frac{t}{2}}$ суммируема, то интеграл стремится к нулю.
+    $\sin$ отделен от нуля, $f$ сама по себе суммируемая, так что и сдвинутые суммируемые (коэффициенты Фурье определены только для суммируемых).
+\end{proof}
+
+
 \newpage
 

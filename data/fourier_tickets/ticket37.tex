@@ -1,3 +1,74 @@
-\section{}
+\section{Теорема о проекции. Ортогональные проек-
+ции. Свойства.}
+
+\begin{theorem}(о проекции)
+   
+    $L$ ~--- замкнутое подпространство в гильбертовом пространстве $H$. Тогда $x$
+    единственным образом представляется в виде $x = y+z$, где $y \in L$, $z \perp L$.
+    При этом $y$ ~--- наилучшее приближение к $x$ в $L$.
+    \end{theorem}
+    
+    \begin{proof}
+    $y$ ~--- наилучшее приближение к $x$ в $L$, $z := x - y$.
+    
+    Надо доказать, что $z\perp L$. Возьмем $l\in L$ $\Rightarrow y + \lambda l \in L$
+    
+    $\|z - \lambda l \| = \|x - (y + \lambda l)\|^2\ge \|x - y\|^2  = \|z\|^2$, и при этом
+    
+    $\|z - \lambda l \| = \dotprod{z - \lambda l}{z - \lambda l} = \|z\|^2 + |\lambda|^2\| l \|^2 - \lambda\dotprod lz
+    - \overline{\lambda}\dotprod zl$
+    
+    $|\lambda|^2\| l \|^2 - \lambda \dotprod lz - \overline{\lambda} \dotprod zl
+    \ge 0$ $\forall \lambda$
+    
+    Подставим $\lambda = \frac{\dotprod zl}{\| l \|^2}$ и получим 
+    
+    $\frac{|\dotprod zl|^2}{\| l \|} - \frac{|\dotprod zl|^2}{\| l \|}
+    - \frac{\overline{\dotprod zl}\dotprod zl}{\| l \|} \ge 0
+    \Rightarrow \frac{|\dotprod zl|^2}{\| l \|} \le 0 \Rightarrow z\perp l$
+    
+    Осталось проверить единственность: Пусть $x = y + z = y' + z'$, тогда
+    $L \ni y' - y = z' - z$ и при этом $z' - z\perp L$ $\Rightarrow
+    \dotprod{z' - z}{z' - z} = 0 \Rightarrow z = z'$
+    
+    \end{proof}
+    
+    \begin{definition}
+    Ортогональная проекция $L$ ~--- замкнутое подпространство гильбертого $H$, $x = y + z$,
+    где $y \in L$ и $z \perp L$. Проекция $x$ на $L$ ~--- это $y$
+    \end{definition}
+    
+    \begin{definition}
+    Оператор ортогонального проецирования $P_L : H \rightarrow L$, $P_L x $ ~--- проекция $x$
+    на $H$.
+    
+    Ортогональное дополнение $L$ ~--- множество векторов, ортогональных $L$. Это замкнутое
+    подпространство $H$ ($L^\perp$)
+    \end{definition}
+    
+    \begin{properties}
+    \begin{enumerate}
+    \item $P_L$ линеен
+    
+    \item $\|P_L\| = 1$, если $L \neq \{0\}$
+    
+    \begin{proof}
+    $x = y + z$, $\|x\|^2 = \|y\|^2 + \|z\|^2 \ge \|y\|^2 \Rightarrow \|x\| \ge \|P_Lx\| \Rightarrow \|P_L\| = 1$.
+    
+    Если $x \in L (x\neq 0)$, то $P_Lx = x$ $\Rightarrow \|P_L\|\ge 1$
+    \end{proof}
+    
+    \item $P_{L^\perp} = I - P_L$ ($I$ ~--- тождественный оператор)
+    
+    \item $(L^{\perp})^\perp = L$
+    
+    \begin{proof}
+    $P_{(L^{\perp})^\perp} = I - P_{L^\perp} = I - (I - P_L) = P_L$
+    
+    $(L^{\perp})^\perp = P_{(L^{\perp})^\perp}H = P_L H = L$
+    \end{proof}
+    \end{enumerate}
+    \end{properties}
+
 \newpage
 

@@ -1,3 +1,66 @@
-\section{}
+\section{Тригонометрические многочлены и ряды.
+Коэффициенты Фурье сходящихся тригонометри-
+ческих рядов.}
+
+\begin{definition}
+    $T_n(x):= \frac{a_0}{2} + \sum_{k = 1}^n(a_k \cos(kx) + b_k\sin(kx))$ ~--- тригонометрический
+    многочлен степени $\le n$.
+
+    А если $|a_n| + |b_n| \neq 0$, то степени $n$
+\end{definition}
+
+\begin{definition}
+    Тригонометрический ряд $\frac{a_0}{2} + \sum_{k = 1}^\infty(a_k \cos(kx) + b_k\sin(kx))$
+\end{definition}
+
+\begin{definition}
+    Комплексная форма тригонометрического многочлена. $\sum_{k= -n}^n c_ke^{ikx}$
+
+    $\cos(kx) = \frac{e^{ikx} + e^{-ikx}}{2}, \sin(kx) = \frac{e^{ikx} - e^{-ikx}}{2i},
+        c_k = \frac{a_k}{2} + \frac{b_k}{2i}, c_{-k} =  \frac{a_k}{2} - \frac{b_k}{2i}$
+
+    Комплексная форма тригонометрического ряда $\sum_{-\infty}^\infty c_n e^{inx}$.
+
+    Если мы хотим говорить про сходимость этого ряда, то это означает сходимость
+    таких штук: $\sum_{-n}^n c_n e^{inx}$
+\end{definition}
+
+\begin{lemma}
+    Если тригонометрический ряд сходится к $f$ в пространстве $L^1[-\pi, \pi]$, то
+
+    $a_k = \frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos(kx)dx, b_k = \frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin(kx)dx,
+        c_k = \frac{1}{2\pi}\int_{-\pi}^\pi f(x)e^{-ikx}dx$
+\end{lemma}
+
+\begin{proof}
+    $S_n(x):= \frac{a_0}{2} + \sum_{k = 1}^n(a_k \cos(kx) + b_k \sin(kx))$,
+    $\norm{S_n - f}_1\rightarrow 0$
+
+    $|\int_{-\pi}^\pi S_n(x)\cos(kx)dx - \int_{-\pi}^\pi f(x)\cos(kx)dx| = |\int_{-\pi}^\pi (S_n(x) - f(x))\cos(kx)dx|$
+
+    $\le \int_{-\pi}^\pi |(S_n(x) - f(x))\cos(kx)|dx = \norm{S_n - f}_1\rightarrow0$
+
+    $\int_{-\pi}^\pi S_n(x)\cos(kx)dx = a_k \int_{-\pi}^\pi \cos^2(kx)dx = \pi a_k$
+
+    $|\pi a_k - \int_{-\pi}^\pi f(x)\cos(kx)dx| \rightarrow 0$
+
+\end{proof}
+
+\begin{definition}
+    Пусть $f\in L^1[-\pi, \pi]$, тогда вот те $a_k(f), b_k(f), c_k(f)$ ~--- коэффициенты Фурье функции $f$
+
+    Ряд Фурье для функции $f$ имеет вид $\frac{a_0}{2} + \sum_{k = 1}^n(a_k \cos(kx) + b_k\sin(kx))$
+    или $\sum_{-\infty}^\infty c_n e^{inx}$.
+\end{definition}
+
+\begin{observation}
+    Если $f$ ~--- четна, то $b_k(f) = 0$, а если $f$ ~--- нечетна, то $a_k(f) = 0$
+
+    $|a_k(f)|, |b_k(f)|\le \frac{\norm{f}_1}{\pi}$, $|c_k(f)|\le \frac{\norm{f}_1}{2\pi}$
+
+    ($|a_k(f)| = |\frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos(kx)dx|\le  \frac{1}{\pi}\int_{-\pi}^\pi |f(x)|dx = \frac{\norm{f}_1}{\pi}$)
+\end{observation}
+
+
 \newpage
 

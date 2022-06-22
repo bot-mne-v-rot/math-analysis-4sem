@@ -1,3 +1,97 @@
-\section{}
+\section{Суммирование рядов по Чезаро и Абелю–
+Пуассону.}
+
+\begin{definition}
+    $\sum a_n$, $A_n := \sum\limits_{k = 0}^{n}$,
+    $\alpha_n := \frac{A_0 + A_1 + \ldots + A_n}{n + 1}$.
+
+    Если существует конечный  $\lim\limits_{n \to \infty}\alpha_n$,
+    то это число~--- сумма ряда $\sum a_n$ по Чезаро.
+\end{definition}
+
+\begin{designation}
+    $(c) \sum\limits_{n = 0}^\infty a_n$
+\end{designation}
+
+\begin{example}
+    $1 - 1 + 1 - 1 + \ldots$
+    
+    $\begin{cases}
+            A_n = 1,\quad n \text{ четное}   
+            
+            A_n = 0,\quad n \text{ нечетное} 
+            
+        \end{cases}$ $\alpha_{2k -1} = \frac{1}{2},\ \alpha_{2k} = \frac{k + 1}{2k + 1} \to \frac{1}{2} \Rightarrow
+        \lim\limits_{n \to \infty}\al_n = \frac{1}{2} \Rightarrow (c)\sum\limits_{n = 0}^\infty (-1)^n = \frac{1}{2}$,
+\end{example}
+
+\begin{theorem}
+    \leavevmode
+    \begin{enumerate}
+        \item Если ряд сходится, то он сходится по Чезаро к той же сумме
+        \item Суммирование по Чезаро линейно
+        \item Если ряд сходится по Чезаро, то $a_n = o(n)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \leavevmode
+    \begin{enumerate}
+        \item Теорема Штольца (если последовательность имеет предел, то средние арифметические имеют тот же предел)
+        \item Все шаги линейны
+        \item $\al_{n-1} \to A,\ \frac{n+1}{n}\al_n \to A \Rightarrow \frac{(n+1)\al_{n} - n\al_{n-1}}{n} = \frac{A_n}{n} \to 0$
+        
+              $\frac{a_n}{n} = \frac{A_n}{n} - \frac{n - 1}{n} \cdot \frac{A_{n-1}}{n -1} \to 0$
+    \end{enumerate}
+\end{proof}
+
+\begin{observation}
+    \leavevmode
+    \begin{enumerate}
+        \item Если добавлить нули, группировать слагаемые, переставлять слагаемые, сумма меняется
+        \item $\al_n = \sum\limits_{k=0}^n(1 - \frac{k}{n+1})a_k$ (проверяется вычислением)
+        \item Теорема Харди
+        
+              Если ряд сходится по Чезаро и $a_n = O(\frac{1}{n})$, то ряд сходится в обычном смысле (можно ослабить условие: $a_n \geq -\frac{c}{n}$)
+              
+              Без доказательства.
+    \end{enumerate}
+\end{observation}
+
+\begin{definition}
+    Если ряд $f(r) = \sum\limits_{n = 0}^\infty a_nr^n$ сходится при $r \in [0, 1)$, то $\lim\limits_{r \to 1-}$ назывется суммой ряда по Абелю-Пуассону
+\end{definition}
+
+\begin{designation}
+    $(A)\sum a_n$
+\end{designation}
+
+\begin{example}
+    $1 - 1 + 1 - \ldots $
+    
+    $f(r) = \sum\limits_{n =0}^\infty (-1)^rr^n = \sum\limits_{n = 0}^\infty (-r)^n = \frac{1}{1 + r} \xrightarrow[r \to 1-]{} \frac{1}{2}$
+\end{example}
+
+\begin{observation}
+    Если ряд сходится по Чезаро, то он сходится и по Абелю-Пуассону к той же сумме
+\end{observation}
+
+\begin{theorem}
+    \leavevmode
+    \begin{enumerate}
+        \item Если ряд сходится, то он сходится по Абелю-Пуассону к той же сумме
+        \item Суммирование по Абелю-Пуассону линейно
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \leavevmode
+    \begin{enumerate}
+        \item Теорема Абеля. Если $\sum a_n$ сходится, то $\lim\limits_{r \to 1-} \sum a_nr^n = \sum a_n$
+        \item Все линейно
+    \end{enumerate}
+\end{proof}
+
+
 \newpage
 

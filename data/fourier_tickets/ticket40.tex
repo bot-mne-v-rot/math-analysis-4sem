@@ -1,3 +1,58 @@
-\section{}
+\section{Представление an cos nx + bn sin nx в виде
+свертки. Лемма Римана–Лебега.}
+
+\begin{designation}
+    $A_k(f, x) =\begin{cases}
+            \frac{a_0}{2}, \text{если $k = 0$} \\
+            a_k(f)\cos(kx) + b_k(f)\sin(kx)
+        \end{cases} $
+\end{designation}
+
+\begin{observation}
+    $A_k(f, x) =\begin{cases}
+            \frac{1}{2\pi}\int_{-\pi}^\pi f(x-t)dt, \text{если $k = 0$} \\
+            \frac{1}{\pi}\int_{-\pi}^\pi f(x-t)\cos(kt)dt
+        \end{cases} $
+\end{observation}
+
+\begin{proof}
+    $A_k(f, x) = \frac{1}{\pi}\int_{-\pi}^\pi f(t)\cos(kt)dt \cdot \cos(kx) + \frac{1}{\pi}\int_{-\pi}^\pi f(t)\sin(kt)dt\cdot \sin(kx) =$
+
+    $ \frac{1}{\pi}\int_{-\pi}^\pi f(t)(\cos(kt)\cdot \cos(kx) + \sin(kt)\cdot\sin(kx))dt = \frac{1}{\pi}\int_{-\pi}^\pi f(t)\cos(k(x - t))dt = /s = x - t/ =
+        \frac{1}{\pi}\int_{-\pi}^\pi f(x- s)\cos(ks)ds$
+\end{proof}
+
+\begin{lemma}(Римана-Лебега)
+    \begin{enumerate}
+        \item $E\subset \mathbb{R}$ измеримо по Лебегу, $\lambda \in \mathbb{R}$, $f \in L^1(E, \lambda)$.
+
+              Тогда $\int_E f(t)e^{i\lambda t}dt \underset{\lambda\rightarrow\pm\infty}{\rightarrow} 0$,
+              $\int_E f(t)\cos(\lambda t)dt \underset{\lambda\rightarrow\pm\infty}{\rightarrow} 0$,
+              $\int_E f(t)\sin(\lambda t)dt \underset{\lambda\rightarrow\pm\infty}{\rightarrow} 0$
+        \item Если $f\in L^1[-\pi, \pi]$, то $a_k(f), b_k(f), c_k(f)\underset{k\rightarrow\pm\infty}{\rightarrow} 0$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}
+        \item Продолжим $f$ нулем вне $E$, $f\in L^1(\mathbb{R})$.
+
+              Пусть $f = \mathbbm{1}_{[\alpha, \beta)}$, тогда $\int_\mathbb{R} f(t)e^{i\lambda t}dt = \int_\alpha^\beta e^{i\lambda t}dt
+                  = \frac{e^{i\lambda t}}{i\lambda}\Big|_{t = \alpha}^{t = \beta} = \frac{e^{i\lambda\alpha} -
+                      e^{i\lambda \beta}}{i\lambda}$
+
+              $|\ldots| = |\frac{e^{i\lambda\alpha} -
+                      e^{i\lambda \beta}}{i\lambda}| \le \frac{2}{|\lambda|}  \underset{\lambda\rightarrow\pm\infty}{\rightarrow} 0$
+
+              Значит, теорема выполнена и для линейных комбинаций таких функций.
+
+              Приблизим произвольную $f$ ступенчатой $\varphi$, т.ч. $\norm{f - \varphi}_1 < \varepsilon$
+
+              $\int_{\mathbb{R}} e^{i\lambda t}dt \rightarrow 0 \Rightarrow $ при $\lambda > N$
+              $|\int_\mathbb{R}\varphi(t)e^{i\lambda t}dt| < \varepsilon$
+
+              $|\int_\mathbb{R}f(t)e^{i\lambda t}dt| \le  |\int_\mathbb{R}\varphi(t)e^{i\lambda t}dt| + |\int_\mathbb{R}(f(t) - \varphi(t))e^{i\lambda t}dt| < \varepsilon + \int_\mathbb{R}|e^{i\lambda t}dt| < 2\varepsilon$
+    \end{enumerate}
+\end{proof}
+
 \newpage
 

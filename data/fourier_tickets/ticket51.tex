@@ -1,3 +1,84 @@
-\section{}
+\section{Суммирование рядов Фурье по Чезаро.
+Теорема Фейера. Следствия. Теорема Вейерштрас-
+са о приближении непрерывных функций.}
+
+\begin{theorem}
+	Фейера
+	\begin{enumerate}
+	\item Если $f \in C_{2\pi}$, то $\sigma_n(f) \rightrightarrows f$
+	
+	\item Если $1 \leqslant p < +\infty, \, f \in L_{2\pi}^p$, то $||\sigma_n(f) - f||_p \rightarrow 0$ 
+	
+	\item Если $f \in L_{2\pi}^1$ и $f$~--- непрерывна в $x$, то $\sigma_n(f, x) \rightarrow f(x)$
+	\end{enumerate}
+	Все это при $n \rightarrow \infty$
+\end{theorem}
+
+\begin{proof}
+	$\Phi_n$~--- усиленна аппр. единица. Подставим в предыдущую теорему.
+\end{proof}
+
+\begin{observation}
+	$f \ast g = \int\limits_{-\pi}^{\pi} f(t) g(x-t) dt$ 
+\end{observation}
+
+\begin{consequences}
+	теоремы Фейера
+	
+	\begin{enumerate}
+		\item $f \in L_{2\pi}^1$ и $f$ непрерывна в $x$. Если ряд Фурье для $f$ в точке $x$ сходится, то он сходится к $f(x)$
+		\begin{proof}
+			$S_n(f, x) \rightarrow a \Rightarrow \sigma_n(f, x) \rightarrow a \Rightarrow a = f(x)$
+		\end{proof}
+		\item Если $f \in C_{2\pi}$ и ряд Фурье сходится равномерно, то он сходится к $f(x)$
+		\begin{proof}
+			$S_n(f) \rightrightarrows g	\Rightarrow \sigma_n(f) \rightrightarrows g \Rightarrow f = g$
+		\end{proof}
+		\item (Теорема единственности) $f, g \in L_{2\pi}^1$, такие что $c_k(f) = c_k(g)$, тогда $f = g$ почти везде
+		\begin{proof}
+			$h := f - g$, $c_k(h) = c_k(f) - c_k(g)	= 0 \Rightarrow S_n(h) = 0 \rightrightarrows 0 \rightarrow h \equiv 0$ 
+		\end{proof}
+		\item Ряд Фурье для $f \in L_{2\pi}^2$ сходится к $f$ по норме (т.е. тригономертическая система~--- базис).
+		\begin{proof}
+			$S_n(f) \rightarrow g$ в $L_{2\pi}^2 \Rightarrow \sigma_n \rightarrow g$ в $L_{2\pi}^2 \Rightarrow ||f - g||_2 = 0 \Rightarrow f = g$ почти везде.
+		\end{proof}
+		\item (Тождество Парсиваля) $f, g \in L_{2\pi}^2$. Тогда $\int\limits_{-\pi}^{\pi} f \overline{g} = 2\pi\sum\limits_{k \in \mathbb{Z}} c_k(f)\overline{c_k(g)}$
+		\begin{proof}
+			Следствие из того, что базис
+		\end{proof}
+	\end{enumerate} 
+\end{consequences}
+
+\begin{theorem}
+	Вейерштрасса
+	\begin{enumerate}
+		\item $f \in C_{2\pi}$ и $\varepsilon > 0$. Тогда $\exists$ тригономертический многочлен $T$, что $|f(x) - T(x)| < \varepsilon \,\, \forall x$
+		\item $1 \leqslant p < +\infty$, $f \in L_{2\pi}^p$. Тогда $\exists$ тригономертический многочлен $T$, что $||f - T||_p < \varepsilon$   
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	$\sigma_n(f)$~--- тригонометрический многочлен.
+\end{proof}
+
+\begin{theorem}
+	Вейерштрасса
+	
+	$f \in C[a, b]$, $\varepsilon > 0$. Тогда существует многочлен $P$, такой что $|f(x) - P(x)| < \varepsilon$ $\forall x \in [a, b]$
+\end{theorem}
+
+\begin{proof}
+	$[0, \pi] \rightarrow [a, b]$, $x = a + \frac{b - a}{\pi} t$, $g(t) := f(a + \frac{b - a}{\pi}t)$~--- непрерывна на $[0, \pi]$. Продолжим $g$ на $[-\pi, 0]$ по четности. Тогда $g \in C_{2\pi}$. Тогда по предыдущей теореме найдется тригонометрический многочлен $T$, такой что $|g(t) - T(t)| < \varepsilon$ $\forall t \in [-\pi, \pi]$
+	
+	$T(t) = \frac{a_0}{2} + \sum\limits_{k = 1}^{n} (a_k \cos kt + b_k \sin kt)$
+	
+	$\cos kt = \sum\limits_{j = 0}^{\infty} \frac{(-1)^j}{(2j)!}(kt)^{2j}$~--- равномерно сходится на $[-\pi, \pi]$
+	
+	Обрежем  так, чтобы была маленькая погрешность.	 
+\end{proof}
+
+\begin{consequence}
+	$f \in C[a, b]$. Тогда $\exists$ последовательность многочленов $P_n$, такая, что $P_n \rightrightarrows f$ на $[a, b]$
+\end{consequence}
+
 \newpage
 
