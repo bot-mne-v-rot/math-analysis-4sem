@@ -24,7 +24,7 @@
 
 Особые точки $z = 0$, $z = \pi k$. Точки вида $z = \pi k$ это полюсы первого порядка при $k \neq 0$. Точка $z = 0$ это полюс второго порядка. $G_k$ -главная часть ряда Лорана в $\pi k$. Тогда: 
 \begin{gather*}
-    \res\limits_{z=\pi k} \ctg z = \eval{\frac{\cos z}{\left( \sin z \right)'}}_{z=\pi k} = 1
+    \res\limits_{z=\pi k} \ctg z = \eval{\frac{\frac{\cos z}{z}}{\left( \sin z \right)'}}_{z=\pi k} = \frac{1}{\pi k}
 \end{gather*}
 И тогда:
 \begin{gather*}
@@ -42,9 +42,8 @@
 Остаётся сложить главные части для точек, которые попали в наш круг - это просто те $k$, которые не превосходят $n$, при том важно, что точки попадают парами, поэтому и считаем тоже парами:
 \begin{align*}
     \frac{\ctg z}{z} &= G_0(z) + \sum\limits_{k=1}^{+\infty} \left( G_k(z) + G_{-k}(z)\right) \\ 
-    &= \frac{1}{z^2} + \sum\limits_{k=1}^{+\infty} \left( \frac{1}{z - \pi k} + \frac{1}{z + \pi k} \right) \\ 
-    &= \frac{1}{z^2} + \sum\limits_{k=1}^{+\infty} \frac{2z}{z^2-\pi^2k^2}
+    &= \frac{1}{z^2} + \sum\limits_{k=1}^{+\infty} \left( \frac{1}{\pi k} \cdot \frac{1}{z - \pi k} + \frac{1}{\pi (-k)} \cdot \frac{1}{z + \pi k} \right) \\ 
+    &= \frac{1}{z^2} + \sum\limits_{k=1}^{+\infty} \frac{2}{z^2-\pi^2k^2}
 \end{align*}
-
 \newpage
 
