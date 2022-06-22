@@ -1,3 +1,51 @@
-\section{}
+\section{Плотность бесконечно дифференцируемых функций в $L^p(E, \mu)$ (без доказательства). Теорема о непрерывности сдвига.}
+
+\begin{conj}
+    $f: \R^d \longrightarrow \overline{\R}$ финитная, если она равна нулю вне некоторого компакта. То есть $\{f \neq 0\}$ -- ограниченное множество. $\operatorname{supp} f = \Cl \{f \neq 0\}$ -- носитель. 
+\end{conj}
+
+\begin{theorem}
+    $1 \le p < +\infty$, $E \subset \R^m$ измеримо и $\mu$~--- мера Лебега.
+    Тогда множество финитных бесконечно дифференцируемых функций всюду плотно.
+\end{theorem}
+
+\begin{theorem}[О непрерывности сдвига]
+    $f_h(x) := f(x + h)$
+    \begin{enumerate}
+        \item Если $f$ равномерно непрерывна на $\R^d$, то $\norm{f_h - f}_\infty \xrightarrow{h \to 0} 0$
+        \item Если $1 \leq p < \infty$ и $f \in L^p(\R^d)$, то $\norm{f_{h} - f}_{p} \xrightarrow{h \to 0} 0$
+        \item Если $f \in C(\R)$ и $2\pi$-периодична, то $\norm{f_h - f}_\infty \xrightarrow{h \to 0} 0$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}$ $
+    \begin{enumerate}
+        \item[1.] 
+        $$\norm{f_h - f}_\infty = \underset{x\in \R}{\sup} \abs{f(x + h) - f(x)} \to 0$$ 
+        Это и есть определение равномерной непрерывности.
+        \item[3.] $f \in C(\R)$ и $2\pi$-периодична.
+        Тогда:
+        $$\norm{f_h - f}_\infty = \max \limits_{x \in [0, 2\pi]} \abs{f(x + h) - f(x)}$$
+        Значит есть равномерная непрерывность, а значит и стремление.
+        \item[2.] Зафиксируем $\ve > 0$, возьмем финитную $g \in C^{\infty}(\R^d)$, т.ч. $\norm{f-g}_p < \ve$
+              (можем, потому что такие функции плотны).
+              \[
+                  \norm{f_h - f}_p \leq \lessneqbelow{\underbrace{\norm{f_h - g_h}_p}}{\ve}
+                  + \norm{g_h - g}_p
+                  + \lessneqbelow{\underbrace{\norm{f - g}_p}}{\ve} <
+                  2 \ve + \norm{g_h - g}_p \overset{?}{<} 3 \ve
+                  .\]
+              Покажем, что при малых $h$ неравенство верно.
+
+              Возьмем $B_R(0) \supset \supp g \Rightarrow B_{R+1}(0) \supset \supp g_h$ при $\norm{h} \leq 1$.
+              \[
+                  \norm{g_h - g}_p^p = \int\limits_{\R^d} \abs{g_h(x) - g(x)}^p dx
+                  = \int\limits_{B_{R+1}(0)} \abs{g_h(x) - g(x)}^p dx
+                  \leq \lambda B_{R+1}(0) \norm{g_h - g}_\infty^p \xrightarrow{h \to 0} 0
+              \]
+              Мера константна, а норма разности равномерно непрерывна ($g$ непрерывна на компакте).
+              
+              Значит $\norm{f_h - f}_p \leq 3\varepsilon$. А значит мы доказали, что хотели.
+    \end{enumerate}
+\end{proof}
 \newpage
 

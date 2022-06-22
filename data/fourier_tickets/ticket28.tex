@@ -1,3 +1,174 @@
-\section{}
+\section{Пространства Лебега. Существенный супремум. Свойства. Вложение пространств Лебега. Полнота пространств $L^p (E, \mu)$ (без доказательства)}
+
+\begin{definition}
+    $(X, \A, \mu)$~--- пространство с мерой,
+    $E \in \A$, $1 \le p < +\infty$. Введём обозначение:
+
+    \[
+        L^p(E, \mu) = \left\{ f \colon E \to \ov{R}
+        \text{ (или в $\CC$)}
+        \text{, измеримые и }
+        \int\limits_E \abs{f}^p d\mu < +\infty
+        \right\}
+    \]
+
+    А также введём такую штуку (почти норму):
+
+    \[
+        \norm{f}_p = \norm{f}_{L^p(E, \mu)}
+        = \left( \int\limits_E \abs{f}^p d\mu \right)^{1/p}
+    \]
+\end{definition}
+
+\begin{observation}
+    Неравенство треугольника есть~--- это просто неравенство
+    Минковского. Константы тоже выносятся правильно.
+    Но одно свойство нормы испортилось:
+
+    \[
+        \norm{f}_p = 0 \not\So f \equiv 0
+    \]
+
+    Следует только то, что $f = 0$ почти везде.
+    Ну давайте пофакторизуем по отношению равенства почти везде,
+    то есть будем рассматривать не функции, а классы эквивалентности
+    с точностью до совпадения почти везде.
+\end{observation}
+
+\begin{observation}
+    На таких классах эквивалентности это норма.
+\end{observation}
+
+\begin{definition}
+    Ну давайте теперь обозначать за $L^p(E, \mu)$~--- пространство
+    классов эквивалентности с нормой $\norm{\cdot}_p$.
+\end{definition}
+
+\begin{observation}
+    Теперь мы не можем писать значение функции в точке.
+\end{observation}
+
+\begin{definition}
+    Назовём существенным супремумом функции $f$ на множестве $E$ такую штуку:
+
+    \[
+        \inf \left\{ A \in \R \mid f(x) \le A \text{ при почти всех } x \in E \right\}
+    \]
+
+    Обозначается как $\esssup\limits_E f$. Можно ещё встретить обозначение
+    $\operatorname{vrai\,sup}$.
+\end{definition}
+
+\begin{property}
+    $$\esssup\limits_E f \le \sup\limits_E f$$
+\end{property}
+
+\begin{property}
+    $$f \le \esssup\limits_E f$$
+    почти везде на $E$.
+\end{property}
+
+\begin{proof}
+    Пусть: 
+    $$B \coloneqq \esssup\limits_E f < +\infty$$
+    Тогда: 
+    \begin{gather*}
+        f \le B + \frac1n \text{ почти везде на } E
+    \end{gather*}
+    Значит существует $e_n \subset E$, такое что
+    $f \le B + \frac1n$ на $E \setminus e_n$.
+    Тогда: 
+    $$\bigcup\limits_{n=1}^{+\infty} e_n \supset E\{f > B \}$$
+    Значит:
+    \begin{gather*}
+        \mu E\left\{f > B \right\} \le \sum \mu e_n = 0
+    \end{gather*}
+    То есть $E \left\{ f > B \right\}$ имеет меру ноль.
+\end{proof}
+
+\begin{definition}
+    $L^{\infty}(E, \mu)$~--- следующее множество (факторизованное по отношению почти везде):
+
+    \[
+        L^{\infty}(E, \mu) = \left\{ f \colon E \to \ov{R}
+        \text{ (или в $\CC$)}
+        \text{, измеримые и }
+        \esssup_{x \in E} \abs{f(x)} < +\infty
+        \right\}
+    \]
+
+    А норма выглядит так:
+
+    \[
+        \norm{f}_{\infty} = \norm{f}_{L^\infty(E, \mu)}
+        \coloneqq\esssup_{x\in E} \abs{f(x)}
+    \]
+\end{definition}
+
+\begin{observation}
+    Важный частный случай.
+    $X = \N$, $\mu$~--- считающая мера (мера множества это количество элементов множества).
+
+    \[
+        \norm{x}_p = \left( \sum\limits_{n=1}^{+\infty} \abs{x_n}^p \right)^{1/p}
+    \]
+
+    \[
+        \norm{x}_{\infty} = \sup \abs{x_n}
+    \]
+
+    Пространства эти обозначаются как $\ell^p$ и $\ell^\infty$.
+\end{observation}
+
+\begin{observation}
+    Неравенство Гёльдера.
+    $\frac1p + \frac1q = 1$, $p, q \ge 1$.
+    Тогда
+
+    \[
+        \norm{fg}_1 \le \norm{f}_p \norm{g}_q
+    \]
+\end{observation}
+
+\begin{theorem}[о вложении пространств Лебега]
+    Если $\mu E < +\infty$ и $1 \le p < q \le +\infty$, то тогда:
+    \begin{gather*}
+        L^q(E, \mu) \subset L^p(E, \mu)
+    \end{gather*}
+    А также:
+    \begin{gather*}
+        \norm{f}_p \le (\mu E)^{\frac{1}{p} - \frac{1}{q}} \norm{f}_q
+    \end{gather*} 
+\end{theorem}
+
+\begin{proof}
+    На самом деле нас интересует только неравенство, вложение из него
+    получается по конечности $q$-й нормы.
+
+    \[
+        \norm{f}_p^p = \int\limits_E \abs{f}^p \cdot 1 d\mu \le (*)
+    \]
+
+    Пишем неравенство Гёлдьдера для $r = \frac qp$ и соответствующего $s$:
+
+    \[
+        (*) \le
+        \left( \int\limits_E \left( \abs{f}^p \right)^r d\mu \right)^{1/r}
+        \left( \int\limits_E 1^s d\mu \right)^{1/s}
+        = \left( \int \abs{f}^q d\mu \right)^{p/q}
+        \left( \mu E \right)^{1-p/q}
+    \]
+
+    Возведём обе части неравенства в степень $1/p$ и получим то что надо.
+\end{proof}
+
+\begin{observation}
+    Если $\mu E = +\infty$, то вложений нет.
+\end{observation}
+
+\begin{theorem}
+    $L^p(E, \mu)$~--- полное.
+\end{theorem}
+
 \newpage
 

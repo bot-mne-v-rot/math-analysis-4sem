@@ -1,3 +1,56 @@
-\section{}
+\section{Гильбертовы пространства. Сходимость ортогональных рядов}
+
+\begin{definition} Скалярное произведение
+
+    $H$ --- векторное пространство,
+    $\dotprod{\cdot}{\cdot}: H \times H \to \C$ со свойствами:
+    \begin{enumerate}
+        \item $\dotprod{x}{x} \geq 0$ и $\dotprod{x}{x} = 0 \iff x = 0$
+        \item $\dotprod{x+y}{z} = \dotprod{x}{z} + \dotprod{y}{z}$
+        \item $\dotprod{x}{y} = \conjj{\dotprod{y}{x}}$
+        \item $\dotprod{\alpha x}{y} = \alpha \dotprod{x}{y}$, $\alpha \in \C$
+    \end{enumerate}
+\end{definition}
+
+\begin{observation}
+    $\norm{x} := \sqrt{\dotprod{x}{x}}$ --- норма.
+\end{observation}
+
+\begin{definition}
+    $H$ --- гильбертово пространство, если в нем есть скалярное произведение и $H$ --- полное.
+\end{definition}
+
+\begin{examples}
+    \begin{enumerate}
+        \item В $L^2(E, \mu)$: 
+        $$\dotprod{f}{g} := \int\limits_E f(x)\conjj{g(x)} d\mu(x)$$
+        \item $\ell^2$ --- последовательности чисел, т.ч. $\sum \cdot^2$ конечны.
+        $$\dotprod{x}{y} := \sum \limits_{n=1}^\infty x_n\conjj{y_n}$$
+        \item $\C^d$ или $\R^d$: 
+        $$\langle a, b \rangle \coloneqq \sum\limits_{n=1}^{d} a_n \overline{b_n}$$
+    \end{enumerate}
+\end{examples}
+
+\begin{lemma}
+    \begin{gather*}
+        \sum\limits_{n=1}^\infty x_n  \text{ сходится } \Rightarrow \dotprod{\sum\limits_{n=1}^\infty x_n}{y} =
+        \sum\limits_{n=1}^\infty \dotprod{x_n}{y}
+    \end{gather*}
+\end{lemma}
+\begin{proof}
+    $$S_n := \sum\limits_{k=1}^n x_k \longrightarrow S := \sum\limits_{k=1}^\infty x_k$$
+
+    Сходимость $x_n \Rightarrow \norm{S_n - S} \to 0$.
+
+    \[
+        \dotprod{S}{y} \leftarrow \dotprod{S_n}{y} = \dotprod{\sum\limits_{k=1}^n x_k}{y}
+        = \sum\limits_{k=1}^n \dotprod{x_k}{y} \rightarrow \sum\limits_{k=1}^\infty \dotprod{x_k}{y}
+        .\]
+
+    Левая стрелка: $\dotprod{S_n}{y} - \dotprod{S}{y} = \dotprod{S_n - S}{y} \xrightarrow{?} 0$.
+
+    $$\abs{\dotprod{S_n - S}{y}} \leq \norm{S_n - S} \norm{y} \to 0$$
+\end{proof}
+
 \newpage
 
