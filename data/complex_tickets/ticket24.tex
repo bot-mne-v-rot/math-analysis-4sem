@@ -5,91 +5,38 @@
     $n$ в виде суммы натуральных слагаемых (порядок не учитывается). 
 \end{definition}
 
-\example \; Если каждую монету можно использовать не более $m$ раз, то ряд для конкретного номинала монеты $k$ имеет вид: 
-\begin{gather*}
-    \sum\limits_{n=0}^m z^{kn}
-\end{gather*}
-Тогда производящая функция для количества монет для фиксированного $n$ будет: 
-\begin{gather*}
-    \mathcal{F}(z) = \prod\limits_{k \in H} \frac{1 - z^{k(m+1)}}{1 - z^k}
-\end{gather*}
-
 \begin{theorem}
-    Производящая функция для $p(n)$: 
-    \begin{gather*}
-        f(z) = \sum\limits_{n=0}^{\infty} p(n) z^n = \prod_{k=1}^{\infty} \frac{1}{1-z^k}
-    \end{gather*}
+    Производящая функция для $p(n): f(z) = \sum\limits_{n=0}^{\infty} p(n) z^n = \prod\limits_{k=1}^{\infty} \frac{1}{1-z^k}$
+
     Сходится в круге
-    $\abs z < 1$ и для $r < 1$;
-    \begin{gather*}
-        p(n) = \frac{1}{2\pi i} \int\limits_{\abs z = r}\frac{f(z)}{z^{n+1}}dz
-    \end{gather*}
+    $\abs z < 1$ и для $r < 1: p(n) = \frac{1}{2\pi i} \int\limits_{\abs z = r}\frac{f(z)}{z^{n+1}}dz$
 \end{theorem}
 
 \begin{proof}
-    Заметим, что: 
-    \begin{gather*}
-        \ln(1 - t) \leqslant -t + t^2
-    \end{gather*}
+    Заметим, что $\ln(1 - t) \leqslant -t + t^2$ для $t \in (0, 1)$
+
     Хотим доказать, что сходится $\prod \abs{\frac{1}{1-z^k}}$,
     логарифмируем:
 
-    \[
-        \sum\limits_{k=1}^{+\infty} \ln \abs{\frac{1}{1-z^k}}
+    \begin{gather*}
+        \ln \prod \abs{\frac{1}{1-z^k}} =  \sum\limits_{k=1}^{+\infty} \ln \abs{\frac{1}{1-z^k}} \\
         = -\sum\limits_{k=1}^{+\infty} \ln \abs{1-z^k}
-        \le -\sum\limits_{k=1}^{+\infty} \ln \left(1-\abs{z}^k\right)
-        \le -\sum\limits_{k=1}^{+\infty} -\abs{z}^k - \abs{z}^{2k}
-    \]
+        \le -\sum\limits_{k=1}^{+\infty} \ln \left(1-\abs{z}^k\right) \\
+        \le -\sum\limits_{k=1}^{+\infty} -\abs{z}^k - \abs{z}^{2k} = \sum\limits_{k=1}^{+\infty} \abs{z}^k + \abs{z}^{2k}
+    \end{gather*}
 
-    В круге $\abs z \le r < 1$ есть равномерная сходимость,
-    значит можно дифференцировать почленно.
-
-    \[
-        f' = \frac{f'}{f} \cdot f
-        = (\ln f)' \cdot f
-    \]
-
-    $\ln f = \sum \ln \frac{1}{1-z^k}$ равномерно сходится,
-    значит можно дифференцировать. Значит $f$ голоморфная.
-
-    \[
-        \frac{f(z)}{z^{n+1}}
-        = \frac{\sum\limits_{k=1}^{+\infty} p(k)z^k}{z^{n+1}}
-    \]
-
-    Вычет это коэффициент при $-1$-й степени:
-
-    \[
-        \res \frac{f(z)}{z^{n+1}} = p(n)
-    \]
-
-    Значит
-
-    \[
-        \int\limits_{\abs z = r} \frac{f(z)}{z^{n+1}}dz
-        = 2\pi i \res\limits_{z= 0} \frac{f(z)}{z^{n+1}} = 2\pi i p(n)
-    \]
+    Ряд сходится при $\abs{z} < 1$, значит $f(z) = \sum\limits_{n=0}^{\infty} p(n) z^n$ тоже сходится, значит $f$ -- голоморфна и равна своему ряду Лорана,
+    а для ряда мы знаем коэффициенты для некоторого $r < 1$ -- это ровно то, что в условии.
+    
 \end{proof}
-
-\begin{observation}
-    Отсюда можно вывести формулу Харди-Рамануджана:
-
-    \[
-        p(n) \sim \frac{1}{4n\sqrt 3} e^{\pi \sqrt{2/3} \cdot \sqrt{n}}
-        \text{ при } n \to \infty
-    \]
-\end{observation}
 
 \begin{theorem}[Эйлер]
     Число разбиений на нечётные слагаемые равно числу разбиений на различные слагаемые.
 \end{theorem}
 
 \begin{proof}
-    Производящая функция для нечётных слагаемых:
-
-    \[
-        \prod_{k=1}^{+\infty} \frac{1}{1-z^{2k-1}}
-    \]
+    Производящая функция для нечётных слагаемых: 
+    \[ \prod\limits_{k=1}^{+\infty} \frac{1}{1-z^{2k-1}} \]
 
     Производящая функция для различных слагаемых:
 
