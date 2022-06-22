@@ -15,16 +15,16 @@
     
 \end{proof}
 
-Рассмотрим такое $f(z)$:
-\begin{gather*}
-    f(z) = \frac{\ctg z}{z}
-\end{gather*}
+Рассмотрим такое $f(z) = \frac{\ctg z}{z}$
 
-Из леммы $\abs{z} \le M$ при $\abs{z} = \pi\left(n + \frac12\right)$. Тогда берём радиусы $R_n = \pi\left(n + \frac12\right)$, и говорим что на таких окружностях функция $M_{R_n} \le \frac{M}{R_n} \to 0$.
+Для $f(z)$ хотим воспользоваться второй теоремой о разложении мероморфной функции в сумму, а именно заключить, что $\lim\limits_{n \to +\infty} \sum\limits_{\abs{a_k} < R_n}^{} G_k(z)$
+Для этого нам нужно понять, что для такой последовательности радиусов $R_n$, что $R_n \to \infty$: $M_{R_n} := \underset{\abs{z} = R_n}{\max} \abs{f(z)} \to 0$.
+
+Воспользуемся леммой: $\abs{z} \le M$ при $\abs{z} = \pi\left(n + \frac12\right) =: R_n$. На окружностях с такими радиусами: $M_{R_n} \le \frac{M}{R_n} \to 0$.
 
 Особые точки $z = 0$, $z = \pi k$. Точки вида $z = \pi k$ это полюсы первого порядка при $k \neq 0$. Точка $z = 0$ это полюс второго порядка. $G_k$ -главная часть ряда Лорана в $\pi k$. Тогда: 
 \begin{gather*}
-    \res\limits_{z=\pi k} \ctg z = \eval{\frac{\cos z}{\left( \sin z \right)'}}_{z=\pi k}
+    \res\limits_{z=\pi k} \ctg z = \eval{\frac{\cos z}{\left( \sin z \right)'}}_{z=\pi k} = 1
 \end{gather*}
 И тогда:
 \begin{gather*}
